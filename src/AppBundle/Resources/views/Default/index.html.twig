@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/structure.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/body.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/exception.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <p>
+        Hello {{ name }}!
+    </p>
+{% endblock %}
