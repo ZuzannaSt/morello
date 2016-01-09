@@ -1,3 +1,0 @@
-tracker_homepage:
-    resource: "@TrackerBundle/Controller/"
-    type: annotation

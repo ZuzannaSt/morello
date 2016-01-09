@@ -8,12 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
-
     /**
-     * @Route("/home/{name}")
+     * @Route("/")
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('AppBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('AppBundle:Default:index.html.twig');
     }
 }
