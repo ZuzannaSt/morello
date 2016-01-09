@@ -5,13 +5,27 @@ security:
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory:
-            memory: ~
+            memory:
+                users:
+                    zuzia:
+                        password: zuzia123
+                        roles: 'ROLE_USER'
+                    admin:
+                        password: admin123
+                        roles: 'ROLE_ADMIN'
+
+        our_db_provider:
+            entity:
+                class: AppBundle:User
+                property: username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
+            # security: false
             pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+            http_basic: ~
+            provider: our_db_provider
 
         main:
             anonymous: ~
