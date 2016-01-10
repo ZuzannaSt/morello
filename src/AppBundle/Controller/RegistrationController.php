@@ -37,7 +37,7 @@ class RegistrationController extends Controller
             // ... do any other work - like send them an email, etc
             // maybe set a "flash" success message for the user
 
-            $redirectUrl = $this->generateUrl('replace_with_some_route');
+            $redirectUrl = $this->generateUrl('registration_confirmed');
 
             return $this->redirect($redirectUrl);
         }
@@ -46,5 +46,13 @@ class RegistrationController extends Controller
             'AppBundle:Registration:register.html.twig',
             array('form' => $form->createView())
         );
+    }
+
+    /**
+     * @Route("/confirmed", name="registration_confirmed")
+     */
+    public function confirmedAction()
+    {
+        return $this->render('AppBundle:Registration:confirmed.html.twig');
     }
 }
