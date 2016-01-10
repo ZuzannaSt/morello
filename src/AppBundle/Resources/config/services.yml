@@ -1,4 +1,11 @@
 services:
+    app.project_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - AppBundle\Entity\Project
+
     #  app.user_type_form:
     #     class: AppBundle\Form\UserType
     #     tags:

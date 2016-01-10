@@ -16,12 +16,21 @@ class ProjectRepository extends EntityRepository
 
         if (null === $project) {
             $message = sprintf(
-                'Unable to find an active admin AppBundle:User object identified by "%s".',
+                'Unable to find an AppBundle:Project object identified by "%s".',
                 $name
             );
             throw new NameNotFoundException($message);
         }
 
         return $project;
+    }
+
+    public function findAllOrderedByName()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT p FROM AppBundle:Project p ORDER BY p.name ASC'
+            )
+            ->getResult();
     }
 }
