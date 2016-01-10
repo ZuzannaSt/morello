@@ -2,10 +2,5 @@ app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
-user_registration:
-    path:     /register
-    defaults: { _controller: AppBundle:Registration:register }
-
-registration_confirmed:
-    path:     /confirmed
-    defaults: { _controller: AppBundle:Registration:confirmed }
+logout:
+    path: /logout

@@ -8,12 +8,13 @@
 
 {% block body %}
     <nav>
-        <a href="{{ path('user_registration') }}">
-            Register
-        </a>
-        <a href="{{ path('login_route') }}">
-            Log in
-        </a>
+        {% if app.user %}
+            <b> Logged as {{ app.user.username }} </b>
+            <a href="{{ path('logout') }}"> Log out </a>
+        {% else %}
+          <a href="{{ path('user_registration') }}"> Register </a>
+          <a href="{{ path('login_route') }}"> Log in </a>
+        {% endif %}
     </nav>
     <h1>
         Hello there!

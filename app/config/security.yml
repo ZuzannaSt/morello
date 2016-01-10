@@ -8,7 +8,6 @@ security:
         AppBundle\Entity\User:
             algorithm: bcrypt
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory:
             memory:
@@ -26,7 +25,6 @@ security:
                 property: username
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             security: false
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -36,7 +34,11 @@ security:
         main:
             anonymous: ~
             pattern:    ^/
+            http_basic: ~
             provider: our_db_provider
             form_login:
                 login_path: /login
                 check_path: /login_check
+            logout:
+                path:   /logout
+                target: /
