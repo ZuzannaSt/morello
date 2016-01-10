@@ -9,6 +9,10 @@
 {% block body %}
     <h1>
         You've successfully registered!
-        <small>Now go ahead and log in.</small>
+        <small>Now go ahead and
+              <a href="{{ path('login_route') }}">
+                    log in
+              </a>.
+        </small>
     </h2>
 {% endblock %}

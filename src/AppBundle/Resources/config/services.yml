@@ -1,4 +1,27 @@
 services:
-#    app.example:
-#        class: AppBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    #  app.user_type_form:
+    #     class: AppBundle\Form\UserType
+    #     tags:
+    #         - { name: form.type, alias: user }
+    #
+    # app.user_repository:
+    #     class: Doctrine\ORM\EntityRepository
+    #     factory_service: doctrine.orm.default_entity_manager
+    #     factory_method: getRepository
+    #
+    # app.registration_controller:
+    #     class: AppBundle\Controller\RegistrationController
+    #     arguments:
+    #         - @templating
+    #         - @app.user_repository
+    #         - @app.user_type_form
+    #
+    # app.security_controller:
+    #     class: AppBundle\Controller\SecurityController
+    #     arguments:
+    #         - @templating
+    #
+    # app.default_controller:
+    #     class: AppBundle\Controller\DefaultController
+    #     arguments:
+    #         - @templating

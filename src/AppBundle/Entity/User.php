@@ -266,13 +266,4 @@ use Symfony\Component\Security\Core\User\UserInterface;
     {
         $this->password = $password;
     }
-
-    public function getEncoderName()
-    {
-        if ($this->isAdmin()) {
-            return 'harsh';
-        }
-
-        return null; // use the default encoder
-    }
 }
