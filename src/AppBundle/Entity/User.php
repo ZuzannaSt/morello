@@ -124,6 +124,16 @@ use Symfony\Component\Security\Core\User\UserInterface;
     }
 
     /**
+     * Get id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * Set email
      *
      * @param string $email

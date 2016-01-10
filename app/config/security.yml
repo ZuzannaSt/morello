@@ -3,7 +3,8 @@
 security:
 
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
         AppBundle\Entity\User:
             algorithm: bcrypt
 
@@ -30,9 +31,12 @@ security:
             security: false
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             http_basic: ~
+            provider: our_db_provider
 
         main:
             anonymous: ~
+            pattern:    ^/
+            provider: our_db_provider
             form_login:
                 login_path: /login
                 check_path: /login_check
