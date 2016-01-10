@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity
  * @ORM\Table(name="users")
- * @ORM\Entity(repositoryClass="AppBundle\Repositories\UserRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @UniqueEntity(fields="email", message="Email already taken")
  * @UniqueEntity(fields="username", message="Username already taken")
  */
@@ -38,6 +38,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
      * )
      */
     private $password;
+
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max = 4096)
+     */
+    private $plainPassword;
 
     /**
      * @ORM\Column(
@@ -84,7 +90,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
      *     name="lastname",
      *     type="string",
      *     length=128,
-     *     nullable=false
+     *     nullable=true
      * )
      */
     private $lastName;
@@ -244,5 +250,29 @@ use Symfony\Component\Security\Core\User\UserInterface;
             $this->username,
             $this->password,
         ) = unserialize($serialized);
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    public function getEncoderName()
+    {
+        if ($this->isAdmin()) {
+            return 'harsh';
+        }
+
+        return null; // use the default encoder
     }
 }

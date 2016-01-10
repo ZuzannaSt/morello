@@ -2,16 +2,20 @@
 # http://symfony.com/doc/current/book/security.html
 security:
 
+    encoders:
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory:
             memory:
                 users:
                     zuzia:
-                        password: zuzia123
+                        password: $2a$04$5LldtUtbspJ4fQuRhQU92e5wRCb6Ns/3wh3g188de58vOav9Tz5LS
                         roles: 'ROLE_USER'
                     admin:
-                        password: admin123
+                        password: $2a$04$SOV6P1CRnJjMAyLIOnX9GuYj4NijEoC4HmcIEQ1A9NKM5x4byb3ym
                         roles: 'ROLE_ADMIN'
 
         our_db_provider:
@@ -22,10 +26,9 @@ security:
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
-            # security: false
+            security: false
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             http_basic: ~
-            provider: our_db_provider
 
         main:
             anonymous: ~
