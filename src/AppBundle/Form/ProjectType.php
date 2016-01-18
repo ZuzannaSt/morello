@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ProjectType extends AbstractType
 {
@@ -15,11 +16,21 @@ class ProjectType extends AbstractType
         )
         ->add(
             'name',
-            'text'
+            'text',
+            array(
+                'label'       => 'Project Name',
+                'required'    => true,
+                'max_length'  => 128
+            )
         )
         ->add(
             'description',
-            'textarea'
+            'textarea',
+            array(
+                'label'       => 'Project Description',
+                'required'    => false,
+                'max_length'  => 256
+            )
         )
         ->add(
             'users',
@@ -37,6 +48,15 @@ class ProjectType extends AbstractType
             array(
                 'label' => 'Save'
             )
+        );
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(
+            array(
+                'data_class' => 'AppBundle\Entity\Project'
+              )
         );
     }
 
