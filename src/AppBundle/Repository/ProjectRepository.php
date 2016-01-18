@@ -58,4 +58,11 @@ class ProjectRepository extends EntityRepository
             ->getQuery();
         return $query->getOneOrNullResult();
     }
+
+    public function save(\AppBundle\Entity\Project $project)
+    {
+        $em = $this->getEntityManager();
+        $em->persist($project);
+        $em->flush();
+    }
 }

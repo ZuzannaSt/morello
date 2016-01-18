@@ -85,10 +85,13 @@ class ProjectsController
         $projectForm->handleRequest($request);
 
         if ($projectForm->isValid()) {
+            $this->model->save($projectForm->getData());
             $this->session->getFlashBag()->set(
                 'success',
                 $this->translator->trans('Saved')
             );
+
+            return new RedirectResponse($this->router->generate('projects'));
         } else {
             $this->session->getFlashBag()->set(
                 'error',

@@ -62,6 +62,6 @@ class ProjectType extends AbstractType
 
     public function getName()
     {
-        return 'project_form';
+        return 'project';
     }
 }
