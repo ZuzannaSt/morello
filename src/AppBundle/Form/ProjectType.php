@@ -12,7 +12,14 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('name', 'text')
-            ->add('description', 'textarea');
+            ->add('description', 'textarea')
+            ->add('users', 'entity', array(
+              'multiple' => true,
+              'expanded' => true,
+              'property' => 'username',
+              'class'    => 'AppBundle:User'
+            )
+          );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
