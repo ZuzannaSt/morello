@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -94,6 +95,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
      * )
      */
     private $lastName;
+
+    /**
+    * @ORM\OneToMany(targetEntity="ProjectUser", mappedBy="user")
+    */
+    protected $projectuser;
 
     public function __construct()
     {
