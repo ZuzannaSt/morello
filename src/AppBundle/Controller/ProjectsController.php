@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 /**
  * @Route(service="app.projects_controller")
  */
-class ProjectController
+class ProjectsController
 {
     private $translator;
     private $templating;
@@ -51,13 +51,13 @@ class ProjectController
         $projects = $this->model->findAllOrderedByName();
 
         return $this->templating->renderResponse(
-            'AppBundle:Project:index.html.twig',
+            'AppBundle:Projects:index.html.twig',
             array('projects' => $projects)
         );
     }
 
      /**
-     * @Route("projects/view/{id}", name="project_view")
+     * @Route("projects/view/{id}", name="projects-view")
      */
 
      public function viewAction($id)
@@ -70,15 +70,15 @@ class ProjectController
        }
 
        return $this->templating->renderResponse(
-           'AppBundle:Project:view.html.twig',
+           'AppBundle:Projects:view.html.twig',
            array('project' => $project)
        );
       }
 
     /**
-     * @Route("/projects/new", name="project_new")
+     * @Route("/projects/new", name="projects-new")
      */
-    public function createAction(Request $request)
+    public function addAction(Request $request)
     {
         $projectForm = $this->formFactory->create(new ProjectType());
 
@@ -97,14 +97,14 @@ class ProjectController
         }
 
         return $this->templating->renderResponse(
-         'AppBundle:Project:new.html.twig',
+         'AppBundle:Projects:new.html.twig',
          array('form' => $projectForm->createView())
         );
     }
 
     /**
     *
-    * @Route("/projects/edit/{id}", name="project_edit")
+    * @Route("/projects/edit/{id}", name="projects-edit")
     *
     */
     public function editAction($id)
@@ -112,36 +112,9 @@ class ProjectController
     }
 
     /**
-    * @Route("/projects/delete/{id}", name="project_delete")
+    * @Route("/projects/delete/{id}", name="projects-delete")
     */
-    public function deleteAction(Request $request)
+    public function deleteAction($id)
     {
-      $id = $request->get('id', null);
-      $project = $this->model->find($id);
-      if (!$project) {
-           throw $this->createNotFoundException(
-               $this->translator->trans('No project found for id ') . $id
-           );
-       }
-
-       $projectForm = $this->formFactory->create(
-           new ProjectType(),
-           $project,
-           array(
-               'validation_groups' => 'project_delete'
-           )
-       );
-
-       $projectForm->handleRequest($request);
-
-       if ($projectForm->isValid()) {
-          remove($project);
-       }
-
-       return $this->templating->renderResponse(
-           'AppBundle:Project:delete.html.twig',
-           array('form' => $currencyForm->createView())
-       );
-
     }
 }

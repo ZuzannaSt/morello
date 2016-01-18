@@ -6,25 +6,6 @@ use Doctrine\ORM\EntityRepository;
 
 class ProjectRepository extends EntityRepository
 {
-    public function loadProjectByName($name)
-    {
-        $project = $this->createQueryBuilder('p')
-            ->where('p.name = :name')
-            ->setParameter('name', $name)
-            ->getQuery()
-            ->getOneOrNullResult();
-
-        if (null === $project) {
-            $message = sprintf(
-                'Unable to find an AppBundle:Project object identified by "%s".',
-                $name
-            );
-            throw new NameNotFoundException($message);
-        }
-
-        return $project;
-    }
-
     public function findAllOrderedByName()
     {
         return $this->getEntityManager()
@@ -35,7 +16,6 @@ class ProjectRepository extends EntityRepository
             ')
             ->getResult();
     }
-
 
     public function findAllCustom()
     {
@@ -49,13 +29,37 @@ class ProjectRepository extends EntityRepository
                 'AppBundle:ProjectUser',
                 'pu',
                 'WITH',
-                'pu.project = p.id'
+                'pu.project_id = p.id'
             )
             ->innerJoin(
                 'AppBundle:User',
                 'u',
                 'WITH',
-                'pu.user = u.id'
+                'pu.user_id = u.id'
+            )
+            ->getQuery();
+        return $query->getResult();
+    }
+
+    public function find($id)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->select(
+                'p.id',
+                'p.name',
+                'u.username'
+            )
+            ->innerJoin(
+                'AppBundle:ProjectUser',
+                'pu',
+                'WITH',
+                'pu.project_id = p.id'
+            )
+            ->innerJoin(
+                'AppBundle:User',
+                'u',
+                'WITH',
+                'pu.user_id = u.id'
             )
             ->getQuery();
         return $query->getResult();
