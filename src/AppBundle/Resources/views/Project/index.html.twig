@@ -15,13 +15,13 @@
         <tbody>
         {% for project in projects %}
             <tr>
-                <td><a href="{{ path('project_show', { 'id': project.id }) }}">{{ project.id }}</a></td>
+                <td><a href="{{ path('project_view', { 'id': project.id }) }}">{{ project.id }}</a></td>
                 <td>{{ project.name }}</td>
                 <td>{{ project.description }}</td>
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('project_show', { 'id': project.id }) }}">show</a>
+                        <a href="{{ path('project_view', { 'id': project.id }) }}">show</a>
                     </li>
                     <li>
                         <a href="{{ path('project_edit', { 'id': project.id }) }}">edit</a>
