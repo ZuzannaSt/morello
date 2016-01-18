@@ -20,7 +20,7 @@ services:
         tags:
             - { name: form.type, alias: project }
     app.projects_controller:
-        class: AppBundle\Controller\ProjectController
+        class: AppBundle\Controller\ProjectsController
         arguments:
           - @translator
           - @templating

@@ -47,21 +47,15 @@ class ProjectRepository extends EntityRepository
             ->select(
                 'p.id',
                 'p.name',
-                'u.username'
+                'p.description'
             )
-            ->innerJoin(
-                'AppBundle:ProjectUser',
-                'pu',
-                'WITH',
-                'pu.project_id = p.id'
+            ->where(
+                'p.id = :id'
             )
-            ->innerJoin(
-                'AppBundle:User',
-                'u',
-                'WITH',
-                'pu.user_id = u.id'
+            ->setParameter(
+                'id', $id
             )
             ->getQuery();
-        return $query->getResult();
+        return $query->getOneOrNullResult();
     }
 }
