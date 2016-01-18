@@ -76,7 +76,7 @@ class ProjectsController
       }
 
     /**
-     * @Route("/projects/new", name="projects-new")
+     * @Route("/projects/add", name="projects-add")
      */
     public function addAction(Request $request)
     {
@@ -97,7 +97,7 @@ class ProjectsController
         }
 
         return $this->templating->renderResponse(
-         'AppBundle:Projects:new.html.twig',
+         'AppBundle:Projects:add.html.twig',
          array('form' => $projectForm->createView())
         );
     }
