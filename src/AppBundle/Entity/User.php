@@ -97,13 +97,17 @@ use Symfony\Component\Security\Core\User\UserInterface;
     private $lastName;
 
     /**
-    * @ORM\OneToMany(targetEntity="ProjectUser", mappedBy="user")
+    * @ORM\ManyToMany(targetEntity="Project", mappedBy="users")
     */
-    protected $projectuser;
+    protected $projects;
 
+    /**
+    * Constructor
+    */
     public function __construct()
     {
         $this->isActive = true;
+        $this->projects = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

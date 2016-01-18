@@ -49,9 +49,18 @@ use Symfony\Component\Security\Core\User\UserInterface;
     private $description;
 
     /**
-    * @ORM\OneToMany(targetEntity="ProjectUser", mappedBy="project")
+    * @ORM\ManyToMany(targetEntity="User", inversedBy="projects")
+    * @ORM\JoinTable(name="projects_users")
     */
-    protected $projectuser;
+    protected $users;
+
+    /**
+    * Constructor
+    */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -117,24 +126,34 @@ use Symfony\Component\Security\Core\User\UserInterface;
     /**
     * Get users
     *
-    * @return Array
+    * @return \Doctrine\Common\Collections\Collection
     */
     public function getUsers()
     {
-        return array('users');
+        return $this->users;
     }
 
 
     /**
-     * Set users
+     * Add users
      *
-     * @param Array users
-     * @return Array
+     * @param \AppBundle\Entity\UserEntity $users
+     * @return User
      */
-    public function setUsers($users)
+    public function addUser(\AppBundle\Entity\User $users)
     {
-        $this->users = $users;
+        $this->users[] = $users;
 
         return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \AppBundle\Entity\UserEntity $users
+     */
+    public function removeUser(\AppBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
     }
 }
