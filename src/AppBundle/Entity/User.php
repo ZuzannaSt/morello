@@ -235,6 +235,29 @@ use Symfony\Component\Security\Core\User\UserInterface;
         return $this->lastName;
     }
 
+    /**
+     * Add projects
+     *
+     * @param \AppBundle\Entity\Project $projects
+     * @return Project
+     */
+    public function addUser(\AppBundle\Entity\Project $projects)
+    {
+        $this->projects[] = $projects;
+
+        return $this;
+    }
+
+    /**
+     * Remove projects
+     *
+     * @param \AppBundle\Entity\Project $projects
+     */
+    public function removeUser(\AppBundle\Entity\Project $projects)
+    {
+        $this->projects->removeElement($projects);
+    }
+
     public function getSalt()
     {
         return null;
