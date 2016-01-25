@@ -26,12 +26,6 @@ class ProjectRepository extends EntityRepository
                 'u.username'
             )
             ->innerJoin(
-                'AppBundle:ProjectUser',
-                'pu',
-                'WITH',
-                'pu.project_id = p.id'
-            )
-            ->innerJoin(
                 'AppBundle:User',
                 'u',
                 'WITH',
@@ -39,24 +33,6 @@ class ProjectRepository extends EntityRepository
             )
             ->getQuery();
         return $query->getResult();
-    }
-
-    public function find($id)
-    {
-        $query = $this->createQueryBuilder('p')
-            ->select(
-                'p.id',
-                'p.name',
-                'p.description'
-            )
-            ->where(
-                'p.id = :id'
-            )
-            ->setParameter(
-                'id', $id
-            )
-            ->getQuery();
-        return $query->getOneOrNullResult();
     }
 
     public function save(\AppBundle\Entity\Project $project)

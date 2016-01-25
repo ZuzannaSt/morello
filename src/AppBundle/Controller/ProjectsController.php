@@ -6,6 +6,7 @@ use AppBundle\Form\ProjectType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,16 +63,18 @@ class ProjectsController
 
      public function viewAction($id)
      {
-         $project = $this->model->find($id);
+         $project = $this->model->findOneById($id);
          if (!$project) {
              throw $this->createNotFoundException(
                 $this->translator->trans('No project found for id ') . $id
              );
        }
 
+       $users = $project->getUsers();
+
        return $this->templating->renderResponse(
            'AppBundle:Projects:view.html.twig',
-           array('project' => $project)
+           array('project' => $project, 'users' => $users)
        );
       }
 

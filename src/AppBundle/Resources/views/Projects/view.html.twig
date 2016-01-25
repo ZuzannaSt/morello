@@ -23,6 +23,13 @@
                 <th>Description</th>
                 <td>{{ project.description }}</td>
             </tr>
+            <tr>
+                <th>Users assigned to project</th>
+                {% for user in project.users %}
+                    <td>{{ user.username }}</td>
+                {% endfor %}
+                </th>
+            </tr>
         </tbody>
     </table>
 
