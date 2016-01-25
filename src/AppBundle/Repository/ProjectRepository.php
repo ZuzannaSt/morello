@@ -23,13 +23,14 @@ class ProjectRepository extends EntityRepository
             ->select(
                 'p.id',
                 'p.name',
+                'p.description',
                 'u.username'
             )
             ->innerJoin(
-                'AppBundle:User',
+                'p.users',
                 'u',
                 'WITH',
-                'pu.user_id = u.id'
+                'u.id = :user_id'
             )
             ->getQuery();
         return $query->getResult();
