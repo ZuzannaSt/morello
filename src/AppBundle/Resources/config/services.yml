@@ -20,7 +20,7 @@ services:
         class: AppBundle\Form\ProjectType
         tags:
             - { name: form.type, alias: project }
-            
+
     app.projects_controller:
         class: AppBundle\Controller\ProjectsController
         arguments:
