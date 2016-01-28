@@ -36,14 +36,14 @@ class ProjectRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public function save(\AppBundle\Entity\Project $project)
+    public function save($project)
     {
         $em = $this->getEntityManager();
         $em->persist($project);
         $em->flush();
     }
 
-    public function delete(\AppBundle\Entity\Project $project)
+    public function delete($project)
     {
         $em = $this->getEntityManager();
         $em->remove($project);
