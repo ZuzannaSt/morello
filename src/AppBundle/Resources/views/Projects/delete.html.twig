@@ -1,15 +1,21 @@
 {% extends '::base.html.twig' %}
 
-{% block body -%}
-    <h1>Project delete</h1>
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/structure.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/body.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/exception.css') }}" />
+{% endblock %}
 
-    {{ form(delete_form) }}
+{% block body %}
+
+    <h1>{{ 'Delete Project'|trans }}</h1>
+
+    <div>{{ form_errors(form) }}</div>
+    {{ form(form, {'method': 'POST'}) }}
 
     <ul class="record_actions">
         <li>
-            <a href="{{ path('projects') }}">
-                Back to the list
-            </a>
+            <a href="{{ path('projects') }}">{{ 'Back to the list'|trans }}</a>
         </li>
     </ul>
 {% endblock %}
