@@ -133,7 +133,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
         return $this->users;
     }
 
-
     /**
      * Add users
      *

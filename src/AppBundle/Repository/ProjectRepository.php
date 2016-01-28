@@ -42,4 +42,11 @@ class ProjectRepository extends EntityRepository
         $em->persist($project);
         $em->flush();
     }
+
+    public function delete(\AppBundle\Entity\Project $project)
+    {
+        $em = $this->getEntityManager();
+        $em->remove($project);
+        $em->flush();
+    }
 }
