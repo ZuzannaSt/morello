@@ -113,8 +113,23 @@ class ProjectsController
     * @Route("/projects/edit/{id}", name="projects-edit")
     *
     */
-    public function editAction($id)
+    public function editAction($id, Request $request)
     {
+        $project = $this->model->findOneById($id);
+
+        if (!$project) {
+            throw $this->createNotFoundException('No project found');
+        }
+
+        $projectForm = $this->formFactory->create(new ProjectType(), $project);
+        $projectForm->handleRequest($request);
+
+        if ($projectForm->isValid()) {
+            $em->flush();
+            return new RedirectResponse($this->router->generate('projects'));
+        }
+
+          return $this->render('AppBundle:Projects:edit.html.twig', $projectForm);
     }
 
     /**
@@ -122,5 +137,13 @@ class ProjectsController
     */
     public function deleteAction($id)
     {
+        $project = $this->model->findOneById($id);
+
+        if (!$project) {
+            throw $this->createNotFoundException('No project found');
+        }
+
+        $this->model->delete($project);
+        return $this->redirect($this->generateUrl('index'));
     }
 }
