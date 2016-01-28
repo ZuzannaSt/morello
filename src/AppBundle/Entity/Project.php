@@ -73,6 +73,19 @@ use Symfony\Component\Security\Core\User\UserInterface;
     }
 
     /**
+     * Set id
+     *
+     * @param integer id
+     * @return Project
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
      * Set description
      *
      * @param string description
