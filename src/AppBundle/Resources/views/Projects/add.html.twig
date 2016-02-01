@@ -8,8 +8,10 @@
 
 {% block body %}
     {% for flashMessage in app.session.flashbag.get('success') %}
-        {{ flashMessage }}
-    {% endFor %}
+        <div class="flash-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
 
     <h1>{{ 'Add Project'|trans }}</h1>
 
