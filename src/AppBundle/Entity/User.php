@@ -107,6 +107,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="users", cascade={"persist"})
+     * @ORM\JoinTable(name="users_roles")
      */
     protected $roles;
 

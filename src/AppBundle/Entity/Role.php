@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 
 /**
- * @ORM\Table(name="ztp2_roles")
+ * @ORM\Table(name="roles")
  * @ORM\Entity()
  */
 
