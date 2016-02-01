@@ -150,11 +150,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
         return $this->name;
     }
 
-    public function getRoles()
-    {
-        return array('ROLE_USER');
-    }
-
     /**
      * Get created_at
      *
