@@ -10,9 +10,6 @@ security:
         in_memory:
             memory:
                 users:
-                    zuzia:
-                        password: $2a$04$5LldtUtbspJ4fQuRhQU92e5wRCb6Ns/3wh3g188de58vOav9Tz5LS
-                        roles: 'ROLE_USER'
                     admin:
                         password: $2a$04$SOV6P1CRnJjMAyLIOnX9GuYj4NijEoC4HmcIEQ1A9NKM5x4byb3ym
                         roles: 'ROLE_ADMIN'
@@ -21,6 +18,11 @@ security:
             entity:
                 class: AppBundle:User
                 property: username
+
+    role_hierarchy:
+        ROLE_DEVELOPER: ROLE_USER
+        ROLE_MANAGER: ROLE_USER
+        ROLE_ADMIN: [ROLE_USER, ROLE_DEVELOPER, ROLE_MANAGER]
 
     firewalls:
         dev:

@@ -1,0 +1,34 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <div class="container">
+        <h1>{{ 'Roles list'|trans }}</h1>
+        {% if roles|length > 0 %}
+            <table class="records_list">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for role in roles %}
+                    <tr>
+                        <td><a href="{{ path('roles-view', { 'id': role.id }) }}">{{ role.id }}</a></td>
+                        <td>{{ role.name }}</td>
+                        <td>{{ role.role }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+
+            <ul>
+            <li>
+                <a href="{{ path('roles-add') }}">
+                    Create a new entry
+                </a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

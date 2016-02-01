@@ -19,6 +19,15 @@ class UserType extends AbstractType
                 'second_options' => array('label' => 'Repeat Password'),
             )
         );
+        $builder->add(
+            'roles',
+            'entity',
+            array(
+                'expanded' => true,
+                'property' => 'role',
+                'class'    => 'AppBundle:Role'
+            )
+        );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

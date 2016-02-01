@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\Role\RoleInterface;
 /**
  * @ORM\Table(name="roles")
  * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RoleRepository")
  */
 
 class Role implements RoleInterface
