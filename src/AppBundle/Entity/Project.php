@@ -49,6 +49,24 @@ use Symfony\Component\Security\Core\User\UserInterface;
     private $description;
 
     /**
+     * @ORM\Column(
+     *     name="created_at",
+     *     type="datetime",
+     *     nullable=true
+     * )
+     */
+    private $created_at;
+
+    /**
+     * @ORM\Column(
+     *     name="updated_at",
+     *     type="datetime",
+     *     nullable=true
+     * )
+     */
+    private $updated_at;
+
+    /**
     * @ORM\ManyToMany(targetEntity="User", inversedBy="projects")
     * @ORM\JoinTable(name="projects_users")
     */
@@ -60,6 +78,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
     }
 
     /**
@@ -134,6 +153,52 @@ use Symfony\Component\Security\Core\User\UserInterface;
     public function getRoles()
     {
         return array('ROLE_USER');
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param integer created_at
+     * @return Project
+     */
+    public function setCreatedAt($created_at)
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return string
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param integer updated_at
+     * @return Project
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
     }
 
     /**

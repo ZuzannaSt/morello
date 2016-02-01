@@ -88,7 +88,7 @@ class ProjectsController
         $projectForm->handleRequest($request);
 
         if ($projectForm->isValid()) {
-            $this->model->save($projectForm->getData());
+            $this->model->add($projectForm->getData());
             $this->session->getFlashBag()->set(
                 'success',
                 $this->translator->trans('Saved')

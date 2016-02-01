@@ -36,6 +36,12 @@ class ProjectRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function add($project)
+    {
+      $project->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+      $this->save($project);
+    }
+
     public function save($project)
     {
         $em = $this->getEntityManager();
