@@ -102,6 +102,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
     protected $projects;
 
     /**
+     * User's roles
+     *
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users", cascade={"persist"})
+     */
+    protected $roles;
+
+    /**
     * Constructor
     */
     public function __construct()
@@ -249,6 +258,29 @@ use Symfony\Component\Security\Core\User\UserInterface;
     }
 
     /**
+     * Add roles
+     *
+     * @param \AppBundle\Entity\Role $roles
+     * @return User
+     */
+    public function addRole(\AppBundle\Entity\Role $roles)
+    {
+        $this->roles[] = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Remove roles
+     *
+     * @param \AppBundle\Entity\Role $roles
+     */
+    public function removeRole(\AppBundle\Entity\Role $roles)
+    {
+        $this->roles->removeElement($roles);
+    }
+
+    /**
      * Remove projects
      *
      * @param \AppBundle\Entity\Project $projects
@@ -270,8 +302,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
     public function getRoles()
     {
-        return array('ROLE_USER');
-        // return $this->userRoles->toArray();
+        return $this->roles->toArray();
     }
 
     public function eraseCredentials()
