@@ -30,3 +30,13 @@ services:
           - @router
           - @app.project_repository
           - @form.factory
+
+    admin.admin_controller:
+        class: AppBundle\Controller\Admin\AdminController
+        arguments:
+            - @translator
+            - @templating
+            - @router
+            - @doctrine.orm.entity_manager
+            - @security.context
+            - @app.user_repository
