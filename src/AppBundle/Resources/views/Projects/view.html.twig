@@ -24,6 +24,7 @@
                 {% endfor %}
                 </th>
             </tr>
+
         </tbody>
     </table>
 
@@ -31,6 +32,11 @@
     <li>
         <a href="{{ path('projects') }}">
             Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('projects-tasks-add', { 'project_id': project.id }) }}">
+            Add task
         </a>
     </li>
     <li>

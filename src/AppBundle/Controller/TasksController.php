@@ -17,7 +17,7 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * @Route(service="app.tasks_controller")
+ * @Route(service="app.projects_tasks_controller")
  */
 class TasksController
 {
@@ -26,6 +26,7 @@ class TasksController
     private $session;
     private $router;
     private $model;
+    private $project_model;
     private $formFactory;
 
     public function __construct(
@@ -34,6 +35,7 @@ class TasksController
         Session $session,
         RouterInterface $router,
         ObjectRepository $model,
+        ObjectRepository $project_model,
         FormFactory $formFactory
     ) {
         $this->translator = $translator;
@@ -41,24 +43,25 @@ class TasksController
         $this->session = $session;
         $this->router = $router;
         $this->model = $model;
+        $this->project_model = $project_model;
         $this->formFactory = $formFactory;
     }
 
     /**
-     * @Route("/tasks", name="tasks")
+     * @Route("/projects/{project_id}/tasks", name="projects-tasks")
      */
     public function indexAction()
     {
         $tasks = $this->model->findAllOrderedByName();
 
         return $this->templating->renderResponse(
-            'AppBundle:Tasks:index.html.twig',
+            'AppBundle:Projects/Tasks:index.html.twig',
             array('tasks' => $tasks)
         );
     }
 
     /**
-    * @Route("tasks/view/{id}", name="tasks-view")
+    * @Route("/projects/{project_id}/tasks/view/{id}", name="projects-tasks-view")
     */
 
     public function viewAction($id)
@@ -73,28 +76,29 @@ class TasksController
       $users = $task->getUsers();
 
       return $this->templating->renderResponse(
-          'AppBundle:Tasks:view.html.twig',
+          'AppBundle:Projects/Tasks:view.html.twig',
           array('task' => $task, 'users' => $users)
       );
     }
 
     /**
-     * @Route("/tasks/add", name="tasks-add")
+     * @Route("/projects/{project_id}/tasks/add", name="projects-tasks-add")
      */
     public function addAction(Request $request)
     {
-        $taskForm = $this->formFactory->create(new TaskType());
+        $project_id = $request->get('project_id', null);
 
+        $taskForm = $this->formFactory->create(new TaskType());
         $taskForm->handleRequest($request);
 
         if ($taskForm->isValid()) {
-            $this->model->add($taskForm->getData());
+            $this->model->add($taskForm->getData(), $project_id);
             $this->session->getFlashBag()->set(
                 'success',
                 $this->translator->trans('Saved')
             );
 
-            return new RedirectResponse($this->router->generate('tasks'));
+            return new RedirectResponse($this->router->generate('projects-tasks', array('project_id' => $project_id)));
         } else {
             $this->session->getFlashBag()->set(
                 'error',
@@ -103,18 +107,19 @@ class TasksController
         }
 
         return $this->templating->renderResponse(
-         'AppBundle:Tasks:add.html.twig',
+         'AppBundle:Projects/Tasks:add.html.twig',
          array('form' => $taskForm->createView())
         );
     }
 
     /**
     *
-    * @Route("/tasks/edit/{id}", name="tasks-edit")
+    * @Route("/projects/{project_id}/tasks/edit/{id}", name="projects-tasks-edit")
     *
     */
     public function editAction(Request $request)
     {
+        $project_id = $request->get('project_id', null);
         $id = $request->get('id', null);
         $task = $this->model->findById($id);
 
@@ -136,20 +141,21 @@ class TasksController
 
         if ($taskForm->isValid()) {
             $this->model->save($taskForm->getData());
-            return new RedirectResponse($this->router->generate('tasks'));
+            return new RedirectResponse($this->router->generate('projects-tasks', array('project_id' => $project_id)));
         }
 
           return $this->templating->renderResponse(
-              'AppBundle:Tasks:edit.html.twig',
+              'AppBundle:Projects/Tasks:edit.html.twig',
               array('form' => $taskForm->createView())
           );
     }
 
     /**
-    * @Route("/tasks/delete/{id}", name="tasks-delete")
+    * @Route("/projects/{project_id}/tasks/delete/{id}", name="projects-tasks-delete")
     */
     public function deleteAction(Request $request)
     {
+        $project_id = $request->get('project_id', null);
         $id = $request->get('id', null);
         $task = $this->model->findById($id);
 
@@ -169,11 +175,11 @@ class TasksController
 
         if ($taskForm->isValid()) {
             $this->model->delete($taskForm->getData());
-            return new RedirectResponse($this->router->generate('tasks'));
+            return new RedirectResponse($this->router->generate('projects-tasks', array('project_id' => $project_id)));
         }
 
           return $this->templating->renderResponse(
-              'AppBundle:Tasks:delete.html.twig',
+              'AppBundle:Projects/Tasks:delete.html.twig',
               array('form' => $taskForm->createView())
           );
       }

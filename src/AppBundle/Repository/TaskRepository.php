@@ -17,9 +17,14 @@ class TaskRepository extends EntityRepository
             ->getResult();
     }
 
-    public function add($task)
+    public function add($task, $project_id)
     {
+      $project = $this->getEntityManager()
+          ->getRepository('AppBundle:Project')
+          ->findOneById($project_id);
+
       $task->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+      $task->setProject($project);
       $this->save($task);
     }
 

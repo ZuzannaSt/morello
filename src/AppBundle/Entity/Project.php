@@ -73,11 +73,17 @@ use Symfony\Component\Security\Core\User\UserInterface;
     protected $users;
 
     /**
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="project")
+     */
+    protected $tasks;
+
+    /**
     * Constructor
     */
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tasks = new \Doctrine\Common\Collections\ArrayCollection();
         $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
     }
 
@@ -222,10 +228,43 @@ use Symfony\Component\Security\Core\User\UserInterface;
     /**
      * Remove users
      *
-     * @param \AppBundle\Entity\UserEntity $users
+     * @param \AppBundle\Entity\User $users
      */
     public function removeUser(\AppBundle\Entity\User $users)
     {
         $this->users->removeElement($users);
+    }
+
+    /**
+    * Get tasks
+    *
+    * @return \Doctrine\Common\Collections\Collection
+    */
+    public function getTasks()
+    {
+        return $this->tasks;
+    }
+
+    /**
+     * Add tasks
+     *
+     * @param \AppBundle\Entity\Task $tasks
+     * @return Task
+     */
+    public function addTask(\AppBundle\Entity\Task $tasks)
+    {
+        $this->tasks[] = $tasks;
+
+        return $this;
+    }
+
+    /**
+     * Remove tasks
+     *
+     * @param \AppBundle\Entity\Task $tasks
+     */
+    public function removeTask(\AppBundle\Entity\Task $tasks)
+    {
+        $this->users->removeElement($tasks);
     }
 }

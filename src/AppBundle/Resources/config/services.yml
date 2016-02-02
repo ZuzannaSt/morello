@@ -57,7 +57,7 @@ services:
           - @app.role_repository
           - @form.factory
 
-    app.tasks_controller:
+    app.projects_tasks_controller:
         class: AppBundle\Controller\TasksController
         arguments:
           - @translator
@@ -65,6 +65,7 @@ services:
           - @session
           - @router
           - @app.task_repository
+          - @app.project_repository
           - @form.factory
 
     admin.admin_controller:

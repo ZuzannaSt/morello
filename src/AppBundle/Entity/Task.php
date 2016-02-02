@@ -63,6 +63,12 @@ use Doctrine\ORM\Mapping as ORM;
     private $updated_at;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="projects")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     */
+    private $project;
+
+    /**
     * @ORM\ManyToMany(targetEntity="User", inversedBy="tasks")
     * @ORM\JoinTable(name="tasks_users")
     */
@@ -88,14 +94,14 @@ use Doctrine\ORM\Mapping as ORM;
     }
 
     /**
-     * Set name
+     * Set id
      *
-     * @param string $name
+     * @param integer id
      * @return Task
      */
-    public function setName($name)
+    public function setId($id)
     {
-        $this->name = $name;
+        $this->id = $id;
 
         return $this;
     }
@@ -108,6 +114,19 @@ use Doctrine\ORM\Mapping as ORM;
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Task
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -175,6 +194,29 @@ use Doctrine\ORM\Mapping as ORM;
     public function setUpdatedAt($updated_at)
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Get project
+     *
+     * @return string
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * Set project
+     *
+     * @param integer project
+     * @return Task
+     */
+    public function setProject($project)
+    {
+        $this->project = $project;
 
         return $this;
     }
