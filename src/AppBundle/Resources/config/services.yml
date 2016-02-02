@@ -17,6 +17,12 @@ services:
         factory_method: getRepository
         arguments:
             - AppBundle\Entity\Role
+    app.task_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - AppBundle\Entity\Task
 
     app.user_type_form:
         class: AppBundle\Form\UserType
@@ -49,6 +55,16 @@ services:
           - @session
           - @router
           - @app.role_repository
+          - @form.factory
+
+    app.tasks_controller:
+        class: AppBundle\Controller\TasksController
+        arguments:
+          - @translator
+          - @templating
+          - @session
+          - @router
+          - @app.task_repository
           - @form.factory
 
     admin.admin_controller:

@@ -1,0 +1,46 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <div class="container">
+        <h1>{{ 'Task list'|trans }}</h1>
+        {% if tasks|length > 0 %}
+            <table class="records_list">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td><a href="{{ path('tasks-view', { 'id': task.id }) }}">{{ task.id }}</a></td>
+                        <td>{{ task.name }}</td>
+                        <td>{{ task.description }}</td>
+                        <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('tasks-view', { 'id': task.id }) }}">view</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('tasks-edit', { 'id': task.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+
+            <ul>
+            <li>
+                <a href="{{ path('tasks-add') }}">
+                    Create a new entry
+                </a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

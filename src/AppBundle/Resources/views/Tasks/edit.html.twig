@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    <h1>{{ 'Edit Task'|trans }}</h1>
+
+    <div>{{ form_errors(form) }}</div>
+    {{ form(form, {'method': 'POST'}) }}
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('tasks') }}">{{ 'Back to the list'|trans }}</a>
+        </li>
+    </ul>
+{% endblock %}
