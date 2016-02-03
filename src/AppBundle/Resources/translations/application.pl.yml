@@ -1,0 +1,15 @@
+app:
+  registration:
+    title: Rejestracja
+    button: Zarejestruj się
+    header: Rejestracja
+  login:
+    title: Logowanie
+    button: Zaloguj się
+    header: Zaloguj się do KontoMierza
+  menu:
+    brand: Morello
+    dashboard: Kokpit
+    logout: Wyloguj się
+    logged_as: Zalogowany jako: %email%
+    admin: Panel administracyjny

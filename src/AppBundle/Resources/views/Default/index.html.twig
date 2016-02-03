@@ -6,7 +6,6 @@
             <b> Logged as {{ app.user.username }} </b>
             <a href="{{ path('logout') }}"> Log out </a>
             <a href="{{ path('projects') }}"> Projects </a>
-            <a href="{{ path('tasks') }}"> Tasks </a>
             <a href="{{ path('roles') }}"> Roles </a>
         {% else %}
           <a href="{{ path('user_registration') }}"> Register </a>

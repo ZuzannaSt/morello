@@ -1,0 +1,28 @@
+admin:
+  actions: Akcje
+  confirmation: Czy na pewno chcesz wykonać tę czynność?
+  menu:
+    brand: KontoMierz
+    dashboard: Strona główna
+    users: Użytkownicy
+    households: Gospodarstwa
+    logout: Wyloguj
+    user: Kokpit użytkownika
+  dashboard:
+    title: Panel administracyjny
+  users:
+    list:
+      title: Użytkownicy
+      header: Zarządzaj użytkownikami
+    show:
+      title: Użytkownik
+      header: Szczegóły użytkownika
+    delete:
+      title: Usuń użytkownika
+      header: Usuń użytkownika
+    edit:
+      title: Edycja użytkownika
+      header: Edytuj użytkownika
+    add:
+      title: Dodaj użytkownika
+      header: Dodaj użytkownika

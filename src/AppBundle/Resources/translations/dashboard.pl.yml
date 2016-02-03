@@ -1,0 +1,3 @@
+dashboard:
+  title: Kokpit
+  hello: Witaj, %name%!

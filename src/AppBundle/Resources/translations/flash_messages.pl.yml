@@ -1,0 +1,11 @@
+flash_messages:
+  user:
+    create:
+      success: Pomyślnie utworzono użytkownika!
+    edit:
+      success: Pomyślnie edytowano użytkownika!
+  household:
+    create:
+      success: Pomyślnie utworzono gospodarstwo domowe!
+    edit:
+      success: Pomyślnie edytowano gospodarstwo domowe!

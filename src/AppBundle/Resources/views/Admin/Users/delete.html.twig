@@ -1,0 +1,14 @@
+{% extends 'AppBundle:Admin:navbar.html.twig' %}
+
+{% block title %}{{ 'admin.users.add.title' | trans({}, 'admin') }}{% endblock %}
+
+{% form_theme form 'AppBundle::bootstrap_form.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 page-header">
+            <h1>{{ 'admin.users.delete.header' | trans({}, 'admin') }}</h1>
+        </div>
+    </div>
+    {{ form(form, { 'method': 'POST' }) }}
+{% endblock %}

@@ -253,4 +253,37 @@ use Doctrine\ORM\Mapping as ORM;
     {
         $this->users->removeElement($users);
     }
+
+// /**
+//  * @ORM\Table(name="ztp2_households")
+//  * @ORM\Entity(repositoryClass="AppBundle\Repository\HouseholdRepository")
+//  * @ORM\HasLifecycleCallbacks
+//  */
+// class Household
+// {
+//
+//
+//     /**
+//      * @return mixed
+//      */
+//
+//     public function getCreatedAt()
+//     {
+//         return $this->createdAt->format('Y-m-d H:i:s');
+//     }
+//
+//     /**
+//      * @ORM\PrePersist
+//      * @ORM\PreUpdate
+//      */
+//
+//     public function setTimestampsValues()
+//     {
+//         $this->setUpdatedAt(new \DateTime());
+//
+//         if ($this->getCreatedAt() == null) {
+//             $this->setCreatedAt(new \DateTime());
+//         }
+//     }
+// }
 }

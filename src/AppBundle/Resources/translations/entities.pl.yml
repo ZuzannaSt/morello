@@ -1,0 +1,15 @@
+user:
+  attributes:
+    id: ID
+    email: E-mail
+    fullname: Imię i nazwisko
+    roles: Role
+    firstName: Imię
+    lastName: Nazwisko
+    password: Hasło
+  actions:
+    show: Pokaż użytkownika
+    edit: Edytuj użytkownika
+    delete: Usuń użytkownika
+    list: Lista użytkowników
+    create: Dodaj nowego użytkownika

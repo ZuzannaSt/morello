@@ -1,0 +1,50 @@
+{% extends 'AppBundle:Admin:navbar.html.twig' %}
+
+{% block title %}{{ 'admin.users.list.title' | trans({}, 'admin') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 page-header">
+            <h1>{{ 'admin.users.list.header' | trans({}, 'admin') }}</h1>
+            <a href="{{ path('admin_user_create') }}" class="btn btn-large btn-primary">
+                <i class="glyphicon glyphicon-plus"></i>&nbsp;{{ 'user.actions.create' | trans({}, 'entities') }}
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>{{ 'user.attributes.id' | trans({}, 'entities') }}</th>
+                    <th>{{ 'user.attributes.email' | trans({}, 'entities') }}</th>
+                    <th>{{ 'user.attributes.fullname' | trans({}, 'entities') }}</th>
+                    <th>{{ 'user.attributes.roles' | trans({}, 'entities') }}</th>
+                    <th>{{ 'admin.actions' | trans({}, 'admin') }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if users | length > 0 %}
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.fullname }}</td>
+                            <td>
+                                {% if user.roles | length > 0 %}
+                                    {{ user.roles[0].name }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ path('admin_user_view', {'userId': user.id}) }}" title="{{ 'user.actions.view' | trans({}, 'entities') }}"><i class="glyphicon glyphicon-search"></i></a>&nbsp;
+                                <a href="{{ path('admin_user_edit', {'userId': user.id}) }}" title="{{ 'user.actions.edit' | trans({}, 'entities') }}"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;
+                                <a href="{{ path('admin_user_delete', {'userId': user.id}) }}" title="{{ 'user.actions.delete' | trans({}, 'entities') }}" onclick="return confirm('{{ 'admin.confirmation' | trans({}, 'admin') }}');"><i class="glyphicon glyphicon-remove"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}

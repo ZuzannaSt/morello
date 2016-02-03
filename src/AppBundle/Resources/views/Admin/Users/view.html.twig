@@ -1,0 +1,36 @@
+{% extends 'AppBundle:Admin:navbar.html.twig' %}
+
+{% block title %}{{ 'admin.users.show.title' | trans({}, 'admin') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 page-header">
+            <h1>{{ 'admin.users.show.header' | trans({}, 'admin') }} <small>{{ user.fullname }}</small></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a href="{{ path('admin_users_list') }}"><i class="glyphicon glyphicon-list"></i> {{ 'user.actions.list' | trans({}, 'entities') }}</a><br/>
+            <a href="{{ path('admin_user_edit', {'userId': user.id}) }}"><i class="glyphicon glyphicon-edit"></i> {{ 'user.actions.edit' | trans({}, 'entities') }}</a><br/>
+            <a href="{{ path('admin_user_delete', {'userId': user.id}) }}"><i class="glyphicon glyphicon-remove"></i> {{ 'user.actions.delete' | trans({}, 'entities') }}</a>
+        </div>
+        <div class="col-md-9 well well-lg">
+            <dl class="dl-horizontal">
+                <dt>{{ 'user.attributes.id' | trans({}, 'entities') }}</dt>
+                <dd>{{ user.id }}</dd>
+                <dt>{{ 'user.attributes.email' | trans({}, 'entities') }}</dt>
+                <dd>{{ user.email }}</dd>
+                <dt>{{ 'user.attributes.firstName' | trans({}, 'entities') }}</dt>
+                <dd>{{ user.firstName }}</dd>
+                <dt>{{ 'user.attributes.lastName' | trans({}, 'entities') }}</dt>
+                <dd>{{ user.lastName }}</dd>
+                <dt>{{ 'user.attributes.roles' | trans({}, 'entities') }}</dt>
+                {% if user.roles | length > 0 %}
+                    {% for role in user.roles %}
+                        <dd>{{ role.name }} ({{ role.role }})</dd>
+                    {% endfor %}
+                {% endif %}
+            </dl>
+        </div>
+    </div>
+{% endblock %}
