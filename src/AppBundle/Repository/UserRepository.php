@@ -50,4 +50,21 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         return $this->getEntityName() === $class
             || is_subclass_of($class, $this->getEntityName());
     }
+
+    public function save($user)
+    {
+        $em = $this->getEntityManager();
+        $em->persist($user);
+        $em->flush();
+    }
+
+    public function addDefaultRole($user)
+    {
+      $role = $this->getEntityManager()
+          ->getRepository('AppBundle:Role')
+          ->findOneBy(array('role' => 'ROLE_USER'));
+
+      $user->addRole($role);
+      $this->save($user);
+    }
 }

@@ -303,7 +303,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
     public function getRoles()
     {
-        return $this->roles->toArray();
+        if (empty($this->roles)) {
+            return array();
+        } else {
+            return $this->roles->toArray();
+        }
     }
 
     public function eraseCredentials()

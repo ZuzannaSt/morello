@@ -16,26 +16,25 @@ class RegistrationController extends Controller
      */
     public function registerAction(Request $request)
     {
-        // 1) build the form
         $user = new User();
         $form = $this->createForm(new UserType(), $user);
 
-        // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // 3) Encode the password (you could also do this via Doctrine listener)
             $encoder = $this->get('security.encoder_factory')
                 ->getEncoder($user);
             $password = $encoder->encodePassword($user->getPlainPassword(), $user->getSalt());
             $user->setPassword($password);
 
-            // 4) save the User!
+            $role = $this->getDoctrine()
+                ->getRepository('AppBundle:Role')
+                ->findOneBy(array('role' => 'ROLE_ADMIN'));
+
+            $user->addRole($role);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-
-            // ... do any other work - like send them an email, etc
-            // maybe set a "flash" success message for the user
 
             $redirectUrl = $this->generateUrl('registration_confirmed');
 

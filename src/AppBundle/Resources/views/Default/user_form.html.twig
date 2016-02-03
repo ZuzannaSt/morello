@@ -3,18 +3,20 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            {% for flashMessage in app.session.flashbag.get('success') %}
-                {{ include('AppBundle:Partials:flash_success.html.twig', { 'message': flashMessage }) }}
-            {% endfor %}
-            {% for flashMessage in app.session.flashbag.get('info') %}
-                {{ include('AppBundle:Partials:flash_info.html.twig', { 'message': flashMessage }) }}
-            {% endfor %}
-            {% for flashMessage in app.session.flashbag.get('warning') %}
-                {{ include('AppBundle:Partials:flash_warning.html.twig', { 'message': flashMessage }) }}
-            {% endfor %}
-            {% for flashMessage in app.session.flashbag.get('error') %}
-                {{ include('AppBundle:Partials:flash_error.html.twig', { 'message': flashMessage }) }}
-            {% endfor %}
+            <div class="col-md-8 col-md-offset-2">
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    {{ include('AppBundle:Partials:flash_success.html.twig', { 'message': flashMessage }) }}
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('info') %}
+                    {{ include('AppBundle:Partials:flash_info.html.twig', { 'message': flashMessage }) }}
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('warning') %}
+                    {{ include('AppBundle:Partials:flash_warning.html.twig', { 'message': flashMessage }) }}
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('error') %}
+                    {{ include('AppBundle:Partials:flash_error.html.twig', { 'message': flashMessage }) }}
+                {% endfor %}
+            </div>
         </div>
         {% block content %}
         {% endblock content %}

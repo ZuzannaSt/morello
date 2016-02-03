@@ -17,17 +17,29 @@ class UserType extends AbstractType
                 'type' => 'password',
                 'first_options'  => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
+                )
             )
-        );
-        $builder->add(
-            'roles',
-            'entity',
-            array(
-                'expanded' => true,
-                'property' => 'role',
-                'class'    => 'AppBundle:Role'
+            ->add(
+                'firstName',
+                'text',
+                array(
+                  'required' => false
+                )
             )
-        );
+            ->add(
+                'lastName',
+                'text',
+                array(
+                    'required' => false
+                )
+          )
+          ->add(
+              'save',
+              'submit',
+              array(
+                  'label' => 'Zarejestruj się'
+              )
+          );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

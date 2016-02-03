@@ -1,8 +1,28 @@
-{{ form_start(form) }}
-    {{ form_row(form.username) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.plainPassword.first) }}
-    {{ form_row(form.plainPassword.second) }}
+{% extends 'AppBundle:Default:user_form.html.twig' %}
 
-    <button type="submit">Register!</button>
-{{ form_end(form) }}
+{% block title %}{{ 'app.registration.title' | trans({}, 'application') }}{% endblock %}
+
+{% form_theme form 'AppBundle:Default:bootstrap_form.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="page-header">
+                <h1>{{ 'app.registration.header' | trans({}, 'application') }}</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            {{ form_start(form) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.plainPassword.first) }}
+                {{ form_row(form.plainPassword.second) }}
+                {{ form_row(form.firstName) }}
+                {{ form_row(form.lastName) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+    
+{% endblock %}

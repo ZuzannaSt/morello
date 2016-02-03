@@ -20,9 +20,9 @@ security:
                 property: username
 
     role_hierarchy:
-        ROLE_DEVELOPER: ROLE_USER
-        ROLE_MANAGER: ROLE_USER
         ROLE_ADMIN: [ROLE_USER, ROLE_DEVELOPER, ROLE_MANAGER]
+        ROLE_MANAGER: [ROLE_USER, ROLE_DEVELOPER]
+        ROLE_DEVELOPER: ROLE_USER
 
     firewalls:
         dev:
@@ -33,7 +33,7 @@ security:
 
         main:
             anonymous: ~
-            pattern:    ^/
+            pattern:    ^/(?!register)
             http_basic: ~
             provider: our_db_provider
             form_login:
@@ -42,3 +42,10 @@ security:
             logout:
                 path:   /logout
                 target: /
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/, role: ROLE_USER }
