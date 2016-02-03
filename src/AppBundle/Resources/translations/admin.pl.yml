@@ -2,10 +2,11 @@ admin:
   actions: Akcje
   confirmation: Czy na pewno chcesz wykonać tę czynność?
   menu:
-    brand: KontoMierz
+    brand: Morello
     dashboard: Strona główna
     users: Użytkownicy
-    households: Gospodarstwa
+    roles: Role
+    projects: Projekty
     logout: Wyloguj
     user: Kokpit użytkownika
   dashboard:

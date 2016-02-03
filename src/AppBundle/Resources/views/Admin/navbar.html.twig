@@ -11,7 +11,8 @@
                     <ul class="nav navbar-nav">
                         <li><a href="{{ path('admin_dashboard') }}">{{ 'admin.menu.dashboard' | trans({}, 'admin') }}</a></li>
                         <li><a href="{{ path('admin_users_list') }}">{{ 'admin.menu.users' | trans({}, 'admin') }}</a></li>
-                        <li><a href="{{ path('admin_households_list') }}">{{ 'admin.menu.households' | trans({}, 'admin') }}</a></li>
+                        <li><a href="{{ path('roles') }}">{{ 'admin.menu.roles' | trans({}, 'admin') }}</a></li>
+                        <li><a href="{{ path('projects') }}">{{ 'admin.menu.projects' | trans({}, 'admin') }}</a></li>
                     </ul>
                 {% endblock menu %}
                 <ul class="nav navbar-nav navbar-right">

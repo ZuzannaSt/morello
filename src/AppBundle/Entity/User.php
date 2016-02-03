@@ -246,6 +246,16 @@ use Symfony\Component\Security\Core\User\UserInterface;
     }
 
     /**
+     * Get full name
+     *
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->getFirstName() . ' ' . $this->getLastName();
+    }
+
+    /**
      * Add projects
      *
      * @param \AppBundle\Entity\Project $projects

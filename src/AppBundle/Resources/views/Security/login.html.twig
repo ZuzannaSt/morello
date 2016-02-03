@@ -1,19 +1,33 @@
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
+{% extends 'AppBundle:Default:user_form.html.twig' %}
 
-<form action="{{ path('login_check') }}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+{% block title %}{{ 'app.login.title' | trans({}, 'application') }}{% endblock %}
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" />
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 col-md-osset-2">
+            <div class="page-header">
+                <h1>{{ 'app.login.header' | trans({}, 'application') }}</h1>
+            </div>
+        </div>
+    </div>
 
-    {#
-        If you want to control the URL the user
-        is redirected to on success (more details below)
-        <input type="hidden" name="_target_path" value="/account" />
-    #}
+    <div class="row">
+        <div class="col-md-8 col-md-osset-2">
+            <form action="{{ path('login_check') }}" method="post">
+                <div class="form-group">
+                    <label for="username">{{ 'user.attributes.username' | trans({}, 'entities') }}</label>
+                    <input type="text" id="username" name="_username" value="{{ last_username }}"  class="form-control"/>
+                </div>
 
-    <button type="submit">login</button>
-</form>
+                <div class="form-group">
+                    <label for="password">{{ 'user.attributes.password' | trans({}, 'entities') }}</label>
+                    <input type="password" id="password" name="_password"  class="form-control"/>
+                </div>
+
+                <input type="hidden" name="_target_path" value="/login_redirect" />
+                <button type="submit" class="btn btn-default">{{ 'app.login.button' | trans({}, 'application') }}</button>
+                <a class="btn btn-default" href="{{ path('user_registration') }}">{{ 'app.registration.button' | trans({}, 'application') }}</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

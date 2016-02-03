@@ -109,13 +109,13 @@ class AdminController
     }
 
     /**
-     * @param $userId
+     * @param $user_id
      * @return Response
      * @Route("/users/{userId}", name="admin_user_view")
      */
-    public function userShowAction($userId)
+    public function userShowAction($user_id)
     {
-        $user = $this->userModel->find($userId);
+        $user = $this->userModel->find($user_id);
 
         return $this->templating->renderResponse(
             'AppBundle:Admin/Users:view.html.twig',
@@ -126,13 +126,13 @@ class AdminController
 
     /**
      * @param Request $request
-     * @param $userId
+     * @param $user_id
      * @return Response
      * @Route("/users/{userId}/edit", name="admin_user_edit")
      */
-    public function userEditAction(Request $request, $userId)
+    public function userEditAction(Request $request, $user_id)
     {
-        $user = $this->userModel->find($userId);
+        $user = $this->userModel->find($user_id);
         $adminUserForm = $this->formFactory->create(new UserEditType(), $user);
         $adminUserForm->handleRequest($request);
 
@@ -160,14 +160,14 @@ class AdminController
     }
 
     /**
-     * @param $userId
+     * @param $user_id
      * @return Response
      * @Route("/users/{userId}/delete", name="admin_user_delete")
      */
 
-    public function userDeleteAction($userId)
+    public function userDeleteAction($user_id)
     {
-        $user = $this->userModel->find($userId);
+        $user = $this->userModel->find($user_id);
         $this->em->remove($user);
         $this->em->flush();
 

@@ -26,22 +26,25 @@ security:
 
     firewalls:
         dev:
-            security: false
             pattern: ^/(_(profiler|wdt)|css|images|js)/
-            http_basic: ~
-            provider: our_db_provider
+            security: false
+
+        registration:
+            pattern: ^/register
+            security: false
 
         main:
             anonymous: ~
-            pattern:    ^/(?!register)
-            http_basic: ~
-            provider: our_db_provider
             form_login:
                 login_path: /login
                 check_path: /login_check
             logout:
-                path:   /logout
+                path: /logout
                 target: /
+            pattern:    ^/(?!register)
+            http_basic: ~
+            provider: our_db_provider
+
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
