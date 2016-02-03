@@ -68,6 +68,13 @@ services:
           - @app.project_repository
           - @form.factory
 
+    app.dashboard_controller:
+        class: AppBundle\Controller\DashboardController
+        arguments:
+            - @translator
+            - @templating
+            - @security.context
+
     admin.admin_controller:
         class: AppBundle\Controller\Admin\AdminController
         arguments:

@@ -2,6 +2,7 @@ user:
   attributes:
     id: ID
     email: E-mail
+    username: Nazwa użytkownika
     fullname: Imię i nazwisko
     roles: Role
     firstName: Imię

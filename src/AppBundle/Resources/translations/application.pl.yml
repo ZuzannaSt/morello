@@ -2,11 +2,11 @@ app:
   registration:
     title: Rejestracja
     button: Zarejestruj się
-    header: Rejestracja
+    header: Morello | Rejestracja
   login:
     title: Logowanie
     button: Zaloguj się
-    header: Zaloguj się do KontoMierza
+    header: Morello | Logowanie
   menu:
     brand: Morello
     dashboard: Kokpit

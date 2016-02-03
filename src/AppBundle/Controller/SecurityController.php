@@ -47,14 +47,15 @@ class SecurityController extends Controller
     {
         // this controller will not be executed,
         // as the route is handled by the Security system
+        var_dump($this->generateUrl('admin_dashboard'));
     }
 
     /**
      * @Route("/login_redirect", name="login_redirect")
      */
-
     public function loginRedirectAction()
     {
+        var_dump($this->generateUrl('admin_dashboard'));
         if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return new RedirectResponse($this->generateUrl('admin_dashboard'));
         } else {
