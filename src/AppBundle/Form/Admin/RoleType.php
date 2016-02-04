@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Admin;
 
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\DBAL\Types\TextType;

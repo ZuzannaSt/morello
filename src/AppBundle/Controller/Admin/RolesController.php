@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Role;
-use AppBundle\Form\RoleType;
+use AppBundle\Form\Admin\RoleType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Doctrine\Common\Persistence\ObjectRepository;
@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Class RolesController
- * @Route(service="app.roles_controller")
+ * @Route(service="admin.roles_controller")
  */
 class RolesController
 {
@@ -48,7 +48,7 @@ class RolesController
     /**
      *
      * @return Response
-     * @Route("/roles", name="roles")
+     * @Route("/roles", name="admin_roles_index")
      *
      */
     public function indexAction()
@@ -56,7 +56,7 @@ class RolesController
         $roles = $this->model->findAllOrderedByName();
 
         return $this->templating->renderResponse(
-            'AppBundle:Roles:index.html.twig',
+            'AppBundle:Admin/Roles:index.html.twig',
             array('roles' => $roles)
         );
     }
@@ -65,7 +65,7 @@ class RolesController
      *
      * @param Id $id
      * @return Response
-     * @Route("roles/view/{id}", name="roles-view")
+     * @Route("roles/view/{id}", name="admin_roles_view")
      *
      */
     public function viewAction($id)
@@ -80,7 +80,7 @@ class RolesController
       $users = $role->getUsers();
 
       return $this->templating->renderResponse(
-          'AppBundle:Roles:view.html.twig',
+          'AppBundle:Admin/Roles:view.html.twig',
           array('role' => $role, 'users' => $users)
       );
     }
@@ -89,7 +89,7 @@ class RolesController
      *
      * @param Request $request
      * @return Response
-     * @Route("/roles/add", name="roles-add")
+     * @Route("/roles/add", name="admin_roles_add")
      *
      */
     public function addAction(Request $request)
@@ -113,7 +113,7 @@ class RolesController
         }
 
         return $this->templating->renderResponse(
-         'AppBundle:Roles:add.html.twig',
+         'AppBundle:Admin/Roles:add.html.twig',
          array('form' => $roleForm->createView())
         );
     }

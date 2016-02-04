@@ -1,6 +1,8 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle:Admin:navbar.html.twig' %}
 
-{% block body -%}
+{% block title %}{{ 'admin.roles.index.title' | trans({}, 'admin') }}{% endblock %}
+
+{% block content -%}
     <div class="container">
         <h1>{{ 'Roles list'|trans }}</h1>
         {% if roles|length > 0 %}
@@ -14,7 +16,7 @@
                 <tbody>
                 {% for role in roles %}
                     <tr>
-                        <td><a href="{{ path('roles-view', { 'id': role.id }) }}">{{ role.id }}</a></td>
+                        <td><a href="{{ path('admin_roles_view', { 'id': role.id }) }}">{{ role.id }}</a></td>
                         <td>{{ role.name }}</td>
                         <td>{{ role.role }}</td>
                     </tr>
@@ -25,7 +27,7 @@
 
             <ul>
             <li>
-                <a href="{{ path('roles-add') }}">
+                <a href="{{ path('admin_roles_add') }}">
                     Create a new entry
                 </a>
             </li>

@@ -36,10 +36,6 @@ services:
         class: AppBundle\Form\RoleType
         tags:
             - { name: form.type, alias: role }
-    admin.user_form:
-        class: AppBundle\Form\Admin\UserType
-        tags:
-            - { name: form.type, alias: admin_user }
 
     app.projects_controller:
         class: AppBundle\Controller\ProjectsController
@@ -49,16 +45,6 @@ services:
           - @session
           - @router
           - @app.project_repository
-          - @form.factory
-
-    app.roles_controller:
-        class: AppBundle\Controller\RolesController
-        arguments:
-          - @translator
-          - @templating
-          - @session
-          - @router
-          - @app.role_repository
           - @form.factory
 
     app.projects_tasks_controller:
@@ -79,6 +65,7 @@ services:
             - @templating
             - @security.context
 
+# Admin
     admin.admin_controller:
         class: AppBundle\Controller\Admin\AdminController
         arguments:
@@ -89,3 +76,16 @@ services:
             - @app.user_repository
             - @form.factory
             - @security.context
+    admin.roles_controller:
+        class: AppBundle\Controller\Admin\RolesController
+        arguments:
+          - @translator
+          - @templating
+          - @session
+          - @router
+          - @app.role_repository
+          - @form.factory
+    admin.user_form:
+        class: AppBundle\Form\Admin\UserType
+        tags:
+            - { name: form.type, alias: admin_user }

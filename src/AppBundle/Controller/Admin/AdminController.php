@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\User;
