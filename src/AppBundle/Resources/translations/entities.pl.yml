@@ -5,6 +5,7 @@ user:
     username: Nazwa użytkownika
     fullname: Imię i nazwisko
     roles: Role
+    projects: Projekty
     firstName: Imię
     lastName: Nazwisko
     password: Hasło
@@ -13,4 +14,4 @@ user:
     edit: Edytuj użytkownika
     delete: Usuń użytkownika
     list: Lista użytkowników
-    create: Dodaj nowego użytkownika
+    add: Dodaj nowego użytkownika

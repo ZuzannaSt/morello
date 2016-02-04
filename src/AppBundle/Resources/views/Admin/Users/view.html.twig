@@ -10,9 +10,9 @@
     </div>
     <div class="row">
         <div class="col-md-3">
-            <a href="{{ path('admin_users_list') }}"><i class="glyphicon glyphicon-list"></i> {{ 'user.actions.list' | trans({}, 'entities') }}</a><br/>
-            <a href="{{ path('admin_user_edit', {'userId': user.id}) }}"><i class="glyphicon glyphicon-edit"></i> {{ 'user.actions.edit' | trans({}, 'entities') }}</a><br/>
-            <a href="{{ path('admin_user_delete', {'userId': user.id}) }}"><i class="glyphicon glyphicon-remove"></i> {{ 'user.actions.delete' | trans({}, 'entities') }}</a>
+            <a href="{{ path('admin_users_index') }}"><i class="glyphicon glyphicon-index"></i> {{ 'user.actions.list' | trans({}, 'entities') }}</a><br/>
+            <a href="{{ path('admin_user_edit', {'user_id': user.id}) }}"><i class="glyphicon glyphicon-edit"></i> {{ 'user.actions.edit' | trans({}, 'entities') }}</a><br/>
+            <a href="{{ path('admin_user_delete', {'user_id': user.id}) }}"><i class="glyphicon glyphicon-remove"></i> {{ 'user.actions.delete' | trans({}, 'entities') }}</a>
         </div>
         <div class="col-md-9 well well-lg">
             <dl class="dl-horizontal">
@@ -27,7 +27,13 @@
                 <dt>{{ 'user.attributes.roles' | trans({}, 'entities') }}</dt>
                 {% if user.roles | length > 0 %}
                     {% for role in user.roles %}
-                        <dd>{{ role.name }} ({{ role.role }})</dd>
+                        <dd>{{ role.name }}</dd>
+                    {% endfor %}
+                {% endif %}
+                <dt>{{ 'user.attributes.projects' | trans({}, 'entities') }}</dt>
+                {% if user.projects | length > 0 %}
+                    {% for project in user.projects %}
+                        <dd>{{ project.name }}</dd>
                     {% endfor %}
                 {% endif %}
             </dl>

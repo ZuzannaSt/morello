@@ -97,6 +97,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
     private $lastName;
 
     /**
+     * User's projects
+     *
+     * @var ArrayCollection
     * @ORM\ManyToMany(targetEntity="Project", mappedBy="users")
     */
     protected $projects;
@@ -121,14 +124,24 @@ use Symfony\Component\Security\Core\User\UserInterface;
     }
 
     /**
-     * Set username
+     * Get id
      *
-     * @param string $username
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set id
+     *
+     * @param integer id
      * @return User
      */
-    public function setUsername($username)
+    public function setId($id)
     {
-        $this->username = $username;
+        $this->id = $id;
 
         return $this;
     }
@@ -144,13 +157,16 @@ use Symfony\Component\Security\Core\User\UserInterface;
     }
 
     /**
-     * Get id
+     * Set username
      *
-     * @return string
+     * @param string $username
+     * @return User
      */
-    public function getId()
+    public function setUsername($username)
     {
-        return $this->id;
+        $this->username = $username;
+
+        return $this;
     }
 
     /**
@@ -253,6 +269,16 @@ use Symfony\Component\Security\Core\User\UserInterface;
     public function getFullName()
     {
         return $this->getFirstName() . ' ' . $this->getLastName();
+    }
+
+    /**
+    * Get projects
+    *
+    * @return \Doctrine\Common\Collections\Collection
+    */
+    public function getProjects()
+    {
+        return $this->projects;
     }
 
     /**

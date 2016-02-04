@@ -4,8 +4,12 @@ flash_messages:
       success: Pomyślnie utworzono użytkownika!
     edit:
       success: Pomyślnie edytowano użytkownika!
-  household:
+    delete:
+      success: Pomyślnie usunięto użytkownika!
+  project:
     create:
-      success: Pomyślnie utworzono gospodarstwo domowe!
+      success: Pomyślnie utworzono projekt!
     edit:
-      success: Pomyślnie edytowano gospodarstwo domowe!
+      success: Pomyślnie edytowano projekt!
+    delete:
+      success: Pomyślnie usunięto projekt!

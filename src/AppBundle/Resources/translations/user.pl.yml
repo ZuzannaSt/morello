@@ -1,0 +1,26 @@
+user:
+  actions: Akcje
+  menu:
+    brand: Morello
+    projects: Projekty
+    zadania: Zadania
+    logout: Wyloguj
+    user: Kokpit
+  dashboard:
+    title: Panel administracyjny
+  tasks:
+    list:
+      title: Zadania
+      header: Zarządzaj zadaniami
+    show:
+      title: Zadanie
+      header: Szczegóły zadania
+    delete:
+      title: Usuń zadanie
+      header: Usuń zadanie
+    edit:
+      title: Edycja zadania
+      header: Edytuj zadania
+    add:
+      title: Dodaj zadania
+      header: Dodaj zadania

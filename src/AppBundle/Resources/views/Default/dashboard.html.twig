@@ -1,9 +1,11 @@
-{% extends 'AppBundle:Admin:navbar.html.twig' %}
+{% extends 'AppBundle:Default:navbar.html.twig' %}
 
-{% block title %}{{ 'admin.dashboard.title' | trans({}, 'admin') }}{% endblock %}
+{% block title %}{{ 'dashboard.title' | trans({}, 'dashboard') }}{% endblock %}
 
 {% block content %}
-    <h1>
-        Hello there!
-    </h2>
+    <div class="row">
+        <div class="span12 page-header">
+            <h1>{{ 'dashboard.hello' | trans({'%name%':current_user_name}, 'dashboard') }}</h1>
+        </div>
+    </div>
 {% endblock %}

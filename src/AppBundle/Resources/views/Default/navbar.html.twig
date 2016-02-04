@@ -9,9 +9,10 @@
             <div class="collapse navbar-collapse">
                 {% block menu %}
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ path('user_dashboard') }}">{{ 'user.menu.dashboard' | trans({}, 'user') }}</a></li>
-                        <li><a href="{{ path('roles') }}">{{ 'user.menu.roles' | trans({}, 'user') }}</a></li>
-                        <li><a href="{{ path('projects') }}">{{ 'user.menu.projects' | trans({}, 'user') }}</a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('admin_dashboard') }}">{{ 'admin.dashboard.title' | trans({}, 'admin') }}</a></li>
+                        {% endif %}
+                            <li><a href="{{ path('projects') }}">{{ 'user.menu.projects' | trans({}, 'user') }}</a></li>
                     </ul>
                 {% endblock menu %}
                 <ul class="nav navbar-nav navbar-right">

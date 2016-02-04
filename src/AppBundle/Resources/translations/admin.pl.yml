@@ -1,6 +1,5 @@
 admin:
   actions: Akcje
-  confirmation: Czy na pewno chcesz wykonać tę czynność?
   menu:
     brand: Morello
     dashboard: Strona główna

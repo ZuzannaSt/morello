@@ -1,6 +1,8 @@
 <?php
 namespace AppBundle\Controller\Admin;
 
+use AppBundle\Entity\User;
+use AppBundle\Form\Admin\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
@@ -8,6 +10,9 @@ use Doctrine\Common\Persistence\ObjectRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Form\FormFactory;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Class AdminController
@@ -19,20 +24,26 @@ class AdminController
     private $translator;
     private $templating;
     private $router;
+    private $session;
+    private $user_model;
+    private $formFactory;
     private $current_user;
-    private $model;
 
     public function __construct(
         Translator $translator,
         EngineInterface $templating,
-        $router,
-        $securityContext,
-        ObjectRepository $model
+        RouterInterface $router,
+        Session $session,
+        ObjectRepository $user_model,
+        FormFactory $formFactory,
+        $securityContext
     ) {
         $this->translator = $translator;
         $this->templating = $templating;
-        $this->model = $model;
         $this->router = $router;
+        $this->session = $session;
+        $this->user_model = $user_model;
+        $this->formFactory = $formFactory;
         $user = null;
         $token = $securityContext->getToken();
         if (null !== $token && is_object($token->getUser())) {
@@ -57,14 +68,14 @@ class AdminController
 
     /**
      * @return Response
-     * @Route("/users", name="admin_users_list")
+     * @Route("/users", name="admin_users_index")
      */
-    public function usersListAction()
+    public function usersIndexAction()
     {
-        $users = $this->userModel->findAll();
+        $users = $this->user_model->findAll();
 
         return $this->templating->renderResponse(
-            'AppBundle:Admin/Users:list.html.twig',
+            'AppBundle:Admin/Users:index.html.twig',
             array('users' => $users)
         );
     }
@@ -107,11 +118,11 @@ class AdminController
     /**
      * @param $user_id
      * @return Response
-     * @Route("/users/{userId}", name="admin_user_view")
+     * @Route("/users/{user_id}/view", name="admin_user_view")
      */
-    public function userShowAction($user_id)
+    public function userViewAction($user_id)
     {
-        $user = $this->userModel->find($user_id);
+        $user = $this->user_model->find($user_id);
 
         return $this->templating->renderResponse(
             'AppBundle:Admin/Users:view.html.twig',
@@ -124,50 +135,85 @@ class AdminController
      * @param Request $request
      * @param $user_id
      * @return Response
-     * @Route("/users/{userId}/edit", name="admin_user_edit")
+     * @Route("/users/{user_id}/edit", name="admin_user_edit")
      */
-    public function userEditAction(Request $request, $user_id)
+    public function userEditAction(Request $request)
     {
-        $user = $this->userModel->find($user_id);
-        $adminUserForm = $this->formFactory->create(new UserEditType(), $user);
+        $user_id = $request->get('user_id', null);
+        $user = $this->user_model->findById($user_id);
+
+        if (!$user) {
+            throw $this->createNotFoundException(
+                $this->translator->trans('No user found for id ') . $id
+            );
+        }
+
+        $adminUserForm = $this->formFactory->create(
+            new UserType(),
+            current($user),
+            array(
+                'validation_groups' => 'user-edit'
+                )
+            );
+
         $adminUserForm->handleRequest($request);
 
         if ($adminUserForm->isValid()) {
-            $this->em->persist($user);
-            $this->em->flush();
-
+            $this->user_model->save($adminUserForm->getData());
             $this->session->getFlashBag()->set(
                 'success',
                 'flash_messages.user.edit.success'
             );
 
-            $redirectUri = $this->router->generate('admin_user_show', array('userId' => $user->getId()));
-
+            $redirectUri = $this->router->generate('admin_user_view', array('user_id' => $user_id));
             return new RedirectResponse($redirectUri);
         }
 
         return $this->templating->renderResponse(
-            'AppBundle:Admin/Users:create.html.twig',
-            array(
-                'form' => $adminUserForm->createView(),
-                'user' => $user
-            )
+            'AppBundle:Admin/Users:add.html.twig',
+            array('form' => $adminUserForm->createView())
         );
     }
 
     /**
      * @param $user_id
      * @return Response
-     * @Route("/users/{userId}/delete", name="admin_user_delete")
+     * @Route("/users/{user_id}/delete", name="admin_user_delete")
      */
 
-    public function userDeleteAction($user_id)
+    public function userDeleteAction(Request $request)
     {
-        $user = $this->userModel->find($user_id);
-        $this->em->remove($user);
-        $this->em->flush();
+        $user_id = $request->get('user_id', null);
+        $user = $this->user_model->findById($user_id);
 
-        $redirectUri = $this->router->generate('admin_users_list');
-        return new RedirectResponse($redirectUri);
+        if (!$user) {
+            throw $this->createNotFoundException('No user found');
+        }
+
+        $adminUserForm = $this->formFactory->create(
+            new UserType(),
+            current($user),
+            array(
+                'validation_groups' => 'user-delete'
+                )
+            );
+
+        $adminUserForm->handleRequest($request);
+
+        if ($adminUserForm->isValid()) {
+            $this->user_model->delete($adminUserForm->getData());
+            $this->session->getFlashBag()->set(
+                'success',
+                'flash_messages.user.delete.success'
+            );
+
+            $redirectUri = $this->router->generate('admin_users_index');
+            return new RedirectResponse($redirectUri);
+        }
+
+        return $this->templating->renderResponse(
+            'AppBundle:Admin/Users:delete.html.twig',
+            array('form' => $adminUserForm->createView())
+        );
     }
 }

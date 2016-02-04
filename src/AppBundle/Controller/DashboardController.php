@@ -34,12 +34,12 @@ class DashboardController
         }
     }
     /**
-     * @Route("/admin/dashboard", name="user_dashboard")
+     * @Route("/dashboard", name="user_dashboard")
      */
     public function displayAction()
     {
         return $this->templating->renderResponse(
-            'AppBundle:Admin:dashboard.html.twig',
+            'AppBundle:Default:dashboard.html.twig',
             array(
                 'current_user_name' => $this->current_user->getFullName()
             )

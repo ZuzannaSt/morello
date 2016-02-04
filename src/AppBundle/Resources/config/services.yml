@@ -36,6 +36,10 @@ services:
         class: AppBundle\Form\RoleType
         tags:
             - { name: form.type, alias: role }
+    admin.user_form:
+        class: AppBundle\Form\Admin\UserType
+        tags:
+            - { name: form.type, alias: admin_user }
 
     app.projects_controller:
         class: AppBundle\Controller\ProjectsController
@@ -81,5 +85,7 @@ services:
             - @translator
             - @templating
             - @router
-            - @security.context
+            - @session
             - @app.user_repository
+            - @form.factory
+            - @security.context

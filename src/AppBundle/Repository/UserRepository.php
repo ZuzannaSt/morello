@@ -67,4 +67,11 @@ class UserRepository extends EntityRepository implements UserProviderInterface
       $user->addRole($role);
       $this->save($user);
     }
+
+    public function delete($user)
+    {
+        $em = $this->getEntityManager();
+        $em->remove($user);
+        $em->flush();
+    }
 }
