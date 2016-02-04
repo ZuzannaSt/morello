@@ -21,7 +21,7 @@ class RoleType extends AbstractType
                 'name',
                 'text',
                 array(
-                    'label'       => 'Role Name',
+                    'label'       => 'Nazwa roli',
                     'required'    => true,
                     'max_length'  => 128
                 )
@@ -30,7 +30,7 @@ class RoleType extends AbstractType
                 'role',
                 'text',
                 array(
-                    'label'       => 'ROLE_NAME',
+                    'label'       => 'ROLA_NAZWA',
                     'required'    => true,
                     'max_length'  => 128
                 )
@@ -40,7 +40,7 @@ class RoleType extends AbstractType
             'save',
             'submit',
             array(
-                'label' => 'Save'
+                'label' => 'Zapisz'
             )
         );
     }

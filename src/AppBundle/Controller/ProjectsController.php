@@ -46,7 +46,10 @@ class ProjectsController
     }
 
     /**
+     *
+     * @return Response
      * @Route("/projects", name="projects")
+     *
      */
     public function indexAction()
     {
@@ -59,9 +62,12 @@ class ProjectsController
     }
 
     /**
-    * @Route("projects/{id}/view", name="projects-view")
-    */
-
+     *
+     * @param Id $id
+     * @return Response
+     * @Route("projects/{id}/view", name="projects-view")
+     *
+     */
     public function viewAction($id)
     {
         $project = $this->model->findOneById($id);
@@ -85,8 +91,10 @@ class ProjectsController
     }
 
     /**
+     *
      * @param Request $request
      * @return Response
+     *
      * @Route("/projects/add", name="projects-add")
      */
     public function addAction(Request $request)

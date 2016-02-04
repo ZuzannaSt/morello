@@ -58,3 +58,13 @@ admin:
     add:
       title: Dodaj zadanie
       header: Dodaj zadanie
+  roles:
+    list:
+      title: Role
+      header: Zarządzaj rolami
+    show:
+      title: Rola
+      header: Szczegóły roli
+    add:
+      title: Dodaj rolę
+      header: Dodaj rolę

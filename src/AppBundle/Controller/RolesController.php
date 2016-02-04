@@ -17,6 +17,7 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
+ * Class RolesController
  * @Route(service="app.roles_controller")
  */
 class RolesController
@@ -45,7 +46,10 @@ class RolesController
     }
 
     /**
+     *
+     * @return Response
      * @Route("/roles", name="roles")
+     *
      */
     public function indexAction()
     {
@@ -58,15 +62,18 @@ class RolesController
     }
 
     /**
-    * @Route("roles/view/{id}", name="roles-view")
-    */
-
+     *
+     * @param Id $id
+     * @return Response
+     * @Route("roles/view/{id}", name="roles-view")
+     *
+     */
     public function viewAction($id)
     {
         $role = $this->model->findOneById($id);
         if (!$role) {
             throw $this->createNotFoundException(
-                $this->translator->trans('No role found for id ') . $id
+                $this->translator->trans('errors.role.not_found') . $id
             );
         }
 
@@ -79,26 +86,29 @@ class RolesController
     }
 
     /**
+     *
+     * @param Request $request
+     * @return Response
      * @Route("/roles/add", name="roles-add")
+     *
      */
     public function addAction(Request $request)
     {
         $roleForm = $this->formFactory->create(new RoleType());
-
         $roleForm->handleRequest($request);
 
         if ($roleForm->isValid()) {
             $this->model->save($roleForm->getData());
             $this->session->getFlashBag()->set(
                 'success',
-                $this->translator->trans('Saved')
+                'flash_messages.role.add.success'
             );
 
             return new RedirectResponse($this->router->generate('roles'));
         } else {
             $this->session->getFlashBag()->set(
                 'error',
-                $this->translator->trans('Not valid')
+                'flash_messages.project.add.error'
             );
         }
 
