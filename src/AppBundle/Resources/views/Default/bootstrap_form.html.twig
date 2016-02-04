@@ -3,6 +3,10 @@
     <input type="{{ type }}" class="form-control" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
 {%- endblock form_widget_simple -%}
 
+{%- block textarea_widget -%}
+    <textarea class="form-control" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/></textarea>
+{%- endblock textarea_widget -%}
+
 {%- block choice_widget_collapsed -%}
     {%- if required and empty_value is none and not empty_value_in_choices and not multiple -%}
         {% set required = false %}

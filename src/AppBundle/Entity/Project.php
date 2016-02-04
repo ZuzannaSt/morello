@@ -73,7 +73,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
     protected $users;
 
     /**
-     * @ORM\OneToMany(targetEntity="Task", mappedBy="project")
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="project", cascade={"remove"})
      */
     protected $tasks;
 
@@ -265,6 +265,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
      */
     public function removeTask(\AppBundle\Entity\Task $tasks)
     {
-        $this->users->removeElement($tasks);
+        $this->tasks->removeElement($tasks);
     }
 }

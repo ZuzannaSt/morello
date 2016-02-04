@@ -17,6 +17,7 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
+ * Class ProjectsController
  * @Route(service="app.projects_controller")
  */
 class ProjectsController
@@ -58,7 +59,7 @@ class ProjectsController
     }
 
     /**
-    * @Route("projects/view/{id}", name="projects-view")
+    * @Route("projects/{id}/view", name="projects-view")
     */
 
     public function viewAction($id)
@@ -66,7 +67,7 @@ class ProjectsController
         $project = $this->model->findOneById($id);
         if (!$project) {
             throw $this->createNotFoundException(
-                $this->translator->trans('No project found for id ') . $id
+                $this->translator->trans('errors.project.not_found') . $id
             );
         }
 
@@ -84,26 +85,29 @@ class ProjectsController
     }
 
     /**
+     * @param Request $request
+     * @return Response
      * @Route("/projects/add", name="projects-add")
      */
     public function addAction(Request $request)
     {
         $projectForm = $this->formFactory->create(new ProjectType());
-
         $projectForm->handleRequest($request);
 
         if ($projectForm->isValid()) {
             $this->model->add($projectForm->getData());
             $this->session->getFlashBag()->set(
                 'success',
-                $this->translator->trans('Saved')
+                'flash_messages.project.add.success'
             );
 
-            return new RedirectResponse($this->router->generate('projects'));
+            $redirectUri = $this->router->generate('projects-view', array('project_id' => $this->model->getId()));
+
+            return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
                 'error',
-                $this->translator->trans('Not valid')
+                'flash_messages.project.add.error'
             );
         }
 
@@ -115,7 +119,9 @@ class ProjectsController
 
     /**
     *
-    * @Route("/projects/edit/{id}", name="projects-edit")
+    * @param Request $request
+    * @return Response
+    * @Route("/projects/{id}/edit", name="projects-edit")
     *
     */
     public function editAction(Request $request)
@@ -125,7 +131,7 @@ class ProjectsController
 
         if (!$project) {
             throw $this->createNotFoundException(
-                $this->translator->trans('No project found for id ') . $id
+                $this->translator->trans('errors.project.not_found') . $id
             );
         }
 
@@ -141,17 +147,31 @@ class ProjectsController
 
         if ($projectForm->isValid()) {
             $this->model->save($projectForm->getData());
-            return new RedirectResponse($this->router->generate('projects'));
+            $this->session->getFlashBag()->set(
+                'success',
+                'flash_messages.project.edit.success'
+            );
+
+            $redirectUri = $this->router->generate('projects-view', array('id' => $id));
+
+            return new RedirectResponse($redirectUri);
+        } else {
+            $this->session->getFlashBag()->set(
+                'error',
+                'flash_messages.project.edit.error'
+            );
         }
 
-          return $this->templating->renderResponse(
-              'AppBundle:Projects:edit.html.twig',
-              array('form' => $projectForm->createView())
-          );
+        return $this->templating->renderResponse(
+            'AppBundle:Projects:edit.html.twig',
+            array('form' => $projectForm->createView())
+        );
     }
 
     /**
-    * @Route("/projects/delete/{id}", name="projects-delete")
+    * @param Request $request
+    * @return Response
+    * @Route("/projects/{id}/delete", name="projects-delete")
     */
     public function deleteAction(Request $request)
     {
@@ -159,7 +179,7 @@ class ProjectsController
         $project = $this->model->findById($id);
 
         if (!$project) {
-            throw $this->createNotFoundException('No project found');
+            throw $this->createNotFoundException('errors.project.not_found');
         }
 
         $projectForm = $this->formFactory->create(
@@ -174,6 +194,11 @@ class ProjectsController
 
         if ($projectForm->isValid()) {
             $this->model->delete($projectForm->getData());
+            $this->session->getFlashBag()->set(
+                'success',
+                'flash_messages.project.delete.success'
+            );
+
             return new RedirectResponse($this->router->generate('projects'));
         }
 

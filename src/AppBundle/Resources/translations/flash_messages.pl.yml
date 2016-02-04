@@ -1,15 +1,41 @@
 flash_messages:
   user:
-    create:
+    add:
       success: Pomyślnie utworzono użytkownika!
+      error: Niepoprawne dane użytkownika
     edit:
       success: Pomyślnie edytowano użytkownika!
+      error: Niepoprawne dane użytkownika
     delete:
       success: Pomyślnie usunięto użytkownika!
+      error: Niepoprawne dane użytkownika
   project:
-    create:
+    add:
       success: Pomyślnie utworzono projekt!
+      error: Niepoprawne dane projektu
     edit:
       success: Pomyślnie edytowano projekt!
+      error: Niepoprawne dane projektu
     delete:
       success: Pomyślnie usunięto projekt!
+      error: Niepoprawne dane projektu
+  role:
+    add:
+      success: Pomyślnie utworzono rolę!
+      error: Niepoprawne dane roli
+    edit:
+      success: Pomyślnie edytowano rolę!
+      error: Niepoprawne dane roli
+    delete:
+      success: Pomyślnie usunięto rolę!
+      error: Niepoprawne dane roli
+  task:
+    add:
+      success: Pomyślnie utworzono zadanie!
+      error: Niepoprawne dane zadania
+    edit:
+      success: Pomyślnie edytowano zadanie!
+      error: Niepoprawne dane zadania
+    delete:
+      success: Pomyślnie usunięto zadanie!
+      error: Niepoprawne dane zadania

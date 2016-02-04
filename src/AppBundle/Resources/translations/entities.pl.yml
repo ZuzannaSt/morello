@@ -15,3 +15,41 @@ user:
     delete: Usuń użytkownika
     list: Lista użytkowników
     add: Dodaj nowego użytkownika
+project:
+  attributes:
+    id: ID
+    name: Nazwa projektu
+    description: Opis projektu
+    users: Użytkownicy
+    tasks: Zadania
+  actions:
+    show: Pokaż projekt
+    edit: Edytuj projekt
+    delete: Usuń projekt
+    list: Lista projektów
+    add: Dodaj nowy projekt
+task:
+  attributes:
+    id: ID
+    name: Nazwa zadania
+    description: Opis zadania
+    users: Użytkownicy
+    project: Projekt
+  actions:
+    show: Pokaż zadanie
+    edit: Edytuj zadanie
+    delete: Usuń zadanie
+    list: Lista zadań
+    add: Dodaj nowe zadanie
+role:
+  attributes:
+    id: ID
+    name: Nazwa roli
+    role: Pełny zapis roli
+    users: Użytkownicy
+  actions:
+    show: Pokaż rolę
+    edit: Edytuj rolę
+    delete: Usuń rolę
+    list: Lista ról
+    add: Dodaj nową rolę

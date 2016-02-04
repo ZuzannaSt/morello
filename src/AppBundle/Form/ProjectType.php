@@ -24,7 +24,7 @@ class ProjectType extends AbstractType
                 'name',
                 'text',
                 array(
-                    'label'       => 'Project Name',
+                    'label'       => 'Nazwa projektu',
                     'required'    => true,
                     'max_length'  => 128
                 )
@@ -33,7 +33,7 @@ class ProjectType extends AbstractType
                 'description',
                 'textarea',
                 array(
-                    'label'       => 'Project Description',
+                    'label'       => 'Opis projektu',
                     'required'    => false,
                     'max_length'  => 256
                 )
@@ -45,7 +45,8 @@ class ProjectType extends AbstractType
                     'multiple' => true,
                     'expanded' => true,
                     'property' => 'username',
-                    'class'    => 'AppBundle:User'
+                    'class'    => 'AppBundle:User',
+                    'label'    => 'Użytkownicy'
                 )
             );
       }
@@ -53,7 +54,7 @@ class ProjectType extends AbstractType
             'save',
             'submit',
             array(
-                'label' => 'Save'
+                'label' => 'Zapisz'
             )
         );
     }

@@ -26,3 +26,19 @@ admin:
     add:
       title: Dodaj użytkownika
       header: Dodaj użytkownika
+  projects:
+    list:
+      title: Projekty
+      header: Zarządzaj projektami
+    show:
+      title: Użytkownik
+      header: Szczegóły projektu
+    delete:
+      title: Usuń projekt
+      header: Usuń projekt
+    edit:
+      title: Edycja projektu
+      header: Edytuj projekt
+    add:
+      title: Dodaj projekt
+      header: Dodaj projekt
