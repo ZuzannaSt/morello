@@ -16,9 +16,11 @@
                     </ul>
                 {% endblock menu %}
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">{{ 'app.menu.logged_as' | trans({'%email%':app.user.email}, 'application') }}</a></li>
-                    <li><a href="{{ path('user_dashboard') }}">{{ 'user.menu.user' | trans({}, 'user')}}</a></li>
-                    <li><a href="{{ path('logout') }}">{{ 'logout' | trans({}, 'user') }} <i class="glyphicon glyphicon-off"></i></a></li>
+                    {% if app.user %}
+                      <li><a href="#">{{ 'app.menu.logged_as' | trans({'%email%':app.user.email}, 'application') }}</a></li>
+                      <li><a href="{{ path('user_dashboard') }}">{{ 'user.menu.user' | trans({}, 'user')}}</a></li>
+                      <li><a href="{{ path('logout') }}">{{ 'logout' | trans({}, 'user') }} <i class="glyphicon glyphicon-off"></i></a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

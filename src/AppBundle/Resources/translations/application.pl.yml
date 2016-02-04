@@ -13,3 +13,5 @@ app:
     logout: Wyloguj się
     logged_as: Zalogowany jako: %email%
     admin: Panel administracyjny
+  welcome:
+    hello: Witaj!
