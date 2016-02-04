@@ -16,9 +16,11 @@ use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
+ *
  * Class AdminController
  * @package AppBundle\Controller\Admin
  * @Route(service="admin.admin_controller")
+ *
  */
 class AdminController
 {

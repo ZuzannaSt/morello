@@ -1,7 +1,8 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle:Admin:navbar.html.twig' %}
 
-{% block body %}
-    <h1>Project</h1>
+{% block title %}{{ 'admin.projects.view.title' | trans({}, 'admin') }}{% endblock %}
+
+{% block content -%}
 
     <table class="record_properties">
         <tbody>
@@ -35,17 +36,17 @@
         </a>
     </li>
     <li>
-        <a href="{{ path('projects-tasks-add', { 'project_id': project.id }) }}">
+        <a href="{{ path('project_tasks_add', { 'project_id': project.id }) }}">
             Add task
         </a>
     </li>
     <li>
-        <a href="{{ path('projects-edit', { 'id': project.id }) }}">
+        <a href="{{ path('projects_edit', { 'id': project.id }) }}">
             Edit
         </a>
     </li>
     <li>
-        <a href="{{ path('projects-delete', { 'id': project.id }) }}">
+        <a href="{{ path('admin_projects_delete', { 'id': project.id }) }}">
             Delete
         </a>
     </li>

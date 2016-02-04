@@ -15,10 +15,13 @@ use Symfony\Bundle\FrameworkBundle\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
+ *
  * Class ProjectsController
  * @Route(service="app.projects_controller")
+ *
  */
 class ProjectsController
 {
@@ -28,6 +31,7 @@ class ProjectsController
     private $router;
     private $model;
     private $formFactory;
+    private $securityContext;
 
     public function __construct(
         Translator $translator,
@@ -35,7 +39,8 @@ class ProjectsController
         Session $session,
         RouterInterface $router,
         ObjectRepository $model,
-        FormFactory $formFactory
+        FormFactory $formFactory,
+        $securityContext
     ) {
         $this->translator = $translator;
         $this->templating = $templating;
@@ -43,6 +48,7 @@ class ProjectsController
         $this->router = $router;
         $this->model = $model;
         $this->formFactory = $formFactory;
+        $this->securityContext = $securityContext;
     }
 
     /**
@@ -65,7 +71,7 @@ class ProjectsController
      *
      * @param Id $id
      * @return Response
-     * @Route("projects/{id}/view", name="projects-view")
+     * @Route("projects/{id}/view", name="projects_view")
      *
      */
     public function viewAction($id)
@@ -91,48 +97,18 @@ class ProjectsController
     }
 
     /**
-     *
-     * @param Request $request
-     * @return Response
-     *
-     * @Route("/projects/add", name="projects-add")
-     */
-    public function addAction(Request $request)
-    {
-        $projectForm = $this->formFactory->create(new ProjectType());
-        $projectForm->handleRequest($request);
-
-        if ($projectForm->isValid()) {
-            $this->model->add($projectForm->getData());
-            $this->session->getFlashBag()->set(
-                'success',
-                'flash_messages.project.add.success'
-            );
-
-            $redirectUri = $this->router->generate('projects-view', array('project_id' => $this->model->getId()));
-            return new RedirectResponse($redirectUri);
-        } else {
-            $this->session->getFlashBag()->set(
-                'error',
-                'flash_messages.project.add.error'
-            );
-        }
-
-        return $this->templating->renderResponse(
-         'AppBundle:Projects:add.html.twig',
-         array('form' => $projectForm->createView())
-        );
-    }
-
-    /**
     *
     * @param Request $request
     * @return Response
-    * @Route("/projects/{id}/edit", name="projects-edit")
+    * @Route("/projects/{id}/edit", name="projects_edit")
     *
     */
     public function editAction(Request $request)
     {
+        if (!$this->securityContext->isGranted('ROLE_DEVELOPER')) {
+          throw new AccessDeniedException();
+        }
+
         $id = $request->get('id', null);
         $project = $this->model->findById($id);
 
@@ -159,7 +135,7 @@ class ProjectsController
                 'flash_messages.project.edit.success'
             );
 
-            $redirectUri = $this->router->generate('projects-view', array('id' => $id));
+            $redirectUri = $this->router->generate('projects_view', array('id' => $id));
             return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
@@ -173,46 +149,4 @@ class ProjectsController
             array('form' => $projectForm->createView())
         );
     }
-
-    /**
-    *
-    * @param Request $request
-    * @return Response
-    * @Route("/projects/{id}/delete", name="projects-delete")
-    *
-    */
-    public function deleteAction(Request $request)
-    {
-        $id = $request->get('id', null);
-        $project = $this->model->findById($id);
-
-        if (!$project) {
-            throw $this->createNotFoundException('errors.project.not_found');
-        }
-
-        $projectForm = $this->formFactory->create(
-            new ProjectType(),
-            current($project),
-            array(
-                'validation_groups' => 'project-delete'
-                )
-            );
-
-        $projectForm->handleRequest($request);
-
-        if ($projectForm->isValid()) {
-            $this->model->delete($projectForm->getData());
-            $this->session->getFlashBag()->set(
-                'success',
-                'flash_messages.project.delete.success'
-            );
-
-            return new RedirectResponse($this->router->generate('projects'));
-        }
-
-          return $this->templating->renderResponse(
-              'AppBundle:Projects:delete.html.twig',
-              array('form' => $projectForm->createView())
-          );
-      }
 }

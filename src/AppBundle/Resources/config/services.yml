@@ -46,6 +46,7 @@ services:
           - @router
           - @app.project_repository
           - @form.factory
+          - @security.context
 
     app.projects_tasks_controller:
         class: AppBundle\Controller\TasksController
@@ -57,6 +58,7 @@ services:
           - @app.task_repository
           - @app.project_repository
           - @form.factory
+          - @security.context
 
     app.dashboard_controller:
         class: AppBundle\Controller\DashboardController
@@ -84,6 +86,15 @@ services:
           - @session
           - @router
           - @app.role_repository
+          - @form.factory
+    admin.projects_controller:
+        class: AppBundle\Controller\Admin\ProjectsController
+        arguments:
+          - @translator
+          - @templating
+          - @session
+          - @router
+          - @app.project_repository
           - @form.factory
     admin.user_form:
         class: AppBundle\Form\Admin\UserType

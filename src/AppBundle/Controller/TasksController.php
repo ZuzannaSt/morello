@@ -15,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  *
@@ -31,6 +32,7 @@ class TasksController
     private $model;
     private $project_model;
     private $formFactory;
+    private $securityContext;
 
     public function __construct(
         Translator $translator,
@@ -39,7 +41,8 @@ class TasksController
         RouterInterface $router,
         ObjectRepository $model,
         ObjectRepository $project_model,
-        FormFactory $formFactory
+        FormFactory $formFactory,
+        $securityContext
     ) {
         $this->translator = $translator;
         $this->templating = $templating;
@@ -48,10 +51,11 @@ class TasksController
         $this->model = $model;
         $this->project_model = $project_model;
         $this->formFactory = $formFactory;
+        $this->securityContext = $securityContext;
     }
 
     /**
-     * @Route("/projects/{project_id}/tasks", name="projects-tasks")
+     * @Route("/projects/{project_id}/tasks", name="project_tasks")
      */
     public function indexAction()
     {
@@ -67,7 +71,7 @@ class TasksController
      *
      * @param Id
      * @return Response
-     * @Route("/projects/{project_id}/tasks/{id}/view", name="projects-tasks-view")
+     * @Route("/projects/{project_id}/tasks/{id}/view", name="project_tasks_view")
      *
      */
     public function viewAction($id)
@@ -91,11 +95,15 @@ class TasksController
      *
      * @param Request $request
      * @return Response
-     * @Route("/projects/{project_id}/tasks/add", name="projects-tasks-add")
+     * @Route("/projects/{project_id}/tasks/add", name="project_tasks_add")
      *
      */
     public function addAction(Request $request)
     {
+        if (!$this->securityContext->isGranted('ROLE_DEVELOPER')) {
+          throw new AccessDeniedException();
+        }
+
         $project_id = $request->get('project_id', null);
 
         $taskForm = $this->formFactory->create(new TaskType());
@@ -108,7 +116,7 @@ class TasksController
                 'flash_messages.task.add.success'
             );
 
-            $redirectUri = $this->router->generate('projects-tasks', array('project_id' => $project_id));
+            $redirectUri = $this->router->generate('project_tasks', array('project_id' => $project_id));
             return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
@@ -127,11 +135,14 @@ class TasksController
     *
     * @param Request $request
     * @return Response
-    * @Route("/projects/{project_id}/tasks/{id}/edit", name="projects-tasks-edit")
+    * @Route("/projects/{project_id}/tasks/{id}/edit", name="project_tasks_edit")
     *
     */
     public function editAction(Request $request)
     {
+        if (!$this->securityContext->isGranted('ROLE_DEVELOPER')) {
+          throw new AccessDeniedException();
+        }
         $project_id = $request->get('project_id', null);
         $id = $request->get('id', null);
         $task = $this->model->findById($id);
@@ -159,7 +170,7 @@ class TasksController
                 'flash_messages.project.edit.success'
             );
 
-            $redirectUri = $this->router->generate('projects-tasks', array('project_id' => $project_id));
+            $redirectUri = $this->router->generate('project_tasks', array('project_id' => $project_id));
             return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
@@ -178,11 +189,14 @@ class TasksController
     *
     * @param Request $request
     * @return Respons
-    * @Route("/projects/{project_id}/tasks/delete/{id}", name="projects-tasks-delete")
+    * @Route("/projects/{project_id}/tasks/delete/{id}", name="project_tasks_delete")
     *
     */
     public function deleteAction(Request $request)
     {
+        if (!$this->securityContext->isGranted('ROLE_DEVELOPER')) {
+          throw new AccessDeniedException();
+        }
         $project_id = $request->get('project_id', null);
         $id = $request->get('id', null);
         $task = $this->model->findById($id);
@@ -208,7 +222,7 @@ class TasksController
                 'flash_messages.task.delete.success'
             );
 
-            return new RedirectResponse($this->router->generate('projects-tasks', array('project_id' => $project_id)));
+            return new RedirectResponse($this->router->generate('project_tasks', array('project_id' => $project_id)));
         }
 
           return $this->templating->renderResponse(
