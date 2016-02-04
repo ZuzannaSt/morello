@@ -31,7 +31,7 @@ admin:
       title: Projekty
       header: Zarządzaj projektami
     show:
-      title: Użytkownik
+      title: Projekt
       header: Szczegóły projektu
     delete:
       title: Usuń projekt
@@ -42,3 +42,19 @@ admin:
     add:
       title: Dodaj projekt
       header: Dodaj projekt
+  tasks:
+    list:
+      title: Zadania
+      header: Zarządzaj zadaniami
+    show:
+      title: Zadanie
+      header: Szczegóły zadania
+    delete:
+      title: Usuń zadanie
+      header: Usuń zadanie
+    edit:
+      title: Edycja zadania
+      header: Edytuj zadanie
+    add:
+      title: Dodaj zadanie
+      header: Dodaj zadanie

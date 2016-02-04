@@ -1,10 +1,14 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle:Default:navbar.html.twig' %}
 
-{% block body %}
+{% block title %}{{ 'admin.tasks.delete.title' | trans({}, 'admin') }}{% endblock %}
 
-    <h1>{{ 'Delete Task'|trans }}</h1>
+{% form_theme form 'AppBundle:Default:bootstrap_form.html.twig' %}
 
-    <div>{{ form_errors(form) }}</div>
-    {{ form(form, {'method': 'POST'}) }}
-    
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 page-header">
+            <h1>{{ 'admin.tasks.delete.header' | trans({}, 'admin') }}</h1>
+        </div>
+    </div>
+    {{ form(form, { 'method': 'POST' }) }}
 {% endblock %}

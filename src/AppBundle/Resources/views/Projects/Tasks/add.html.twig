@@ -1,15 +1,14 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle:Default:navbar.html.twig' %}
 
-{% block body %}
-    {% for flashMessage in app.session.flashbag.get('success') %}
-        <div class="flash-success">
-            {{ flashMessage }}
+{% block title %}{{ 'admin.tasks.add.title' | trans({}, 'admin') }}{% endblock %}
+
+{% form_theme form 'AppBundle:Default:bootstrap_form.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 page-header">
+            <h1>{{ 'admin.tasks.add.header' | trans({}, 'admin') }}</h1>
         </div>
-    {% endfor %}
-
-    <h1>{{ 'Add Task'|trans }}</h1>
-
-    <div>{{ form_errors(form) }}</div>
+    </div>
     {{ form(form, {'method': 'POST'}) }}
-
 {% endblock %}

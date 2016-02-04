@@ -102,7 +102,6 @@ class ProjectsController
             );
 
             $redirectUri = $this->router->generate('projects-view', array('project_id' => $this->model->getId()));
-
             return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
@@ -153,7 +152,6 @@ class ProjectsController
             );
 
             $redirectUri = $this->router->generate('projects-view', array('id' => $id));
-
             return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
@@ -169,9 +167,11 @@ class ProjectsController
     }
 
     /**
+    *
     * @param Request $request
     * @return Response
     * @Route("/projects/{id}/delete", name="projects-delete")
+    *
     */
     public function deleteAction(Request $request)
     {

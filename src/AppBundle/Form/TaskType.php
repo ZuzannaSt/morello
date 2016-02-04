@@ -24,7 +24,7 @@ class TaskType extends AbstractType
                 'name',
                 'text',
                 array(
-                    'label'       => 'Task Name',
+                    'label'       => 'Nazwa zadania',
                     'required'    => true,
                     'max_length'  => 128
                 )
@@ -33,7 +33,7 @@ class TaskType extends AbstractType
                 'description',
                 'textarea',
                 array(
-                    'label'       => 'Task Description',
+                    'label'       => 'Opis zadania',
                     'required'    => false,
                     'max_length'  => 256
                 )
@@ -45,7 +45,8 @@ class TaskType extends AbstractType
                     'multiple' => true,
                     'expanded' => true,
                     'property' => 'username',
-                    'class'    => 'AppBundle:User'
+                    'class'    => 'AppBundle:User',
+                    'label'    => 'Użytkownicy'
                 )
             );
       }
@@ -53,7 +54,7 @@ class TaskType extends AbstractType
             'save',
             'submit',
             array(
-                'label' => 'Save'
+                'label' => 'Zapisz'
             )
         );
     }

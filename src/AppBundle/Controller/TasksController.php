@@ -17,7 +17,10 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
+ *
+ * Class TasksController
  * @Route(service="app.projects_tasks_controller")
+ *
  */
 class TasksController
 {
@@ -61,15 +64,18 @@ class TasksController
     }
 
     /**
-    * @Route("/projects/{project_id}/tasks/view/{id}", name="projects-tasks-view")
-    */
-
+     *
+     * @param Id
+     * @return Response
+     * @Route("/projects/{project_id}/tasks/{id}/view", name="projects-tasks-view")
+     *
+     */
     public function viewAction($id)
     {
         $task = $this->model->findOneById($id);
         if (!$task) {
             throw $this->createNotFoundException(
-                $this->translator->trans('No task found for id ') . $id
+                $this->translator->trans('errors.task.not_found') . $id
             );
         }
 
@@ -82,7 +88,11 @@ class TasksController
     }
 
     /**
+     *
+     * @param Request $request
+     * @return Response
      * @Route("/projects/{project_id}/tasks/add", name="projects-tasks-add")
+     *
      */
     public function addAction(Request $request)
     {
@@ -95,14 +105,15 @@ class TasksController
             $this->model->add($taskForm->getData(), $project_id);
             $this->session->getFlashBag()->set(
                 'success',
-                $this->translator->trans('Saved')
+                'flash_messages.task.add.success'
             );
 
-            return new RedirectResponse($this->router->generate('projects-tasks', array('project_id' => $project_id)));
+            $redirectUri = $this->router->generate('projects-tasks', array('project_id' => $project_id));
+            return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
                 'error',
-                $this->translator->trans('Not valid')
+                'flash_messages.task.add.error'
             );
         }
 
@@ -114,7 +125,9 @@ class TasksController
 
     /**
     *
-    * @Route("/projects/{project_id}/tasks/edit/{id}", name="projects-tasks-edit")
+    * @param Request $request
+    * @return Response
+    * @Route("/projects/{project_id}/tasks/{id}/edit", name="projects-tasks-edit")
     *
     */
     public function editAction(Request $request)
@@ -125,7 +138,7 @@ class TasksController
 
         if (!$task) {
             throw $this->createNotFoundException(
-                $this->translator->trans('No task found for id ') . $id
+                $this->translator->trans('errors.task.not_found') . $id
             );
         }
 
@@ -141,17 +154,32 @@ class TasksController
 
         if ($taskForm->isValid()) {
             $this->model->save($taskForm->getData());
-            return new RedirectResponse($this->router->generate('projects-tasks', array('project_id' => $project_id)));
+            $this->session->getFlashBag()->set(
+                'success',
+                'flash_messages.project.edit.success'
+            );
+
+            $redirectUri = $this->router->generate('projects-tasks', array('project_id' => $project_id));
+            return new RedirectResponse($redirectUri);
+        } else {
+            $this->session->getFlashBag()->set(
+                'error',
+                'flash_messages.project.edit.error'
+            );
         }
 
-          return $this->templating->renderResponse(
-              'AppBundle:Projects/Tasks:edit.html.twig',
-              array('form' => $taskForm->createView())
-          );
+        return $this->templating->renderResponse(
+            'AppBundle:Projects/Tasks:edit.html.twig',
+            array('form' => $taskForm->createView())
+        );
     }
 
     /**
+    *
+    * @param Request $request
+    * @return Respons
     * @Route("/projects/{project_id}/tasks/delete/{id}", name="projects-tasks-delete")
+    *
     */
     public function deleteAction(Request $request)
     {
@@ -160,7 +188,7 @@ class TasksController
         $task = $this->model->findById($id);
 
         if (!$task) {
-            throw $this->createNotFoundException('No task found');
+            throw $this->createNotFoundException('errors.task.not_found');
         }
 
         $taskForm = $this->formFactory->create(
@@ -175,6 +203,11 @@ class TasksController
 
         if ($taskForm->isValid()) {
             $this->model->delete($taskForm->getData());
+            $this->session->getFlashBag()->set(
+                'success',
+                'flash_messages.task.delete.success'
+            );
+
             return new RedirectResponse($this->router->generate('projects-tasks', array('project_id' => $project_id)));
         }
 
