@@ -81,6 +81,5 @@ services:
             - @translator
             - @templating
             - @router
-            - @doctrine.orm.entity_manager
             - @security.context
             - @app.user_repository

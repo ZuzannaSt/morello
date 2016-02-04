@@ -24,6 +24,7 @@
                     <input type="password" id="password" name="_password"  class="form-control"/>
                 </div>
 
+                <input type="hidden" name="_target_path" value="/login_redirect" />
                 <button type="submit" class="btn btn-default">{{ 'app.login.button' | trans({}, 'application') }}</button>
                 <a class="btn btn-default" href="{{ path('user_registration') }}">{{ 'app.registration.button' | trans({}, 'application') }}</a>
             </form>

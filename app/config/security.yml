@@ -44,7 +44,7 @@ security:
             pattern:    ^/(?!register)
             http_basic: ~
             provider: our_db_provider
-
+    
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register$, role: IS_AUTHENTICATED_ANONYMOUSLY }

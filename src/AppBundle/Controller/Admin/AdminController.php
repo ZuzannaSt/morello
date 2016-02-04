@@ -5,7 +5,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Doctrine\Common\Persistence\ObjectRepository;
-use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +19,6 @@ class AdminController
     private $translator;
     private $templating;
     private $router;
-    private $em;
     private $current_user;
     private $model;
 
@@ -28,14 +26,12 @@ class AdminController
         Translator $translator,
         EngineInterface $templating,
         $router,
-        EntityManager $entityManager,
         $securityContext,
         ObjectRepository $model
     ) {
         $this->translator = $translator;
         $this->templating = $templating;
         $this->model = $model;
-        $this->em = $entityManager;
         $this->router = $router;
         $user = null;
         $token = $securityContext->getToken();

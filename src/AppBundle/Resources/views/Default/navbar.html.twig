@@ -4,20 +4,20 @@
     <div class="navbar">
         <div class="container">
             <div class="navbar-header">
-                <a href="{{ path('admin_dashboard') }}" class="navbar-brand">{{ 'admin.menu.brand' | trans({}, 'admin') }}</a>
+                <a href="{{ path('user_dashboard') }}" class="navbar-brand">{{ 'user.menu.brand' | trans({}, 'user') }}</a>
             </div>
             <div class="collapse navbar-collapse">
                 {% block menu %}
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ path('admin_dashboard') }}">{{ 'admin.menu.dashboard' | trans({}, 'admin') }}</a></li>
-                        <li><a href="{{ path('admin_users_list') }}">{{ 'admin.menu.users' | trans({}, 'admin') }}</a></li>
-                        <li><a href="{{ path('admin_households_list') }}">{{ 'admin.menu.households' | trans({}, 'admin') }}</a></li>
+                        <li><a href="{{ path('user_dashboard') }}">{{ 'user.menu.dashboard' | trans({}, 'user') }}</a></li>
+                        <li><a href="{{ path('roles') }}">{{ 'user.menu.roles' | trans({}, 'user') }}</a></li>
+                        <li><a href="{{ path('projects') }}">{{ 'user.menu.projects' | trans({}, 'user') }}</a></li>
                     </ul>
                 {% endblock menu %}
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">{{ 'app.menu.logged_as' | trans({'%email%':app.user.email}, 'application') }}</a></li>
-                    <li><a href="{{ path('user_dashboard') }}">{{ 'admin.menu.user' | trans({}, 'admin')}}</a></li>
-                    <li><a href="{{ path('logout') }}">{{ 'logout' | trans({}, 'admin') }} <i class="glyphicon glyphicon-off"></i></a></li>
+                    <li><a href="{{ path('user_dashboard') }}">{{ 'user.menu.user' | trans({}, 'user')}}</a></li>
+                    <li><a href="{{ path('logout') }}">{{ 'logout' | trans({}, 'user') }} <i class="glyphicon glyphicon-off"></i></a></li>
                 </ul>
             </div>
         </div>
