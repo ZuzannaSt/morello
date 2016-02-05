@@ -9,7 +9,7 @@ user:
   dashboard:
     title: Panel administracyjny
   tasks:
-    list:
+    index:
       title: Zadania
       header: Zarządzaj zadaniami
     show:

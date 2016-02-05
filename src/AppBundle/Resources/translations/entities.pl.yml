@@ -13,7 +13,7 @@ user:
     view: Pokaż użytkownika
     edit: Edytuj użytkownika
     delete: Usuń użytkownika
-    list: Lista użytkowników
+    index: Lista użytkowników
     add: Dodaj nowego użytkownika
 project:
   attributes:
@@ -26,7 +26,7 @@ project:
     view: Pokaż projekt
     edit: Edytuj projekt
     delete: Usuń projekt
-    list: Lista projektów
+    index: Lista projektów
     add: Dodaj nowy projekt
 task:
   attributes:
@@ -39,7 +39,7 @@ task:
     view: Pokaż zadanie
     edit: Edytuj zadanie
     delete: Usuń zadanie
-    list: Lista zadań
+    index: Lista zadań
     add: Dodaj nowe zadanie
 role:
   attributes:
@@ -51,7 +51,7 @@ role:
     view: Pokaż rolę
     edit: Edytuj rolę
     delete: Usuń rolę
-    list: Lista ról
+    index: Lista ról
     add: Dodaj nową rolę
 status:
   attributes:
@@ -62,7 +62,7 @@ status:
     view: Pokaż status
     edit: Edytuj status
     delete: Usuń status
-    list: Lista statusów
+    index: Lista statusów
     add: Dodaj nowy status
 board:
   attributes:
@@ -73,5 +73,5 @@ board:
     view: Pokaż tablicę
     edit: Edytuj tablicę
     delete: Usuń tablicę
-    list: Lista tablic
+    index: Lista tablic
     add: Dodaj nową tablicę
