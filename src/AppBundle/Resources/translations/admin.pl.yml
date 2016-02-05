@@ -12,7 +12,7 @@ admin:
   dashboard:
     title: Panel administracyjny
   users:
-    list:
+    index:
       title: Użytkownicy
       header: Zarządzaj użytkownikami
     show:
@@ -28,7 +28,7 @@ admin:
       title: Dodaj użytkownika
       header: Dodaj użytkownika
   projects:
-    list:
+    index:
       title: Projekty
       header: Zarządzaj projektami
     show:
@@ -44,7 +44,7 @@ admin:
       title: Dodaj projekt
       header: Dodaj projekt
   boards:
-    list:
+    index:
       title: Tablice
       header: Zarządzaj tablicami
     show:
@@ -60,7 +60,7 @@ admin:
       title: Dodaj tablicę
       header: Dodaj tablicę
   tasks:
-    list:
+    index:
       title: Zadania
       header: Zarządzaj zadaniami
     show:
@@ -76,7 +76,7 @@ admin:
       title: Dodaj zadanie
       header: Dodaj zadanie
   roles:
-    list:
+    index:
       title: Role
       header: Zarządzaj rolami
     show:
@@ -86,7 +86,7 @@ admin:
       title: Dodaj rolę
       header: Dodaj rolę
   statuses:
-    list:
+    index:
       title: Statusy
       header: Zarządzaj statusami
     show:

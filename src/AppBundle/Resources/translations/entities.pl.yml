@@ -10,7 +10,7 @@ user:
     lastName: Nazwisko
     password: Hasło
   actions:
-    show: Pokaż użytkownika
+    view: Pokaż użytkownika
     edit: Edytuj użytkownika
     delete: Usuń użytkownika
     list: Lista użytkowników
@@ -23,7 +23,7 @@ project:
     users: Użytkownicy
     tasks: Zadania
   actions:
-    show: Pokaż projekt
+    view: Pokaż projekt
     edit: Edytuj projekt
     delete: Usuń projekt
     list: Lista projektów
@@ -36,7 +36,7 @@ task:
     users: Użytkownicy
     project: Projekt
   actions:
-    show: Pokaż zadanie
+    view: Pokaż zadanie
     edit: Edytuj zadanie
     delete: Usuń zadanie
     list: Lista zadań
@@ -48,7 +48,7 @@ role:
     role: Pełny zapis roli
     users: Użytkownicy
   actions:
-    show: Pokaż rolę
+    view: Pokaż rolę
     edit: Edytuj rolę
     delete: Usuń rolę
     list: Lista ról
@@ -59,7 +59,7 @@ status:
     name: Nazwa statusu
     users: Użytkownicy
   actions:
-    show: Pokaż status
+    view: Pokaż status
     edit: Edytuj status
     delete: Usuń status
     list: Lista statusów
@@ -70,7 +70,7 @@ board:
     name: Nazwa tablicy
     tasks: Zadania
   actions:
-    show: Pokaż tablicę
+    view: Pokaż tablicę
     edit: Edytuj tablicę
     delete: Usuń tablicę
     list: Lista tablic
