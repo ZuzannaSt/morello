@@ -65,7 +65,7 @@ class RolesController
      *
      * @param Id $id
      * @return Response
-     * @Route("roles/view/{id}", name="admin_roles_view")
+     * @Route("roles/view/{id}", name="admin_role_view")
      *
      */
     public function viewAction($id)
@@ -89,7 +89,7 @@ class RolesController
      *
      * @param Request $request
      * @return Response
-     * @Route("/roles/add", name="admin_roles_add")
+     * @Route("/roles/add", name="admin_role_add")
      *
      */
     public function addAction(Request $request)

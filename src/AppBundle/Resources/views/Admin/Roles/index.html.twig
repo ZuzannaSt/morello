@@ -5,7 +5,7 @@
 {% block content -%}
     <div class="row">
       <h1>{{ 'admin.roles.list.header' | trans({}, 'admin') }}</h1>
-      <a href="{{ path('admin_roles_add') }}" class="btn btn-large btn-primary">
+      <a href="{{ path('admin_role_add') }}" class="btn btn-large btn-primary">
           <i class="glyphicon glyphicon-plus"></i>&nbsp;{{ 'role.actions.add' | trans({}, 'entities') }}
       </a>
     </div>
@@ -26,9 +26,7 @@
                                 <td>{{ role.id }}</td>
                                 <td>{{ role.name }}</td>
                                 <td>
-                                    <a href="{{ path('admin_roles_view', {'id': role.id}) }}" title="{{ 'role.actions.view' | trans({}, 'entities') }}"><i class="glyphicon glyphicon-search"></i></a>&nbsp;
-                                    <a href="{{ path('admin_roles_edit', {'id': role.id}) }}" title="{{ 'role.actions.edit' | trans({}, 'entities') }}"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;
-                                    <a href="{{ path('admin_roles_delete', {'id': role.id}) }}" title="{{ 'role.actions.delete' | trans({}, 'entities') }}"><i class="glyphicon glyphicon-remove"></i></a>
+                                    <a href="{{ path('admin_role_view', {'id': role.id}) }}" title="{{ 'role.actions.view' | trans({}, 'entities') }}"><i class="glyphicon glyphicon-search"></i></a>&nbsp;
                                 </td>
                             </tr>
                         {% endfor %}
@@ -50,7 +48,7 @@
                 <tbody>
                 {% for role in roles %}
                     <tr>
-                        <td><a href="{{ path('admin_roles_view', { 'id': role.id }) }}">{{ role.id }}</a></td>
+                        <td><a href="{{ path('admin_role_view', { 'id': role.id }) }}">{{ role.id }}</a></td>
                         <td>{{ role.name }}</td>
                         <td>{{ role.role }}</td>
                     </tr>
@@ -61,7 +59,7 @@
 
             <ul>
             <li>
-                <a href="{{ path('admin_roles_add') }}">
+                <a href="{{ path('admin_role_add') }}">
                     Create a new entry
                 </a>
             </li>
