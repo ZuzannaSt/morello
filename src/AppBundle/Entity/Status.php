@@ -24,8 +24,8 @@ class Status
 
     /**
      * @ORM\Column(name="name", type="string", length=30, nullable=false)
-     * @Assert\NotBlank()
-     * @Assert\Length(min=3)
+     * @Assert\NotBlank(message="validations.name.not_blank")
+     * @Assert\Length(min=3, minMessage="validations.name.min")
      */
     private $name;
 

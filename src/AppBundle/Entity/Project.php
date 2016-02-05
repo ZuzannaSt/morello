@@ -35,8 +35,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
      *     length=128,
      *     nullable=false,
      * )
-     * @Assert\NotBlank()
-     * @Assert\Length(min=3)
+     * @Assert\NotBlank(message="validations.name.not_blank")
+     * @Assert\Length(min=3, minMessage="validations.name.min")
      */
     private $name;
 

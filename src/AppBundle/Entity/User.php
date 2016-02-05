@@ -37,14 +37,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
      *     length=128,
      *     nullable=false,
      * )
-     * @Assert\NotBlank(groups={"registration"})
-     * @Assert\Length(min=7, groups={"registration"})
      */
     private $password;
 
     /**
-     * @Assert\NotBlank()
-     * @Assert\Length(max = 4096)
+     * @Assert\NotBlank(message="validations.password.not_blank", groups={"registration"})
+     * @Assert\Length(min=7, minMessage="validations.password.min", max = 4096, maxMessage="validations.password.max")
      */
     private $plainPassword;
 
@@ -56,8 +54,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
      *     unique=true,
      *     nullable=false
      * )
-     * @Assert\NotBlank()
-     * @Assert\Length(min=3)
+     * @Assert\NotBlank(message="validations.username.not_blank")
+     * @Assert\Length(min=3, minMessage="validations.username.min")
      */
     private $username;
 
@@ -69,7 +67,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
      *     unique=true,
      *     nullable=false
      * )
-     * @Assert\NotBlank(groups={"registration"})
+     * @Assert\NotBlank(message="validations.email.not_blank", groups={"registration"})
      * @Assert\Email(groups={"registration"})
      */
     private $email;
@@ -89,7 +87,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
      *     length=128,
      *     nullable=true
      * )
-     * @Assert\Length(min=2)
+     * @Assert\Length(min=2, minMessage="validations.firstname.min")
      */
     private $firstName;
 
@@ -100,7 +98,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
      *     length=128,
      *     nullable=true
      * )
-     * @Assert\Length(min=2)
+     * @Assert\Length(min=2, minMessage="validations.lastname.min")
      */
     private $lastName;
 

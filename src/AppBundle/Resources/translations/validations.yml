@@ -1,0 +1,17 @@
+validations:
+  name:
+    not_blank: Nazwa nie może być pusta.
+    min: Nazwa musi zawierać co najmniej 3 znaki.
+  password:
+    not_blank: Hasło nie może być puste.
+    min: Hasło musi zawierać co najmniej 7 znaków.
+    max: Hasło nie może zawierać więcej niż 4096 znaków. Na cóż Ci tyle?
+  username:
+    not_blank: Nazwa użytkownika nie może być pusta.
+    min: Nazwa użytkownika musi zawierać co najmniej 3 znaki.
+  firstname:
+    min: Imię użytkownika musi zawierać co najmniej 2 znaki.
+  lastname:
+    min: Nazwisko użytkownika musi zawierać co najmniej 2 znaki.
+  email:
+    not_blank: Email użytkownika nie może być pusty.
