@@ -3,7 +3,7 @@
 namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Statu;
-use AppBundle\Form\Admin\StatuType;
+use AppBundle\Form\Admin\StatusType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Doctrine\Common\Persistence\ObjectRepository;
@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Class StatusController
  * @Route(service="admin.statuses_controller")
  */
-class StatusController
+class StatusesController
 {
     private $translator;
     private $templating;
@@ -70,18 +70,18 @@ class StatusController
      */
     public function viewAction($id)
     {
-        $role = $this->model->findOneById($id);
-        if (!$role) {
+        $status = $this->model->findOneById($id);
+        if (!$status) {
             throw $this->createNotFoundException(
                 $this->translator->trans('errors.role.not_found') . $id
             );
         }
 
-      $users = $role->getUsers();
+      $users = $status->getTasks();
 
       return $this->templating->renderResponse(
           'AppBundle:Admin/Status:view.html.twig',
-          array('role' => $role, 'users' => $users)
+          array('task' => $task, 'users' => $users)
       );
     }
 
@@ -94,17 +94,17 @@ class StatusController
      */
     public function addAction(Request $request)
     {
-        $roleForm = $this->formFactory->create(new StatuType());
-        $roleForm->handleRequest($request);
+        $statusForm = $this->formFactory->create(new StatusType());
+        $statusForm->handleRequest($request);
 
-        if ($roleForm->isValid()) {
-            $this->model->save($roleForm->getData());
+        if ($statusForm->isValid()) {
+            $this->model->save($statusForm->getData());
             $this->session->getFlashBag()->set(
                 'success',
                 'flash_messages.role.add.success'
             );
 
-            return new RedirectResponse($this->router->generate('statuses'));
+            return new RedirectResponse($this->router->generate('admin_statuses_index'));
         } else {
             $this->session->getFlashBag()->set(
                 'error',
@@ -114,7 +114,7 @@ class StatusController
 
         return $this->templating->renderResponse(
          'AppBundle:Admin/Status:add.html.twig',
-         array('form' => $roleForm->createView())
+         array('form' => $statusForm->createView())
         );
     }
 }

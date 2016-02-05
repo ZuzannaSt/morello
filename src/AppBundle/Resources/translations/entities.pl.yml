@@ -53,3 +53,14 @@ role:
     delete: Usuń rolę
     list: Lista ról
     add: Dodaj nową rolę
+status:
+  attributes:
+    id: ID
+    name: Nazwa statusu
+    tasks: Zadania
+  actions:
+    show: Pokaż status
+    edit: Edytuj status
+    delete: Usuń status
+    list: Lista statusów
+    add: Dodaj nowy status

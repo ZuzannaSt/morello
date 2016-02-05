@@ -1,11 +1,11 @@
 {% extends 'AppBundle:Admin:navbar.html.twig' %}
 
-{% block title %}{{ 'admin.status.index.title' | trans({}, 'admin') }}{% endblock %}
+{% block title %}{{ 'admin.statuses.index.title' | trans({}, 'admin') }}{% endblock %}
 
 {% block content -%}
     <div class="container">
         <h1>{{ 'Status list'|trans }}</h1>
-        {% if status|length > 0 %}
+        {% if statuses|length > 0 %}
             <table class="records_list">
                 <thead>
                     <tr>
@@ -14,10 +14,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                {% for status in status %}
+                {% for status in statuses %}
                     <tr>
-                        <td><a href="{{ path('admin_status_view', { 'id': role.id }) }}">{{ role.id }}</a></td>
-                        <td>{{ role.name }}</td>
+                        <td><a href="{{ path('admin_statuses_view', { 'id': status.id }) }}">{{ status.id }}</a></td>
+                        <td>{{ status.name }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -26,7 +26,7 @@
 
             <ul>
             <li>
-                <a href="{{ path('admin_status_add') }}">
+                <a href="{{ path('admin_statuses_add') }}">
                     Create a new entry
                 </a>
             </li>

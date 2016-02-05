@@ -10,7 +10,7 @@ class StatusRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery('
-                SELECT r
+                SELECT s
                 FROM AppBundle:Status s
                 ORDER BY s.name ASC
             ')

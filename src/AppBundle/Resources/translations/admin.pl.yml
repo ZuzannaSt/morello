@@ -5,6 +5,7 @@ admin:
     dashboard: Strona główna
     users: Użytkownicy
     roles: Role
+    statuses: Statusy
     projects: Projekty
     logout: Wyloguj
     user: Kokpit użytkownika
@@ -68,3 +69,13 @@ admin:
     add:
       title: Dodaj rolę
       header: Dodaj rolę
+  statuses:
+    list:
+      title: Statusy
+      header: Zarządzaj statusami
+    show:
+      title: Status
+      header: Szczegóły statusu
+    add:
+      title: Dodaj status
+      header: Dodaj status

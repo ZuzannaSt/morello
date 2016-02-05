@@ -28,11 +28,6 @@ class Status
     private $name;
 
     /**
-     * @ORM\Column(name="role", type="string", length=20, unique=true)
-     */
-    private $role;
-
-    /**
      * @ORM\ManyToMany(targetEntity="Task", mappedBy="statuses")
      */
     private $tasks;
@@ -47,7 +42,7 @@ class Status
 
     public function getStatus()
     {
-        return $this->role;
+        return $this->status;
     }
 
     /**
@@ -84,14 +79,14 @@ class Status
     }
 
     /**
-     * Set role
+     * Set status
      *
-     * @param string $role
+     * @param string $status
      * @return Status
      */
-    public function setStatus($role)
+    public function setStatus($status)
     {
-        $this->role = $role;
+        $this->status = $status;
 
         return $this;
     }

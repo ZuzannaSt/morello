@@ -121,8 +121,8 @@ services:
           - @router
           - @app.role_repository
           - @form.factory
-    admin.status_controller:
-        class: AppBundle\Controller\Admin\StatusController
+    admin.statuses_controller:
+        class: AppBundle\Controller\Admin\StatusesController
         arguments:
           - @translator
           - @templating
