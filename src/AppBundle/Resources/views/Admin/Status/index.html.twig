@@ -2,34 +2,39 @@
 
 {% block title %}{{ 'admin.statuses.index.title' | trans({}, 'admin') }}{% endblock %}
 
-{% block content -%}
-    <div class="container">
-        <h1>{{ 'Status list'|trans }}</h1>
-        {% if statuses|length > 0 %}
-            <table class="records_list">
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 page-header">
+            <h1>{{ 'admin.statuses.list.header' | trans({}, 'admin') }}</h1>
+            <a href="{{ path('admin_statuses_add') }}" class="btn btn-large btn-primary">
+                <i class="glyphicon glyphicon-plus"></i>&nbsp;{{ 'status.actions.add' | trans({}, 'entities') }}
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
                 <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                    </tr>
+                <tr>
+                    <th>{{ 'status.attributes.id' | trans({}, 'entities') }}</th>
+                    <th>{{ 'status.attributes.name' | trans({}, 'entities') }}</th>
+                    <th>{{ 'admin.actions' | trans({}, 'admin') }}</th>
+                </tr>
                 </thead>
                 <tbody>
-                {% for status in statuses %}
-                    <tr>
-                        <td><a href="{{ path('admin_statuses_view', { 'id': status.id }) }}">{{ status.id }}</a></td>
-                        <td>{{ status.name }}</td>
-                    </tr>
-                {% endfor %}
+                    {% if statuses | length > 0 %}
+                        {% for status in statuses %}
+                            <tr>
+                                <td>{{ status.id }}</td>
+                                <td>{{ status.name }}</td>
+                                <td>
+                                    <a href="{{ path('admin_statuses_view', {'id': status.id}) }}" title="{{ 'role.actions.view' | trans({}, 'entities') }}"><i class="glyphicon glyphicon-search"></i></a>&nbsp;
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
                 </tbody>
             </table>
-        {% endif %}
-
-            <ul>
-            <li>
-                <a href="{{ path('admin_statuses_add') }}">
-                    Create a new entry
-                </a>
-            </li>
-        </ul>
+        </div>
     </div>
-{% endblock %}
+{% endblock content %}
