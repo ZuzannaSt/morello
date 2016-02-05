@@ -105,7 +105,7 @@ class ProjectsController
     */
     public function editAction(Request $request)
     {
-        if (!$this->securityContext->isGranted('ROLE_DEVELOPER')) {
+        if (!$this->securityContext->isGranted('ROLE_MANAGER') || !$this->securityContext->isGranted('ROLE_ADMIN')) {
           throw new AccessDeniedException();
         }
 
