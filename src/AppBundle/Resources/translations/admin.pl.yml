@@ -43,6 +43,22 @@ admin:
     add:
       title: Dodaj projekt
       header: Dodaj projekt
+  boards:
+    list:
+      title: Tablice
+      header: Zarządzaj tablicami
+    show:
+      title: Tablica
+      header: Szczegóły tablicy
+    delete:
+      title: Usuń tablicę
+      header: Usuń tablicę
+    edit:
+      title: Edycja tablicy
+      header: Edytuj tablicę
+    add:
+      title: Dodaj tablicę
+      header: Dodaj tablicę
   tasks:
     list:
       title: Zadania

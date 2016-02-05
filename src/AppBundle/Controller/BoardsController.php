@@ -55,7 +55,7 @@ class BoardsController
     }
 
     /**
-     * @Route("/projects/{project_id}/boards", name="project_boards")
+     * @Route("/projects/{project_id}/boards", name="project_boards_index")
      */
     public function indexAction()
     {

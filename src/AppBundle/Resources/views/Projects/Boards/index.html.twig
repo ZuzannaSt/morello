@@ -2,8 +2,8 @@
 
 {% block body -%}
     <div class="container">
-        <h1>{{ 'Task list'|trans }}</h1>
-        {% if tasks|length > 0 %}
+        <h1>{{ 'Board list'|trans }}</h1>
+        {% if boards|length > 0 %}
             <table class="records_list">
                 <thead>
                     <tr>
@@ -13,17 +13,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                {% for task in tasks %}
+                {% for board in boards %}
                     <tr>
-                        <td><a href="{{ path('projects_boards_view', { 'id': board.id, 'project_id': board.project.id }) }}">{{ board.id }}</a></td>
+                        <td><a href="{{ path('project_boards_view', { 'id': board.id, 'project_id': board.project.id }) }}">{{ board.id }}</a></td>
                         <td>{{ board.name }}</td>
                         <td>
                         <ul>
                             <li>
-                                <a href="{{ path('projects_boards_view', { 'id': board.id, 'project_id': board.project.id }) }}">view</a>
+                                <a href="{{ path('project_boards_view', { 'id': board.id, 'project_id': board.project.id }) }}">view</a>
                             </li>
                             <li>
-                                <a href="{{ path('projects_boards_edit', { 'id': board.id, 'project_id': board.project.id }) }}">edit</a>
+                                <a href="{{ path('project_boards_edit', { 'id': board.id, 'project_id': board.project.id }) }}">edit</a>
                             </li>
                         </ul>
                         </td>
@@ -35,7 +35,7 @@
 
         <ul>
             <li>
-                <a href="{{ path('projects_boards_add', { 'project_id': boards[0].project.id }) }}">
+                <a href="{{ path('project_boards_add', { 'project_id': boards[0].project.id }) }}">
                     Create a new entry
                 </a>
             </li>
