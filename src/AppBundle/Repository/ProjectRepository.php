@@ -17,23 +17,15 @@ class ProjectRepository extends EntityRepository
             ->getResult();
     }
 
-    public function findAllCustom()
+    public function countAll()
     {
-        $query = $this->createQueryBuilder('p')
-            ->select(
-                'p.id',
-                'p.name',
-                'p.description',
-                'u.username'
-            )
-            ->innerJoin(
-                'p.users',
-                'u',
-                'WITH',
-                'u.id = :user_id'
-            )
-            ->getQuery();
-        return $query->getResult();
+      return $this->getEntityManager()
+          ->createQuery('
+              SELECT
+              COUNT(p.id)
+              FROM AppBundle:Project p
+          ')
+          ->getSingleScalarResult();
     }
 
     public function add($project)

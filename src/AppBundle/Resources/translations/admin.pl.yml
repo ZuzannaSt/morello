@@ -8,7 +8,7 @@ admin:
     statuses: Statusy
     projects: Projekty
     logout: Wyloguj
-    user: Profil użytkownika
+    user: Panel użytkownika
   dashboard:
     title: Panel administracyjny
   users:

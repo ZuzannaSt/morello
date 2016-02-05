@@ -100,7 +100,7 @@ class BoardsController
      */
     public function addAction(Request $request)
     {
-        if (!$this->securityContext->isGranted('ROLE_MANAGER')) {
+        if (!$this->securityContext->isGranted('ROLE_MANAGER') || !$this->securityContext->isGranted('ROLE_ADMIN')) {
           throw new AccessDeniedException();
         }
 
@@ -140,9 +140,10 @@ class BoardsController
     */
     public function editAction(Request $request)
     {
-        if (!$this->securityContext->isGranted('ROLE_MANAGER')) {
+        if (!$this->securityContext->isGranted('ROLE_MANAGER') || !$this->securityContext->isGranted('ROLE_ADMIN')) {
           throw new AccessDeniedException();
         }
+
         $project_id = $request->get('project_id', null);
         $id = $request->get('id', null);
         $board = $this->model->findById($id);
@@ -194,9 +195,10 @@ class BoardsController
     */
     public function deleteAction(Request $request)
     {
-        if (!$this->securityContext->isGranted('ROLE_MANAGER')) {
+        if (!$this->securityContext->isGranted('ROLE_MANAGER') || !$this->securityContext->isGranted('ROLE_ADMIN')) {
           throw new AccessDeniedException();
         }
+        
         $project_id = $request->get('project_id', null);
         $id = $request->get('id', null);
         $board = $this->model->findById($id);

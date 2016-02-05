@@ -31,6 +31,7 @@ class AdminController
     private $session;
     private $em;
     private $user_model;
+    private $project_model;
     private $formFactory;
     private $current_user;
     private $encoder;
@@ -42,6 +43,7 @@ class AdminController
         Session $session,
         EntityManager $entityManager,
         ObjectRepository $user_model,
+        ObjectRepository $project_model,
         FormFactory $formFactory,
         $encoder,
         $securityContext
@@ -52,6 +54,7 @@ class AdminController
         $this->session = $session;
         $this->em = $entityManager;
         $this->user_model = $user_model;
+        $this->project_model = $project_model;
         $this->formFactory = $formFactory;
         $this->encoder = $encoder;
         $user = null;
@@ -71,7 +74,11 @@ class AdminController
         return $this->templating->renderResponse(
             'AppBundle:Admin:dashboard.html.twig',
             array(
-                'current_user_name' => $this->current_user->getFullName()
+                'current_user_name' => $this->current_user->getFullName(),
+                'projects' => $this->project_model->findAllOrderedByName(),
+                'users' => $this->user_model->findAllOrderedByUsername(),
+                'users_amount' => $this->user_model->countAll(),
+                'projects_amount' => $this->project_model->countAll()
             )
         );
     }
@@ -179,8 +186,11 @@ class AdminController
         }
 
         return $this->templating->renderResponse(
-            'AppBundle:Admin/Users:add.html.twig',
-            array('form' => $adminUserForm->createView())
+            'AppBundle:Admin/Users:edit.html.twig',
+            array(
+                'form' => $adminUserForm->createView(),
+                'user' => $this->user_model->find($user_id)
+            )
         );
     }
 

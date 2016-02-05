@@ -10,6 +10,28 @@ use Doctrine\ORM\EntityRepository;
 
 class UserRepository extends EntityRepository implements UserProviderInterface
 {
+    public function findAllOrderedByUsername()
+    {
+        return $this->getEntityManager()
+            ->createQuery('
+                SELECT u
+                FROM AppBundle:User u
+                ORDER BY u.username ASC
+            ')
+            ->getResult();
+    }
+
+    public function countAll()
+    {
+      return $this->getEntityManager()
+          ->createQuery('
+              SELECT
+              COUNT(u.id)
+              FROM AppBundle:User u
+          ')
+          ->getSingleScalarResult();
+    }
+
     public function loadUserByUsername($username)
     {
         $user = $this->createQueryBuilder('u')
