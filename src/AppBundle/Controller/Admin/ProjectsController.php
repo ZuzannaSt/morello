@@ -50,6 +50,22 @@ class ProjectsController
 
     /**
      *
+     * @return Response
+     * @Route("/projects", name="projects")
+     *
+     */
+    public function indexAction()
+    {
+        $projects = $this->model->findAllOrderedByName();
+
+        return $this->templating->renderResponse(
+            'AppBundle:Admin/Projects:index.html.twig',
+            array('projects' => $projects)
+        );
+    }
+
+    /**
+     *
      * @param Request $request
      * @return Response
      *
