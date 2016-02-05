@@ -5,15 +5,15 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\Role\RoleInterface;
+use Symfony\Component\Security\Core\Status\StatusInterface;
 
 /**
- * @ORM\Table(name="roles")
+ * @ORM\Table(name="statuses")
  * @ORM\Entity()
- * @ORM\Entity(repositoryClass="AppBundle\Repository\RoleRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\StatusRepository")
  */
 
-class Role implements RoleInterface
+class Status
 {
     /**
      * @ORM\Column(type="integer")
@@ -33,19 +33,19 @@ class Role implements RoleInterface
     private $role;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="roles")
+     * @ORM\ManyToMany(targetEntity="Task", mappedBy="statuses")
      */
-    private $users;
+    private $tasks;
 
     /**
-     * Role constructor.
+     * Status constructor.
      */
     public function __construct()
     {
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tasks = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    public function getRole()
+    public function getStatus()
     {
         return $this->role;
     }
@@ -64,7 +64,7 @@ class Role implements RoleInterface
      * Set name
      *
      * @param string $name
-     * @return Role
+     * @return Status
      */
     public function setName($name)
     {
@@ -87,9 +87,9 @@ class Role implements RoleInterface
      * Set role
      *
      * @param string $role
-     * @return Role
+     * @return Status
      */
-    public function setRole($role)
+    public function setStatus($role)
     {
         $this->role = $role;
 
@@ -97,35 +97,35 @@ class Role implements RoleInterface
     }
 
     /**
-     * Add users
+     * Add tasks
      *
-     * @param \AppBundle\Entity\User $users
-     * @return Role
+     * @param \AppBundle\Entity\Task $tasks
+     * @return Status
      */
-    public function addUser(\AppBundle\Entity\User $users)
+    public function addTask(\AppBundle\Entity\Task $tasks)
     {
-        $this->users[] = $users;
+        $this->tasks[] = $tasks;
 
         return $this;
     }
 
     /**
-     * Remove users
+     * Remove tasks
      *
-     * @param \AppBundle\Entity\User $users
+     * @param \AppBundle\Entity\Task $tasks
      */
-    public function removeUser(\AppBundle\Entity\User $users)
+    public function removeTask(\AppBundle\Entity\Task $tasks)
     {
-        $this->users->removeElement($users);
+        $this->tasks->removeElement($tasks);
     }
 
     /**
-     * Get users
+     * Get tasks
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUsers()
+    public function getTasks()
     {
-        return $this->users;
+        return $this->tasks;
     }
 }

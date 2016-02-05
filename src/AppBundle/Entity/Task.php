@@ -63,6 +63,16 @@ use Doctrine\ORM\Mapping as ORM;
     private $updated_at;
 
     /**
+     * Tasks statuses
+     *
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Status", inversedBy="tasks", cascade={"persist"})
+     * @ORM\JoinTable(name="tasks_statuses")
+     */
+    protected $statuses;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="projects")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
@@ -80,6 +90,7 @@ use Doctrine\ORM\Mapping as ORM;
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->statuses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
     }
 

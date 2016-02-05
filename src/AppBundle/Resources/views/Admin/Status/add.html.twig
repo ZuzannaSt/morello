@@ -1,0 +1,14 @@
+{% extends 'AppBundle:Admin:navbar.html.twig' %}
+
+{% block title %}{{ 'admin.status.add.title' | trans({}, 'admin') }}{% endblock %}
+
+{% form_theme form 'AppBundle:Default:bootstrap_form.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 page-header">
+            <h1>{{ 'admin.status.add.header' | trans({}, 'admin') }}</h1>
+        </div>
+    </div>
+    {{ form(form, {'method': 'POST'}) }}
+{% endblock %}

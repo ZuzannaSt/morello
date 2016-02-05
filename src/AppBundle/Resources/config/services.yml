@@ -17,6 +17,12 @@ services:
         factory_method: getRepository
         arguments:
             - AppBundle\Entity\Role
+    app.status_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - AppBundle\Entity\Status
     app.board_repository:
         class: Doctrine\ORM\EntityRepository
         factory_service: doctrine.orm.default_entity_manager
@@ -114,6 +120,15 @@ services:
           - @session
           - @router
           - @app.role_repository
+          - @form.factory
+    admin.status_controller:
+        class: AppBundle\Controller\Admin\StatusController
+        arguments:
+          - @translator
+          - @templating
+          - @session
+          - @router
+          - @app.status_repository
           - @form.factory
     admin.projects_controller:
         class: AppBundle\Controller\Admin\ProjectsController
