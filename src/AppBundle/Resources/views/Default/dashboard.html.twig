@@ -8,4 +8,22 @@
             <h1>{{ 'dashboard.hello' | trans({'%name%':current_user_name}, 'dashboard') }}</h1>
         </div>
     </div>
+
+    <div class="row">
+        {% if user.projects | length > 0 %}
+            {% for project in user.projects %}
+                <div class="col-md-3 col-md-offset-1 well well-lg">
+                    <dl class="dl-horizontal">
+                        <dt>{{ 'user.attributes.projects' | trans({}, 'entities') }}</dt>
+                        <h2>{{ project.name }}</h2>
+                        {% if project.tasks | length > 0 %}
+                            {% for task in project.tasks %}
+                                <dd>{{ task.name }}</dd>
+                            {% endfor %}
+                        {% endif %}
+                    </dl>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 {% endblock %}

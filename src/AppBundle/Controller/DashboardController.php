@@ -41,7 +41,8 @@ class DashboardController
         return $this->templating->renderResponse(
             'AppBundle:Default:dashboard.html.twig',
             array(
-                'current_user_name' => $this->current_user->getFullName()
+                'current_user_name' => $this->current_user->getFullName(),
+                'user' => $this->current_user
             )
         );
     }
