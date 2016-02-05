@@ -73,6 +73,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
     protected $users;
 
     /**
+     * @ORM\OneToMany(targetEntity="Board", mappedBy="project", cascade={"remove"})
+     */
+    protected $boards;
+
+    /**
      * @ORM\OneToMany(targetEntity="Task", mappedBy="project", cascade={"remove"})
      */
     protected $tasks;
@@ -83,6 +88,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->boards = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tasks = new \Doctrine\Common\Collections\ArrayCollection();
         $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
     }

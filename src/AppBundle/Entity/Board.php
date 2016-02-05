@@ -6,10 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="tasks")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\TaskRepository")
+ * @ORM\Table(name="boards")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BoardRepository")
  */
- class Task
+ class Board
 {
     /**
      * @ORM\Column(
@@ -36,16 +36,6 @@ use Doctrine\ORM\Mapping as ORM;
 
     /**
      * @ORM\Column(
-     *     name="description",
-     *     type="string",
-     *     length=128,
-     *     nullable=true
-     * )
-     */
-    private $description;
-
-    /**
-     * @ORM\Column(
      *     name="created_at",
      *     type="datetime",
      *     nullable=true
@@ -63,14 +53,20 @@ use Doctrine\ORM\Mapping as ORM;
     private $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Project", inversedBy="projects")
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="boards")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
     private $project;
 
     /**
-    * @ORM\ManyToMany(targetEntity="User", inversedBy="tasks")
-    * @ORM\JoinTable(name="tasks_users")
+    * @ORM\ManyToMany(targetEntity="Task", inversedBy="boards")
+    * @ORM\JoinTable(name="boards_tasks")
+    */
+    protected $tasks;
+
+    /**
+    * @ORM\ManyToMany(targetEntity="User", inversedBy="boards")
+    * @ORM\JoinTable(name="boards_users")
     */
     protected $users;
 
@@ -79,6 +75,7 @@ use Doctrine\ORM\Mapping as ORM;
     */
     public function __construct()
     {
+        $this->tasks = new \Doctrine\Common\Collections\ArrayCollection();
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
     }
@@ -97,7 +94,7 @@ use Doctrine\ORM\Mapping as ORM;
      * Set id
      *
      * @param integer id
-     * @return Task
+     * @return Board
      */
     public function setId($id)
     {
@@ -120,36 +117,13 @@ use Doctrine\ORM\Mapping as ORM;
      * Set name
      *
      * @param string $name
-     * @return Task
+     * @return Board
      */
     public function setName($name)
     {
         $this->name = $name;
 
         return $this;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Task
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**
@@ -166,7 +140,7 @@ use Doctrine\ORM\Mapping as ORM;
      * Set created_at
      *
      * @param integer created_at
-     * @return Task
+     * @return Board
      */
     public function setCreatedAt($created_at)
     {
@@ -189,7 +163,7 @@ use Doctrine\ORM\Mapping as ORM;
      * Set updated_at
      *
      * @param integer updated_at
-     * @return Task
+     * @return Board
      */
     public function setUpdatedAt($updated_at)
     {
@@ -212,7 +186,7 @@ use Doctrine\ORM\Mapping as ORM;
      * Set project
      *
      * @param integer project
-     * @return Task
+     * @return Board
      */
     public function setProject($project)
     {

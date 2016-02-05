@@ -17,6 +17,12 @@ services:
         factory_method: getRepository
         arguments:
             - AppBundle\Entity\Role
+    app.board_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - AppBundle\Entity\Board
     app.task_repository:
         class: Doctrine\ORM\EntityRepository
         factory_service: doctrine.orm.default_entity_manager
@@ -36,6 +42,14 @@ services:
         class: AppBundle\Form\RoleType
         tags:
             - { name: form.type, alias: role }
+    app.board_type_form:
+        class: AppBundle\Form\BoardType
+        tags:
+            - { name: form.type, alias: role }
+    app.task_type_form:
+        class: AppBundle\Form\TaskType
+        tags:
+            - { name: form.type, alias: role }
 
     app.projects_controller:
         class: AppBundle\Controller\ProjectsController
@@ -44,6 +58,18 @@ services:
           - @templating
           - @session
           - @router
+          - @app.project_repository
+          - @form.factory
+          - @security.context
+
+    app.projects_boards_controller:
+        class: AppBundle\Controller\BoardsController
+        arguments:
+          - @translator
+          - @templating
+          - @session
+          - @router
+          - @app.board_repository
           - @app.project_repository
           - @form.factory
           - @security.context

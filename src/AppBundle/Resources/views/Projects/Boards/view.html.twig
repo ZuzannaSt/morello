@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Task</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ board.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ board.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ board.description }}</td>
+            </tr>
+            <tr>
+                <th>Users assigned to board</th>
+                {% for user in board.users %}
+                    <td>{{ user.username }}</td>
+                {% endfor %}
+                </th>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('projects_boards', { 'project_id': board.project.id }) }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('projects_boards_edit', { 'id': board.id, 'project_id': board.project.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('projects_boards_delete', { 'id': board.id, 'project_id': board.project.id }) }}">
+            Delete
+        </a>
+    </li>
+</ul>
+{% endblock %}
