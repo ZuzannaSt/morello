@@ -5,7 +5,7 @@ user:
     projects: Projekty
     zadania: Zadania
     logout: Wyloguj
-    user: Kokpit
+    user: Profil
   dashboard:
     title: Panel administracyjny
   tasks:
@@ -24,3 +24,14 @@ user:
     add:
       title: Dodaj zadania
       header: Dodaj zadania
+  projects:
+    index:
+      title: Projekty
+      header: Lista projektów
+    show:
+      title: Projekt
+      header: Szczegóły projektu
+  users:
+    show:
+      title: Profil użytkownika
+      header: Profil użytkownika

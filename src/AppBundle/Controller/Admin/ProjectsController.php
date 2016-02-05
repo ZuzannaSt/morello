@@ -51,7 +51,7 @@ class ProjectsController
     /**
      *
      * @return Response
-     * @Route("/projects", name="projects")
+     * @Route("/projects", name="admin_projects_index")
      *
      */
     public function indexAction()
@@ -132,7 +132,7 @@ class ProjectsController
                 'flash_messages.project.delete.success'
             );
 
-            return new RedirectResponse($this->router->generate('projects'));
+            return new RedirectResponse($this->router->generate('admin_projects_delete'));
         }
 
           return $this->templating->renderResponse(

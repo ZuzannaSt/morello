@@ -45,4 +45,17 @@ class DashboardController
             )
         );
     }
+
+    /**
+     * @param $user_id
+     * @return Response
+     * @Route("/user_profile", name="user_profile")
+     */
+    public function userViewAction()
+    {
+        return $this->templating->renderResponse(
+            'AppBundle:Default:user_profile.html.twig',
+            array('user' => $this->current_user)
+        );
+    }
 }

@@ -1,14 +1,11 @@
-{% extends 'AppBundle:Admin:navbar.html.twig' %}
+{% extends 'AppBundle:Default:navbar.html.twig' %}
 
 {% block title %}{{ 'admin.projects.index.title' | trans({}, 'admin') }}{% endblock %}
 
 {% block content %}
         <div class="row">
             <div class="col-md-12 page-header">
-                <h1>{{ 'admin.projects.index.header' | trans({}, 'admin') }}</h1>
-                <a href="{{ path('admin_projects_add') }}" class="btn btn-large btn-primary">
-                    <i class="glyphicon glyphicon-plus"></i>&nbsp;{{ 'project.actions.add' | trans({}, 'entities') }}
-                </a>
+                <h1>{{ 'user.projects.index.header' | trans({}, 'user') }}</h1>
             </div>
         </div>
         <div class="row">
@@ -19,7 +16,6 @@
                         <th>{{ 'project.attributes.id' | trans({}, 'entities') }}</th>
                         <th>{{ 'project.attributes.name' | trans({}, 'entities') }}</th>
                         <th>{{ 'project.attributes.description' | trans({}, 'entities') }}</th>
-                        <th>{{ 'admin.actions' | trans({}, 'admin') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -31,7 +27,6 @@
                                 <td>{{ project.description }}</td>
                                 <td>
                                     <a href="{{ path('projects_view', {'id': project.id}) }}" title="{{ 'project.actions.view' | trans({}, 'entities') }}"><i class="glyphicon glyphicon-search"></i></a>&nbsp;
-                                    <a href="{{ path('projects_edit', {'id': project.id}) }}" title="{{ 'project.actions.edit' | trans({}, 'entities') }}"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;
                                 </td>
                             </tr>
                         {% endfor %}

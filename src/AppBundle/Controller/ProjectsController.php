@@ -54,7 +54,7 @@ class ProjectsController
     /**
      *
      * @return Response
-     * @Route("/projects", name="projects")
+     * @Route("/projects", name="projects_index")
      *
      */
     public function indexAction()
