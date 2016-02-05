@@ -104,7 +104,7 @@ class RolesController
                 'flash_messages.role.add.success'
             );
 
-            return new RedirectResponse($this->router->generate('roles'));
+            return new RedirectResponse($this->router->generate('admin_roles_index'));
         } else {
             $this->session->getFlashBag()->set(
                 'notice',

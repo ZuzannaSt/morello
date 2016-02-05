@@ -73,15 +73,15 @@ class StatusesController
         $status = $this->model->findOneById($id);
         if (!$status) {
             throw $this->createNotFoundException(
-                $this->translator->trans('errors.role.not_found') . $id
+                $this->translator->trans('errors.status.not_found') . $id
             );
         }
 
-      $users = $status->getTasks();
+      $tasks = $status->getTasks();
 
       return $this->templating->renderResponse(
           'AppBundle:Admin/Status:view.html.twig',
-          array('task' => $task, 'users' => $users)
+          array('status' => $status, 'tasks' => $tasks)
       );
     }
 
@@ -101,7 +101,7 @@ class StatusesController
             $this->model->save($statusForm->getData());
             $this->session->getFlashBag()->set(
                 'success',
-                'flash_messages.role.add.success'
+                'flash_messages.status.add.success'
             );
 
             return new RedirectResponse($this->router->generate('admin_statuses_index'));
