@@ -107,8 +107,8 @@ class StatusesController
             return new RedirectResponse($this->router->generate('admin_statuses_index'));
         } else {
             $this->session->getFlashBag()->set(
-                'error',
-                'flash_messages.status.add.error'
+                'notice',
+                'flash_messages.status.add.notice'
             );
         }
 

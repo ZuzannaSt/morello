@@ -57,10 +57,21 @@ status:
   attributes:
     id: ID
     name: Nazwa statusu
-    tasks: Zadania
+    users: Użytkownicy
   actions:
     show: Pokaż status
     edit: Edytuj status
     delete: Usuń status
     list: Lista statusów
     add: Dodaj nowy status
+board:
+  attributes:
+    id: ID
+    name: Nazwa tablicy
+    tasks: Zadania
+  actions:
+    show: Pokaż tablicę
+    edit: Edytuj tablicę
+    delete: Usuń tablicę
+    list: Lista tablic
+    add: Dodaj nową tablicę

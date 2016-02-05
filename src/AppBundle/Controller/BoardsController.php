@@ -120,8 +120,8 @@ class BoardsController
             return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
-                'error',
-                'flash_messages.board.add.error'
+                'notice',
+                'flash_messages.board.add.notice'
             );
         }
 
@@ -174,8 +174,8 @@ class BoardsController
             return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
-                'error',
-                'flash_messages.project.edit.error'
+                'notice',
+                'flash_messages.project.edit.notice'
             );
         }
 

@@ -70,10 +70,10 @@ class ProjectsController
 
             $redirectUri = $this->router->generate('projects_view', array('id' => $project->getId()));
             return new RedirectResponse($redirectUri);
-        } else {
+        } elseif ($projectForm->isValid()) {
             $this->session->getFlashBag()->set(
-                'error',
-                'flash_messages.project.add.error'
+                'notice',
+                'flash_messages.project.add.notice'
             );
         }
 

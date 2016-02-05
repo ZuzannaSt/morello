@@ -107,8 +107,8 @@ class RolesController
             return new RedirectResponse($this->router->generate('roles'));
         } else {
             $this->session->getFlashBag()->set(
-                'error',
-                'flash_messages.project.add.error'
+                'notice',
+                'flash_messages.project.add.notice'
             );
         }
 

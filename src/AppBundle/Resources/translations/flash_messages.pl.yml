@@ -2,40 +2,48 @@ flash_messages:
   user:
     add:
       success: Pomyślnie utworzono użytkownika!
-      error: Niepoprawne dane użytkownika
+      notice: Nie udało się zapisać użytkownika
     edit:
       success: Pomyślnie edytowano użytkownika!
-      error: Niepoprawne dane użytkownika
+      notice: Nie udało się zapisać użytkownika
     delete:
       success: Pomyślnie usunięto użytkownika!
-      error: Niepoprawne dane użytkownika
+      notice: Nie udało się zapisać użytkownika
   project:
     add:
       success: Pomyślnie utworzono projekt!
-      error: Niepoprawne dane projektu
+      notice: Nie udało się zapisać projektu
     edit:
       success: Pomyślnie edytowano projekt!
-      error: Niepoprawne dane projektu
+      notice: Nie udało się zapisać projektu
     delete:
       success: Pomyślnie usunięto projekt!
-      error: Niepoprawne dane projektu
+      notice: Nie udało się zapisać projektu
   role:
     add:
       success: Pomyślnie utworzono rolę!
-      error: Niepoprawne dane roli
-    edit:
-      success: Pomyślnie edytowano rolę!
-      error: Niepoprawne dane roli
-    delete:
-      success: Pomyślnie usunięto rolę!
-      error: Niepoprawne dane roli
+      notice: Nie udało się zapisać roli
+  status:
+    add:
+      success: Pomyślnie utworzono status!
+      notice: Nie udało się zapisać statusu
   task:
     add:
       success: Pomyślnie utworzono zadanie!
-      error: Niepoprawne dane zadania
+      notice: Nie udało się zapisać zadania
     edit:
       success: Pomyślnie edytowano zadanie!
-      error: Niepoprawne dane zadania
+      notice: Nie udało się zapisać zadania
     delete:
       success: Pomyślnie usunięto zadanie!
-      error: Niepoprawne dane zadania
+      notice: Nie udało się zapisać zadania
+  board:
+    add:
+      success: Pomyślnie utworzono tablicę!
+      notice: Nie udało się zapisać tablicy
+    edit:
+      success: Pomyślnie edytowano tablicę!
+      notice: Nie udało się zapisać tablicy
+    delete:
+      success: Pomyślnie usunięto tablicę!
+      notice: Nie udało się zapisać tablicy
