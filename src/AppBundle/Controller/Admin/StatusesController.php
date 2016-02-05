@@ -63,30 +63,6 @@ class StatusesController
 
     /**
      *
-     * @param Id $id
-     * @return Response
-     * @Route("statuses/view/{id}", name="admin_statuses_view")
-     *
-     */
-    public function viewAction($id)
-    {
-        $status = $this->model->findOneById($id);
-        if (!$status) {
-            throw $this->createNotFoundException(
-                $this->translator->trans('errors.status.not_found') . $id
-            );
-        }
-
-      $tasks = $status->getTasks();
-
-      return $this->templating->renderResponse(
-          'AppBundle:Admin/Status:view.html.twig',
-          array('status' => $status, 'tasks' => $tasks)
-      );
-    }
-
-    /**
-     *
      * @param Request $request
      * @return Response
      * @Route("/statuses/add", name="admin_statuses_add")
