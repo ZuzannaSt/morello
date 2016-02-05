@@ -11,11 +11,12 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-striped auto">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>{{ 'role.attributes.id' | trans({}, 'entities') }}</th>
                         <th>{{ 'role.attributes.name' | trans({}, 'entities') }}</th>
+                        <th>{{ 'role.attributes.role' | trans({}, 'entities') }}</th>
                         <th>{{ 'admin.actions' | trans({}, 'admin') }}</th>
                     </tr>
                 </thead>
@@ -25,6 +26,7 @@
                             <tr>
                                 <td>{{ role.id }}</td>
                                 <td>{{ role.name }}</td>
+                                <td>{{ role.role }}</td>
                                 <td>
                                     <a href="{{ path('admin_role_view', {'id': role.id}) }}" title="{{ 'role.actions.view' | trans({}, 'entities') }}"><i class="glyphicon glyphicon-search"></i></a>&nbsp;
                                 </td>
@@ -35,34 +37,4 @@
             </table>
         </div>
     </div>
-    <div class="container">
-        <h1>{{ 'Roles list'|trans }}</h1>
-        {% if roles|length > 0 %}
-            <table class="records_list">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for role in roles %}
-                    <tr>
-                        <td><a href="{{ path('admin_role_view', { 'id': role.id }) }}">{{ role.id }}</a></td>
-                        <td>{{ role.name }}</td>
-                        <td>{{ role.role }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        {% endif %}
-
-            <ul>
-            <li>
-                <a href="{{ path('admin_role_add') }}">
-                    Create a new entry
-                </a>
-            </li>
-        </ul>
-    </div>
-{% endblock %}
+{% endblock content %}
