@@ -28,7 +28,7 @@ class RegistrationController extends Controller
 
             $role = $this->getDoctrine()
                 ->getRepository('AppBundle:Role')
-                ->findOneBy(array('role' => 'ROLE_ADMIN'));
+                ->findOneBy(array('role' => 'ROLE_USER'));
 
             $user->addRole($role);
 

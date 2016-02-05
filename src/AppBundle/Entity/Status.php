@@ -23,7 +23,9 @@ class Status
     private $id;
 
     /**
-     * @ORM\Column(name="name", type="string", length=30)
+     * @ORM\Column(name="name", type="string", length=30, nullable="false")
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      */
     private $name;
 

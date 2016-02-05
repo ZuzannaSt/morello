@@ -35,6 +35,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
      *     length=128,
      *     nullable=false,
      * )
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      */
     private $name;
 

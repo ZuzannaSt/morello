@@ -37,6 +37,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
      *     length=128,
      *     nullable=false,
      * )
+     * @Assert\NotBlank(groups={"registration"})
+     * @Assert\Length(min=7, groups={"registration"})
      */
     private $password;
 
@@ -54,6 +56,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
      *     unique=true,
      *     nullable=false
      * )
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      */
     private $username;
 
@@ -65,6 +69,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
      *     unique=true,
      *     nullable=false
      * )
+     * @Assert\NotBlank(groups={"registration"})
+     * @Assert\Email(groups={"registration"})
      */
     private $email;
 
@@ -83,6 +89,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
      *     length=128,
      *     nullable=true
      * )
+     * @Assert\Length(min=2)
      */
     private $firstName;
 
@@ -93,6 +100,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
      *     length=128,
      *     nullable=true
      * )
+     * @Assert\Length(min=2)
      */
     private $lastName;
 

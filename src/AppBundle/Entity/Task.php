@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -31,6 +32,8 @@ use Doctrine\ORM\Mapping as ORM;
      *     length=128,
      *     nullable=false,
      * )
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      */
     private $name;
 
