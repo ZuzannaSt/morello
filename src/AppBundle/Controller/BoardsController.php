@@ -100,7 +100,7 @@ class BoardsController
      */
     public function addAction(Request $request)
     {
-        if (!$this->securityContext->isGranted('ROLE_DEVELOPER')) {
+        if (!$this->securityContext->isGranted('ROLE_MANAGER')) {
           throw new AccessDeniedException();
         }
 
@@ -140,7 +140,7 @@ class BoardsController
     */
     public function editAction(Request $request)
     {
-        if (!$this->securityContext->isGranted('ROLE_DEVELOPER')) {
+        if (!$this->securityContext->isGranted('ROLE_MANAGER')) {
           throw new AccessDeniedException();
         }
         $project_id = $request->get('project_id', null);
@@ -194,7 +194,7 @@ class BoardsController
     */
     public function deleteAction(Request $request)
     {
-        if (!$this->securityContext->isGranted('ROLE_DEVELOPER')) {
+        if (!$this->securityContext->isGranted('ROLE_MANAGER')) {
           throw new AccessDeniedException();
         }
         $project_id = $request->get('project_id', null);
