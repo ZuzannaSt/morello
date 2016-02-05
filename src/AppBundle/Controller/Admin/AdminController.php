@@ -186,8 +186,11 @@ class AdminController
         }
 
         return $this->templating->renderResponse(
-            'AppBundle:Admin/Users:add.html.twig',
-            array('form' => $adminUserForm->createView())
+            'AppBundle:Admin/Users:edit.html.twig',
+            array(
+                'form' => $adminUserForm->createView(),
+                'user' => $this->user_model->find($user_id)
+            )
         );
     }
 

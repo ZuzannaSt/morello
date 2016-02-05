@@ -2,12 +2,12 @@
 
 {% block title %}{{ 'admin.users.edit.title' | trans({}, 'admin') }}{% endblock %}
 
-{% form_theme form 'AppBundle::bootstrap_form.html.twig' %}
+{% form_theme form 'AppBundle:Default:bootstrap_form.html.twig' %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-12 page-header">
-            <h1>{{ 'admin.users.edit.header' | trans({}, 'admin') }} <small>{{ user.fullname }}</small></h1>
+            <h1>{{ 'admin.users.edit.header' | trans({}, 'admin') }} <small>{{ user.username }}</small></h1>
         </div>
     </div>
     {{ form(form, { 'method': 'POST' }) }}

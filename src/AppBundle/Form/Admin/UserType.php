@@ -20,20 +20,25 @@ class UserType extends AbstractType
             && count($options['validation_groups'])
             && !in_array('user-delete', $options['validation_groups'])
         ) {
+          if (isset($options['validation_groups'])
+              && count($options['validation_groups'])
+              && !in_array('user-edit', $options['validation_groups'])
+          ) {
+                $builder->add(
+                    'plainPassword',
+                    'repeated',
+                    array(
+                        'type' => 'password',
+                        'first_options'  => array('label' => 'Hasło'),
+                        'second_options' => array('label' => 'Powtórz hasło'),
+                    )
+                );
+              }
             $builder->add(
                 'email',
                 'email',
                 array(
                     'required' => true
-                )
-            );
-            $builder->add(
-                'plainPassword',
-                'repeated',
-                array(
-                    'type' => 'password',
-                    'first_options'  => array('label' => 'Hasło'),
-                    'second_options' => array('label' => 'Powtórz hasło'),
                 )
             );
             $builder->add(
