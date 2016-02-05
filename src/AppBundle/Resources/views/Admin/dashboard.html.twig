@@ -11,10 +11,30 @@
 
     <div class="row">
         <div class="col-md-3 col-md-offset-1 well well-lg">
-          <dl class="dl-horizontal">
+          <dl class="text-center">
                 <dt>
-                    <a href="{{ path('admin_projects_index') }}">{{ 'admin.menu.projects' | trans({}, 'admin') }}</a>
-                    
+                    <a href="{{ path('admin_projects_index') }}">{{ 'admin.menu.projects' | trans({}, 'admin') }}
+                        ({{ projects_amount }})
+                    </a>
+                    {% if projects | length > 0 %}
+                        {% for project in projects %}
+                            <dd>{{ project.name }}</dd>
+                        {% endfor %}
+                    {% endif %}
+                </dt>
+            </dl>
+        </div>
+        <div class="col-md-3 col-md-offset-1 well well-lg">
+          <dl class="text-center">
+                <dt>
+                    <a href="{{ path('admin_users_index') }}">{{ 'admin.menu.users' | trans({}, 'admin') }}
+                        ({{ users_amount }})
+                    </a>
+                    {% if users | length > 0 %}
+                        {% for user in users %}
+                            <dd>{{ user.username }}</dd>
+                        {% endfor %}
+                    {% endif %}
                 </dt>
             </dl>
         </div>

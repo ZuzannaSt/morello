@@ -106,6 +106,7 @@ services:
             - @session
             - @doctrine.orm.entity_manager
             - @app.user_repository
+            - @app.project_repository
             - @form.factory
             - @security.encoder_factory
             - @security.context
