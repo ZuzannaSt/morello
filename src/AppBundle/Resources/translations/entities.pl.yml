@@ -17,6 +17,7 @@ user:
     add: Dodaj nowego użytkownika
 project:
   attributes:
+    header: Projekt
     id: ID
     name: Nazwa projektu
     description: Opis projektu

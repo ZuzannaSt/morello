@@ -2,53 +2,34 @@
 
 {% block title %}{{ 'admin.projects.view.title' | trans({}, 'admin') }}{% endblock %}
 
-{% block content -%}
-
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ project.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ project.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ project.description }}</td>
-            </tr>
-            <tr>
-                <th>Users assigned to project</th>
-                {% for user in project.users %}
-                    <td>{{ user.username }}</td>
-                {% endfor %}
-                </th>
-            </tr>
-
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('projects_index') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('project_boards_add', { 'project_id': project.id }) }}">
-            Add board
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('projects_edit', { 'id': project.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('admin_projects_delete', { 'id': project.id }) }}">
-            Delete
-        </a>
-    </li>
-</ul>
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 page-header">
+            <h1>{{ 'project.attributes.header' | trans({}, 'entities') }} <small>{{ project.name }}</small></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a href="{{ path('projects_index') }}"><i class="glyphicon glyphicon-list"></i> {{ 'project.actions.index' | trans({}, 'entities') }}</a><br/>
+            <a href="{{ path('project_boards_index', {'project_id': project.id}) }}"><i class="glyphicon glyphicon-th-large"></i> {{ 'board.actions.index' | trans({}, 'entities') }}</a><br/>
+            <a href="{{ path('projects_edit', {'id': project.id}) }}"><i class="glyphicon glyphicon-edit"></i> {{ 'project.actions.edit' | trans({}, 'entities') }}</a><br/>
+            <a href="{{ path('admin_projects_delete', {'id': project.id}) }}"><i class="glyphicon glyphicon-remove"></i> {{ 'project.actions.delete' | trans({}, 'entities') }}</a>
+        </div>
+        <div class="col-md-9 well well-lg">
+            <dl class="dl-horizontal">
+                <dt>{{ 'project.attributes.id' | trans({}, 'entities') }}</dt>
+                <dd>{{ project.id }}</dd>
+                <dt>{{ 'project.attributes.name' | trans({}, 'entities') }}</dt>
+                <dd>{{ project.name }}</dd>
+                <dt>{{ 'project.attributes.description' | trans({}, 'entities') }}</dt>
+                <dd>{{ project.description }}</dd>
+                <dt>{{ 'project.attributes.users' | trans({}, 'entities') }}</dt>
+                {% if project.users | length > 0 %}
+                    {% for user in project.users %}
+                        <dd>{{ user.firstName }} {{ user.lastName }} ({{ user.username }})</dd>
+                    {% endfor %}
+                {% endif %}
+            </dl>
+        </div>
+    </div>
 {% endblock %}
