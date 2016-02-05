@@ -43,7 +43,6 @@ class ProjectType extends AbstractType
                 'entity',
                 array(
                     'multiple' => true,
-                    'expanded' => true,
                     'property' => 'username',
                     'class'    => 'AppBundle:User',
                     'label'    => 'Użytkownicy',

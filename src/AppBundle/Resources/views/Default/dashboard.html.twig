@@ -16,9 +16,9 @@
                     <dl class="dl-horizontal">
                         <dt>{{ 'user.attributes.projects' | trans({}, 'entities') }}</dt>
                         <h2>{{ project.name }}</h2>
-                        {% if project.tasks | length > 0 %}
-                            {% for task in project.tasks %}
-                                <dd>{{ task.name }}</dd>
+                        {% if project.boards | length > 0 %}
+                            {% for board in project.boards %}
+                                <dd>{{ board.name }}</dd>
                             {% endfor %}
                         {% endif %}
                     </dl>

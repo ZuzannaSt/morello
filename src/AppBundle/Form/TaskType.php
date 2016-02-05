@@ -53,7 +53,6 @@ class TaskType extends AbstractType
                 'entity',
                 array(
                     'multiple' => true,
-                    'expanded' => true,
                     'required' => false,
                     'property' => 'username',
                     'class'    => 'AppBundle:User',
@@ -65,7 +64,6 @@ class TaskType extends AbstractType
                 'entity',
                 array(
                     'multiple' => true,
-                    'expanded' => true,
                     'required' => false,
                     'property' => 'name',
                     'class'    => 'AppBundle:Status',
