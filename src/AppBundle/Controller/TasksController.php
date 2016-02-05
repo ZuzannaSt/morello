@@ -55,28 +55,37 @@ class TasksController
     }
 
     /**
-     * @Route("/projects/{project_id}/tasks", name="project_tasks")
+     * @param Request $request
+     * @return Response
+     * @Route("/projects/{project_id}/tasks", name="project_tasks_index")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $tasks = $this->model->findAllOrderedByName();
+        $project_id = $request->get('project_id', null);
 
         return $this->templating->renderResponse(
             'AppBundle:Projects/Tasks:index.html.twig',
-            array('tasks' => $tasks)
+            array(
+              'tasks' => $tasks,
+              'project_id' => $project_id
+            )
         );
     }
 
     /**
      *
+     * @param Request $request
      * @param Id
      * @return Response
      * @Route("/projects/{project_id}/tasks/{id}/view", name="project_tasks_view")
      *
      */
-    public function viewAction($id)
+    public function viewAction(Request $request, $id)
     {
         $task = $this->model->findOneById($id);
+        $project_id = $request->get('project_id', null);
+
         if (!$task) {
             throw $this->createNotFoundException(
                 $this->translator->trans('errors.task.not_found') . $id
@@ -87,7 +96,11 @@ class TasksController
 
       return $this->templating->renderResponse(
           'AppBundle:Projects/Tasks:view.html.twig',
-          array('task' => $task, 'users' => $users)
+          array(
+              'task' => $task,
+              'users' => $users,
+              'project_id' => $project_id
+          )
       );
     }
 
@@ -116,7 +129,7 @@ class TasksController
                 'flash_messages.task.add.success'
             );
 
-            $redirectUri = $this->router->generate('project_tasks', array('project_id' => $project_id));
+            $redirectUri = $this->router->generate('project_tasks_index', array('project_id' => $project_id));
             return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
@@ -170,7 +183,7 @@ class TasksController
                 'flash_messages.project.edit.success'
             );
 
-            $redirectUri = $this->router->generate('project_tasks', array('project_id' => $project_id));
+            $redirectUri = $this->router->generate('project_tasks_index', array('project_id' => $project_id));
             return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
@@ -222,7 +235,7 @@ class TasksController
                 'flash_messages.task.delete.success'
             );
 
-            return new RedirectResponse($this->router->generate('project_tasks', array('project_id' => $project_id)));
+            return new RedirectResponse($this->router->generate('project_tasks_index', array('project_id' => $project_id)));
         }
 
           return $this->templating->renderResponse(

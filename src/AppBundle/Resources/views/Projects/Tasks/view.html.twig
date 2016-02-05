@@ -29,17 +29,17 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('projects-tasks', { 'project_id': task.project.id }) }}">
+        <a href="{{ path('project_tasks_index', { 'project_id': project_id }) }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('projects-tasks-edit', { 'id': task.id, 'project_id': task.project.id }) }}">
+        <a href="{{ path('project_tasks_edit', { 'id': task.id, 'project_id': project_id }) }}">
             Edit
         </a>
     </li>
     <li>
-        <a href="{{ path('projects-tasks-delete', { 'id': task.id, 'project_id': task.project.id }) }}">
+        <a href="{{ path('project_tasks_delete', { 'id': task.id, 'project_id': project_id }) }}">
             Delete
         </a>
     </li>

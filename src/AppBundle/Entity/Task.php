@@ -66,9 +66,6 @@ use Symfony\Component\Validator\Constraints as Assert;
     private $updated_at;
 
     /**
-     * Tasks statuses
-     *
-     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Status", inversedBy="tasks", cascade={"persist"})
      * @ORM\JoinTable(name="tasks_statuses")
@@ -79,7 +76,7 @@ use Symfony\Component\Validator\Constraints as Assert;
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="projects")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
-    private $project;
+    protected $project;
 
     /**
     * @ORM\ManyToMany(targetEntity="User", inversedBy="tasks")
@@ -88,11 +85,18 @@ use Symfony\Component\Validator\Constraints as Assert;
     protected $users;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Board", inversedBy="boards")
+     * @ORM\JoinColumn(name="board_id", referencedColumnName="id")
+     */
+    protected $boards;
+
+    /**
     * Constructor
     */
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->boards = new \Doctrine\Common\Collections\ArrayCollection();
         $this->statuses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
     }
@@ -266,5 +270,71 @@ use Symfony\Component\Validator\Constraints as Assert;
     public function removeUser(\AppBundle\Entity\User $users)
     {
         $this->users->removeElement($users);
+    }
+
+    /**
+    * Get boards
+    *
+    * @return \Doctrine\Common\Collections\Collection
+    */
+    public function getBoards()
+    {
+        return $this->boards;
+    }
+
+    /**
+     * Add boards
+     *
+     * @param \AppBundle\Entity\BoardEntity $boards
+     * @return Board
+     */
+    public function addBoard(\AppBundle\Entity\Board $boards)
+    {
+        $this->boards[] = $boards;
+
+        return $this;
+    }
+
+    /**
+     * Remove boards
+     *
+     * @param \AppBundle\Entity\BoardEntity $boards
+     */
+    public function removeBoard(\AppBundle\Entity\Board $boards)
+    {
+        $this->boards->removeElement($boards);
+    }
+
+    /**
+    * Get statuses
+    *
+    * @return \Doctrine\Common\Collections\Collection
+    */
+    public function getStatuses()
+    {
+        return $this->statuses;
+    }
+
+    /**
+     * Add statuses
+     *
+     * @param \AppBundle\Entity\StatusEntity $statuses
+     * @return Status
+     */
+    public function addStatus(\AppBundle\Entity\Status $statuses)
+    {
+        $this->statuses[] = $statuses;
+
+        return $this;
+    }
+
+    /**
+     * Remove statuses
+     *
+     * @param \AppBundle\Entity\StatusEntity $statuses
+     */
+    public function removeStatus(\AppBundle\Entity\Status $statuses)
+    {
+        $this->statuses->removeElement($statuses);
     }
 }

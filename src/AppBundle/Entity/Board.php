@@ -62,9 +62,8 @@ use Symfony\Component\Validator\Constraints as Assert;
     private $project;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Task", inversedBy="boards")
-    * @ORM\JoinTable(name="boards_tasks")
-    */
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="board", cascade={"remove"})
+     */
     protected $tasks;
 
     /**
@@ -80,6 +79,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     {
         $this->tasks = new \Doctrine\Common\Collections\ArrayCollection();
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->projects = new \Doctrine\Common\Collections\ArrayCollection();
         $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
     }
 
