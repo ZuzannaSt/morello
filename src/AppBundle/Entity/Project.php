@@ -275,4 +275,37 @@ use Symfony\Component\Security\Core\User\UserInterface;
     {
         $this->tasks->removeElement($tasks);
     }
+
+    /**
+    * Get boards
+    *
+    * @return \Doctrine\Common\Collections\Collection
+    */
+    public function getBoards()
+    {
+        return $this->boards;
+    }
+
+    /**
+     * Add boards
+     *
+     * @param \AppBundle\Entity\Board $boards
+     * @return Board
+     */
+    public function addBoard(\AppBundle\Entity\Board $boards)
+    {
+        $this->tasks[] = $boards;
+
+        return $this;
+    }
+
+    /**
+     * Remove tasks
+     *
+     * @param \AppBundle\Entity\Board $boards
+     */
+    public function removeBoard(\AppBundle\Entity\Board $boards)
+    {
+        $this->tasks->removeElement($boards);
+    }
 }

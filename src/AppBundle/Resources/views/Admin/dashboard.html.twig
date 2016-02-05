@@ -8,4 +8,15 @@
             <h1>{{ 'dashboard.hello' | trans({'%name%':current_user_name}, 'dashboard') }}</h1>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-3 col-md-offset-1 well well-lg">
+          <dl class="dl-horizontal">
+                <dt>
+                    <a href="{{ path('admin_projects_index') }}">{{ 'admin.menu.projects' | trans({}, 'admin') }}</a>
+                    
+                </dt>
+            </dl>
+        </div>
+    </div>
 {% endblock %}
