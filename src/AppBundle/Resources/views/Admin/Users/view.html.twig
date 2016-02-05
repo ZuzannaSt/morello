@@ -10,7 +10,7 @@
     </div>
     <div class="row">
         <div class="col-md-3">
-            <a href="{{ path('admin_users_index') }}"><i class="glyphicon glyphicon-index"></i> {{ 'user.actions.list' | trans({}, 'entities') }}</a><br/>
+            <a href="{{ path('admin_users_index') }}"><i class="glyphicon glyphicon-list"></i> {{ 'user.actions.list' | trans({}, 'entities') }}</a><br/>
             <a href="{{ path('admin_user_edit', {'user_id': user.id}) }}"><i class="glyphicon glyphicon-edit"></i> {{ 'user.actions.edit' | trans({}, 'entities') }}</a><br/>
             <a href="{{ path('admin_user_delete', {'user_id': user.id}) }}"><i class="glyphicon glyphicon-remove"></i> {{ 'user.actions.delete' | trans({}, 'entities') }}</a>
         </div>
