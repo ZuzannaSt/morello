@@ -40,41 +40,46 @@ class UserType extends AbstractType
                 'username',
                 'text',
                 array(
-                    'required' => true
+                    'required' => true,
+                    'label'    => 'Nazwa użytkownika'
                 )
             );
             $builder->add(
                 'firstName',
                 'text',
                 array(
-                    'required' => true
+                    'required' => true,
+                    'label'    => 'Imię'
                 )
             );
             $builder->add(
                 'lastName',
                 'text',
                 array(
-                    'required' => true
+                    'required' => true,
+                    'label'    => 'Nazwisko'
                 )
             );
             $builder->add(
                 'roles',
                 'entity',
                 array(
-                    'class' => 'AppBundle:Role',
+                    'class'    => 'AppBundle:Role',
                     'property' => 'name',
                     'multiple' => true,
-                    'required' => true
+                    'required' => true,
+                    'label'    => 'Role'
                 )
             );
             $builder->add(
                 'projects',
                 'entity',
                 array(
-                    'class' => 'AppBundle:Project',
+                    'class'    => 'AppBundle:Project',
                     'property' => 'name',
                     'multiple' => true,
-                    'required' => false
+                    'required' => false,
+                    'label'    => 'Projekty'
                 )
             );
         }

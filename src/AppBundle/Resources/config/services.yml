@@ -67,7 +67,6 @@ services:
           - @app.project_repository
           - @form.factory
           - @security.context
-
     app.projects_boards_controller:
         class: AppBundle\Controller\BoardsController
         arguments:
@@ -79,7 +78,6 @@ services:
           - @app.project_repository
           - @form.factory
           - @security.context
-
     app.projects_tasks_controller:
         class: AppBundle\Controller\TasksController
         arguments:
@@ -91,7 +89,6 @@ services:
           - @app.project_repository
           - @form.factory
           - @security.context
-
     app.dashboard_controller:
         class: AppBundle\Controller\DashboardController
         arguments:
