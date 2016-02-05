@@ -4,7 +4,7 @@
 {%- endblock form_widget_simple -%}
 
 {%- block textarea_widget -%}
-    <textarea class="form-control" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/></textarea>
+    <textarea class="form-control" {{ block('widget_attributes') }}> {% if value is not empty %}{{ value }} {% endif %}</textarea>
 {%- endblock textarea_widget -%}
 
 {%- block choice_widget_collapsed -%}
