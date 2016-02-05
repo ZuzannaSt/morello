@@ -75,8 +75,10 @@ services:
             - @templating
             - @router
             - @session
+            - @doctrine.orm.entity_manager
             - @app.user_repository
             - @form.factory
+            - @security.encoder_factory
             - @security.context
     admin.roles_controller:
         class: AppBundle\Controller\Admin\RolesController

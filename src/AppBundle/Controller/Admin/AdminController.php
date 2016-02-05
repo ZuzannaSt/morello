@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,25 +29,31 @@ class AdminController
     private $templating;
     private $router;
     private $session;
+    private $em;
     private $user_model;
     private $formFactory;
     private $current_user;
+    private $encoder;
 
     public function __construct(
         Translator $translator,
         EngineInterface $templating,
         RouterInterface $router,
         Session $session,
+        EntityManager $entityManager,
         ObjectRepository $user_model,
         FormFactory $formFactory,
+        $encoder,
         $securityContext
     ) {
         $this->translator = $translator;
         $this->templating = $templating;
         $this->router = $router;
         $this->session = $session;
+        $this->em = $entityManager;
         $this->user_model = $user_model;
         $this->formFactory = $formFactory;
+        $this->encoder = $encoder;
         $user = null;
         $token = $securityContext->getToken();
         if (null !== $token && is_object($token->getUser())) {
@@ -95,8 +102,7 @@ class AdminController
         $adminUserForm->handleRequest($request);
 
         if ($adminUserForm->isValid()) {
-            $encoder = $this->encoder
-                ->getEncoder($user);
+            $encoder = $this->encoder->getEncoder($user);
             $password = $encoder->encodePassword($user->getPlainPassword(), $user->getSalt());
             $user->setPassword($password);
             $this->em->persist($user);
@@ -113,7 +119,7 @@ class AdminController
         }
 
         return $this->templating->renderResponse(
-            'AppBundle:Admin/Users:create.html.twig',
+            'AppBundle:Admin/Users:add.html.twig',
             array('form' => $adminUserForm->createView())
         );
     }

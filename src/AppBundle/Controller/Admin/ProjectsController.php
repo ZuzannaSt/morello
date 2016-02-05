@@ -61,13 +61,14 @@ class ProjectsController
         $projectForm->handleRequest($request);
 
         if ($projectForm->isValid()) {
-            $this->model->add($projectForm->getData());
+            $project = $projectForm->getData();
+            $this->model->add($project);
             $this->session->getFlashBag()->set(
                 'success',
                 'flash_messages.project.add.success'
             );
 
-            $redirectUri = $this->router->generate('projects_view', array('project_id' => $this->model->getId()));
+            $redirectUri = $this->router->generate('projects_view', array('id' => $project->getId()));
             return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(

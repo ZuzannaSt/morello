@@ -63,7 +63,8 @@ class UserType extends AbstractType
                 array(
                     'class' => 'AppBundle:Role',
                     'property' => 'name',
-                    'multiple' => true
+                    'multiple' => true,
+                    'required' => true
                 )
             );
             $builder->add(
@@ -72,7 +73,8 @@ class UserType extends AbstractType
                 array(
                     'class' => 'AppBundle:Project',
                     'property' => 'name',
-                    'multiple' => true
+                    'multiple' => true,
+                    'required' => false
                 )
             );
         }
