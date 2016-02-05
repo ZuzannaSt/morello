@@ -39,14 +39,37 @@ class TaskType extends AbstractType
                 )
             );
             $builder->add(
+                'boards',
+                'entity',
+                array(
+                    'property' => 'name',
+                    'required' => false,
+                    'class'    => 'AppBundle:Board',
+                    'label'    => 'Tablica'
+                )
+            );
+            $builder->add(
                 'users',
                 'entity',
                 array(
                     'multiple' => true,
                     'expanded' => true,
+                    'required' => false,
                     'property' => 'username',
                     'class'    => 'AppBundle:User',
                     'label'    => 'Użytkownicy'
+                )
+            );
+            $builder->add(
+                'statuses',
+                'entity',
+                array(
+                    'multiple' => true,
+                    'expanded' => true,
+                    'required' => false,
+                    'property' => 'name',
+                    'class'    => 'AppBundle:Status',
+                    'label'    => 'Status wykonania'
                 )
             );
       }

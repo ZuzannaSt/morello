@@ -46,7 +46,8 @@ class ProjectType extends AbstractType
                     'expanded' => true,
                     'property' => 'username',
                     'class'    => 'AppBundle:User',
-                    'label'    => 'Użytkownicy'
+                    'label'    => 'Użytkownicy',
+                    'required' => false
                 )
             );
       }
