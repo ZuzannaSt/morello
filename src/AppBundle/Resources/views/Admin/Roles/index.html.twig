@@ -3,6 +3,40 @@
 {% block title %}{{ 'admin.roles.index.title' | trans({}, 'admin') }}{% endblock %}
 
 {% block content -%}
+    <div class="row">
+      <h1>{{ 'admin.roles.list.header' | trans({}, 'admin') }}</h1>
+      <a href="{{ path('admin_roles_add') }}" class="btn btn-large btn-primary">
+          <i class="glyphicon glyphicon-plus"></i>&nbsp;{{ 'role.actions.add' | trans({}, 'entities') }}
+      </a>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped auto">
+                <thead>
+                    <tr>
+                        <th>{{ 'role.attributes.id' | trans({}, 'entities') }}</th>
+                        <th>{{ 'role.attributes.name' | trans({}, 'entities') }}</th>
+                        <th>{{ 'admin.actions' | trans({}, 'admin') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if roles | length > 0 %}
+                        {% for role in roles %}
+                            <tr>
+                                <td>{{ role.id }}</td>
+                                <td>{{ role.name }}</td>
+                                <td>
+                                    <a href="{{ path('admin_roles_view', {'id': role.id}) }}" title="{{ 'role.actions.view' | trans({}, 'entities') }}"><i class="glyphicon glyphicon-search"></i></a>&nbsp;
+                                    <a href="{{ path('admin_roles_edit', {'id': role.id}) }}" title="{{ 'role.actions.edit' | trans({}, 'entities') }}"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;
+                                    <a href="{{ path('admin_roles_delete', {'id': role.id}) }}" title="{{ 'role.actions.delete' | trans({}, 'entities') }}"><i class="glyphicon glyphicon-remove"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div class="container">
         <h1>{{ 'Roles list'|trans }}</h1>
         {% if roles|length > 0 %}
