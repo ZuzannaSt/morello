@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Task</h1>
+    <h1>Board</h1>
 
     <table class="record_properties">
         <tbody>
@@ -25,17 +25,17 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('project_boards', { 'project_id': board.project.id }) }}">
+        <a href="{{ path('project_boards_index', { 'project_id': board.project.id }) }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('project_board_edit', { 'id': board.id, 'project_id': board.project.id }) }}">
+        <a href="{{ path('project_boards_edit', { 'id': board.id, 'project_id': board.project.id }) }}">
             Edit
         </a>
     </li>
     <li>
-        <a href="{{ path('project_board_delete', { 'id': board.id, 'project_id': board.project.id }) }}">
+        <a href="{{ path('project_boards_delete', { 'id': board.id, 'project_id': board.project.id }) }}">
             Delete
         </a>
     </li>

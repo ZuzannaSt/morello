@@ -83,11 +83,11 @@ class BoardsController
             );
         }
 
-      $users = $board->getUsers();
+      $tasks = $board->getTasks();
 
       return $this->templating->renderResponse(
           'AppBundle:Projects/Boards:view.html.twig',
-          array('board' => $board, 'users' => $users)
+          array('board' => $board, 'tasks' => $tasks)
       );
     }
 
@@ -116,7 +116,7 @@ class BoardsController
                 'flash_messages.board.add.success'
             );
 
-            $redirectUri = $this->router->generate('project_boards', array('project_id' => $project_id));
+            $redirectUri = $this->router->generate('project_boards_index', array('project_id' => $project_id));
             return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
@@ -170,7 +170,7 @@ class BoardsController
                 'flash_messages.project.edit.success'
             );
 
-            $redirectUri = $this->router->generate('project_boards', array('project_id' => $project_id));
+            $redirectUri = $this->router->generate('project_boards_index', array('project_id' => $project_id));
             return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
@@ -222,7 +222,7 @@ class BoardsController
                 'flash_messages.board.delete.success'
             );
 
-            return new RedirectResponse($this->router->generate('project_boards', array('project_id' => $project_id)));
+            return new RedirectResponse($this->router->generate('project_boards_index', array('project_id' => $project_id)));
         }
 
           return $this->templating->renderResponse(

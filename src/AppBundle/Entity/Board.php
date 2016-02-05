@@ -230,4 +230,37 @@ use Symfony\Component\Validator\Constraints as Assert;
     {
         $this->users->removeElement($users);
     }
+
+    /**
+    * Get tasks
+    *
+    * @return \Doctrine\Common\Collections\Collection
+    */
+    public function getTasks()
+    {
+        return $this->tasks;
+    }
+
+    /**
+     * Add tasks
+     *
+     * @param \AppBundle\Entity\TaskEntity $tasks
+     * @return Task
+     */
+    public function addTask(\AppBundle\Entity\Task $tasks)
+    {
+        $this->tasks[] = $tasks;
+
+        return $this;
+    }
+
+    /**
+     * Remove tasks
+     *
+     * @param \AppBundle\Entity\TaskEntity $tasks
+     */
+    public function removeTask(\AppBundle\Entity\Task $tasks)
+    {
+        $this->tasks->removeElement($tasks);
+    }
 }
