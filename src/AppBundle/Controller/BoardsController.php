@@ -57,38 +57,18 @@ class BoardsController
     /**
      * @Route("/projects/{project_id}/boards", name="project_boards_index")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $project_id = $request->get('project_id', null);
         $boards = $this->model->findAllOrderedByName();
 
         return $this->templating->renderResponse(
             'AppBundle:Projects/Boards:index.html.twig',
-            array('boards' => $boards)
+            array(
+                'boards' => $boards,
+                'project_id' => $project_id
+            )
         );
-    }
-
-    /**
-     *
-     * @param Id
-     * @return Response
-     * @Route("/projects/{project_id}/boards/{id}/view", name="project_boards_view")
-     *
-     */
-    public function viewAction($id)
-    {
-        $board = $this->model->findOneById($id);
-        if (!$board) {
-            throw $this->createNotFoundException(
-                $this->translator->trans('errors.board.not_found') . $id
-            );
-        }
-
-      $tasks = $board->getTasks();
-
-      return $this->templating->renderResponse(
-          'AppBundle:Projects/Boards:view.html.twig',
-          array('board' => $board, 'tasks' => $tasks)
-      );
     }
 
     /**
