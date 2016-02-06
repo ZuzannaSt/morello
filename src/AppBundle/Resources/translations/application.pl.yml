@@ -3,6 +3,9 @@ app:
     title: Rejestracja
     button: Zarejestruj się
     header: Morello | Rejestracja
+    confirmed: Rejestracja przebiegła pomyślnie!
+    now_only: Teraz tylko się
+    login: zaloguj
   login:
     title: Logowanie
     button: Zaloguj się
