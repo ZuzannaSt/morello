@@ -1,4 +1,4 @@
-{% extends 'AppBundle:Admin:navbar.html.twig' %}
+{% extends 'AppBundle:Default:navbar.html.twig' %}
 
 {% block title %}{{ 'admin.projects.index.title' | trans({}, 'admin') }}{% endblock %}
 
@@ -18,11 +18,13 @@
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1 well">
                             <h3>{{ board.name }}
-                                <small class="pull-right">
-                                    <a href="{{ path('project_board_tasks_add', {'board_id': board.id, 'project_id': project_id}) }}"><i class="glyphicon glyphicon-plus"></i></a>
-                                    <a href="{{ path('project_boards_edit', {'id': board.id, 'project_id': project_id}) }}"><i class="glyphicon glyphicon-edit"></i></a>
-                                    <a href="{{ path('project_boards_delete', {'id': board.id, 'project_id': project_id}) }}"><i class="glyphicon glyphicon-remove"></i></a>
-                                </small>
+                                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER') %}
+                                    <small class="pull-right">
+                                        <a href="{{ path('project_board_tasks_add', {'board_id': board.id, 'project_id': project_id}) }}"><i class="glyphicon glyphicon-plus"></i></a>
+                                        <a href="{{ path('project_boards_edit', {'id': board.id, 'project_id': project_id}) }}"><i class="glyphicon glyphicon-edit"></i></a>
+                                        <a href="{{ path('project_boards_delete', {'id': board.id, 'project_id': project_id}) }}"><i class="glyphicon glyphicon-remove"></i></a>
+                                    </small>
+                                {% endif %}
                             </h3>
                             {% if (board.tasks) | length > 0 %}
                                 {% for task in (board.tasks) %}
