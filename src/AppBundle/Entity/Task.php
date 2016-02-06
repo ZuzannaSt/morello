@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
@@ -73,12 +75,6 @@ use Symfony\Component\Validator\Constraints as Assert;
     protected $statuses;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Project", inversedBy="tasks")
-     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
-     */
-    protected $project;
-
-    /**
     * @ORM\ManyToMany(targetEntity="User", inversedBy="tasks")
     * @ORM\JoinTable(name="tasks_users")
     */
@@ -96,7 +92,6 @@ use Symfony\Component\Validator\Constraints as Assert;
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->boards = new \Doctrine\Common\Collections\ArrayCollection();
         $this->statuses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->updated_at = new \DateTime(date('Y-m-d H:i:s'));
     }
@@ -240,6 +235,30 @@ use Symfony\Component\Validator\Constraints as Assert;
     }
 
     /**
+     * Get board
+     *
+     * @return string
+     */
+    public function getBoard()
+    {
+        return $this->board;
+    }
+
+    /**
+     * Set board
+     *
+     * @param integer board
+     * @return Task
+     */
+    public function setBoard($board)
+    {
+        $this->board = $board;
+
+        return $this;
+    }
+
+
+    /**
     * Get users
     *
     * @return \Doctrine\Common\Collections\Collection
@@ -270,39 +289,6 @@ use Symfony\Component\Validator\Constraints as Assert;
     public function removeUser(\AppBundle\Entity\User $users)
     {
         $this->users->removeElement($users);
-    }
-
-    /**
-    * Get boards
-    *
-    * @return \Doctrine\Common\Collections\Collection
-    */
-    public function getBoards()
-    {
-        return $this->boards;
-    }
-
-    /**
-     * Add boards
-     *
-     * @param \AppBundle\Entity\BoardEntity $boards
-     * @return Board
-     */
-    public function addBoard(\AppBundle\Entity\Board $boards)
-    {
-        $this->boards[] = $boards;
-
-        return $this;
-    }
-
-    /**
-     * Remove boards
-     *
-     * @param \AppBundle\Entity\BoardEntity $boards
-     */
-    public function removeBoard(\AppBundle\Entity\Board $boards)
-    {
-        $this->boards->removeElement($boards);
     }
 
     /**

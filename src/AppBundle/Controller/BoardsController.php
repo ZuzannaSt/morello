@@ -198,7 +198,7 @@ class BoardsController
         if (!$this->securityContext->isGranted('ROLE_MANAGER') || !$this->securityContext->isGranted('ROLE_ADMIN')) {
           throw new AccessDeniedException();
         }
-        
+
         $project_id = $request->get('project_id', null);
         $id = $request->get('id', null);
         $board = $this->model->findById($id);

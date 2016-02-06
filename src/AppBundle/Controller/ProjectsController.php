@@ -84,14 +84,12 @@ class ProjectsController
         }
 
       $users = $project->getUsers();
-      $tasks = $project->getTasks();
 
       return $this->templating->renderResponse(
           'AppBundle:Projects:view.html.twig',
           array(
               'project' => $project,
-              'users' => $users,
-              'tasks' => $tasks
+              'users' => $users
               )
       );
     }

@@ -117,9 +117,9 @@ class TasksController
      */
     public function addAction(Request $request)
     {
-        if ($this->securityContext->isGranted('ROLE_USER')) {
-          throw new AccessDeniedException();
-        }
+        // if ($this->securityContext->isGranted('ROLE_USER')) {
+        //   throw new AccessDeniedException();
+        // }
 
         $project_id = $request->get('project_id', null);
         $board_id = $request->get('board_id', null);
@@ -128,20 +128,20 @@ class TasksController
         $taskForm->handleRequest($request);
 
         if ($taskForm->isValid()) {
-            $this->model->add($taskForm->getData(), $project_id);
+            $this->model->add($taskForm->getData(), $board_id);
             $this->session->getFlashBag()->set(
                 'success',
                 'flash_messages.task.add.success'
             );
 
-            $redirectUri = $this->router->generate(
-                'project_board_tasks_index',
-                array(
-                    'project_id' => $project_id,
-                    'board_id' => $board_id
-                )
-            );
-            return new RedirectResponse($redirectUri);
+            // $redirectUri = $this->router->generate(
+            //     'project_board_tasks_index',
+            //     array(
+            //         'project_id' => $project_id,
+            //         'board_id' => $board_id
+            //     )
+            // );
+            // return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
                 'notice',

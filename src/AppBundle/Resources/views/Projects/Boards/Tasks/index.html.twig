@@ -1,46 +1,22 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle:Admin:navbar.html.twig' %}
 
-{% block body -%}
-    <div class="container">
-        <h1>{{ 'Task list'|trans }}</h1>
-        {% if tasks|length > 0 %}
-            <table class="records_list">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for task in tasks %}
-                    <tr>
-                        <td><a href="{{ path('project_board_tasks_view', { 'id': task.id, 'project_id': project_id, 'board_id': board_id }) }}">{{ task.id }}</a></td>
-                        <td>{{ task.name }}</td>
-                        <td>{{ task.description }}</td>
-                        <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('project_board_tasks_view', { 'id': task.id, 'project_id': project_id, 'board_id': board_id }) }}">view</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('project_board_tasks_edit', { 'id': task.id, 'project_id': project_id, 'board_id': board_id }) }}">edit</a>
-                            </li>
-                        </ul>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+{% block title %}{{ 'admin.tasks.index.title' | trans({}, 'admin') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 page-header">
+            <h1>{{ 'task.actions.index' | trans({}, 'entities') }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        {% if tasks | length > 0 %}
+            {% for task in tasks %}
+                <div class="col-md-4">
+                    <div class="col-md-10 col-md-offset-1 well text-center">
+                        <p>{{ task.name }}</p>
+                    </div>
+                </div>
+            {% endfor %}
         {% endif %}
-
-        <ul>
-            <li>
-                <a href="{{ path('project_board_tasks_add', { 'project_id': project_id, 'board_id': board_id}) }}">
-                    Create a new entry
-                </a>
-            </li>
-        </ul>
     </div>
 {% endblock %}
