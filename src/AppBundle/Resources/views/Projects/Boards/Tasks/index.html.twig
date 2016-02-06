@@ -16,16 +16,16 @@
                 <tbody>
                 {% for task in tasks %}
                     <tr>
-                        <td><a href="{{ path('project_tasks_view', { 'id': task.id, 'project_id': project_id }) }}">{{ task.id }}</a></td>
+                        <td><a href="{{ path('project_board_tasks_view', { 'id': task.id, 'project_id': project_id, 'board_id': board_id }) }}">{{ task.id }}</a></td>
                         <td>{{ task.name }}</td>
                         <td>{{ task.description }}</td>
                         <td>
                         <ul>
                             <li>
-                                <a href="{{ path('project_tasks_view', { 'id': task.id, 'project_id': project_id }) }}">view</a>
+                                <a href="{{ path('project_board_tasks_view', { 'id': task.id, 'project_id': project_id, 'board_id': board_id }) }}">view</a>
                             </li>
                             <li>
-                                <a href="{{ path('project_tasks_edit', { 'id': task.id, 'project_id': project_id }) }}">edit</a>
+                                <a href="{{ path('project_board_tasks_edit', { 'id': task.id, 'project_id': project_id, 'board_id': board_id }) }}">edit</a>
                             </li>
                         </ul>
                         </td>
@@ -37,7 +37,7 @@
 
         <ul>
             <li>
-                <a href="{{ path('project_tasks_add', { 'project_id': project_id}) }}">
+                <a href="{{ path('project_board_tasks_add', { 'project_id': project_id, 'board_id': board_id}) }}">
                     Create a new entry
                 </a>
             </li>

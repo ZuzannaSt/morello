@@ -57,18 +57,20 @@ class TasksController
     /**
      * @param Request $request
      * @return Response
-     * @Route("/projects/{project_id}/tasks", name="project_tasks_index")
+     * @Route("/projects/{project_id}/boards/{board_id}/tasks", name="project_board_tasks_index")
      */
     public function indexAction(Request $request)
     {
         $tasks = $this->model->findAllOrderedByName();
         $project_id = $request->get('project_id', null);
+        $board_id = $request->get('board_id', null);
 
         return $this->templating->renderResponse(
-            'AppBundle:Projects/Tasks:index.html.twig',
+            'AppBundle:Projects/Boards/Tasks:index.html.twig',
             array(
               'tasks' => $tasks,
-              'project_id' => $project_id
+              'project_id' => $project_id,
+              'board_id' => $board_id
             )
         );
     }
@@ -78,13 +80,14 @@ class TasksController
      * @param Request $request
      * @param Id
      * @return Response
-     * @Route("/projects/{project_id}/tasks/{id}/view", name="project_tasks_view")
+     * @Route("/projects/{project_id}/boards/{board_id}/tasks/{id}/view", name="project_board_tasks_view")
      *
      */
     public function viewAction(Request $request, $id)
     {
         $task = $this->model->findOneById($id);
         $project_id = $request->get('project_id', null);
+        $board_id = $request->get('board_id', null);
 
         if (!$task) {
             throw $this->createNotFoundException(
@@ -95,11 +98,12 @@ class TasksController
       $users = $task->getUsers();
 
       return $this->templating->renderResponse(
-          'AppBundle:Projects/Tasks:view.html.twig',
+          'AppBundle:Projects/Boards/Tasks:view.html.twig',
           array(
               'task' => $task,
               'users' => $users,
-              'project_id' => $project_id
+              'project_id' => $project_id,
+              'board_id' => $board_id
           )
       );
     }
@@ -108,16 +112,17 @@ class TasksController
      *
      * @param Request $request
      * @return Response
-     * @Route("/projects/{project_id}/tasks/add", name="project_tasks_add")
+     * @Route("/projects/{project_id}/boards/{board_id}/tasks/add", name="project_board_tasks_add")
      *
      */
     public function addAction(Request $request)
     {
-        if ($this->securityContext->isGranted('ROLE_USER')) {
-          throw new AccessDeniedException();
-        }
+        // if ($this->securityContext->isGranted('ROLE_USER')) {
+        //   throw new AccessDeniedException();
+        // }
 
         $project_id = $request->get('project_id', null);
+        $board_id = $request->get('board_id', null);
 
         $taskForm = $this->formFactory->create(new TaskType());
         $taskForm->handleRequest($request);
@@ -129,7 +134,13 @@ class TasksController
                 'flash_messages.task.add.success'
             );
 
-            $redirectUri = $this->router->generate('project_tasks_index', array('project_id' => $project_id));
+            $redirectUri = $this->router->generate(
+                'project_board_tasks_index',
+                array(
+                    'project_id' => $project_id,
+                    'board_id' => $board_id
+                )
+            );
             return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
@@ -139,7 +150,7 @@ class TasksController
         }
 
         return $this->templating->renderResponse(
-         'AppBundle:Projects/Tasks:add.html.twig',
+         'AppBundle:Projects/Boards/Tasks:add.html.twig',
          array('form' => $taskForm->createView())
         );
     }
@@ -148,7 +159,7 @@ class TasksController
     *
     * @param Request $request
     * @return Response
-    * @Route("/projects/{project_id}/tasks/{id}/edit", name="project_tasks_edit")
+    * @Route("/projects/{project_id}/boards/{board_id}/tasks/{id}/edit", name="project_board_tasks_edit")
     *
     */
     public function editAction(Request $request)
@@ -158,6 +169,7 @@ class TasksController
         }
 
         $project_id = $request->get('project_id', null);
+        $board_id = $request->get('board_id', null);
         $id = $request->get('id', null);
         $task = $this->model->findById($id);
 
@@ -184,7 +196,13 @@ class TasksController
                 'flash_messages.project.edit.success'
             );
 
-            $redirectUri = $this->router->generate('project_tasks_index', array('project_id' => $project_id));
+            $redirectUri = $this->router->generate(
+                'project_board_tasks_index',
+                array(
+                    'project_id' => $project_id,
+                    'board_id' => $board_id
+                )
+            );
             return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
@@ -194,7 +212,7 @@ class TasksController
         }
 
         return $this->templating->renderResponse(
-            'AppBundle:Projects/Tasks:edit.html.twig',
+            'AppBundle:Projects/Boards/Tasks:edit.html.twig',
             array('form' => $taskForm->createView())
         );
     }
@@ -203,7 +221,7 @@ class TasksController
     *
     * @param Request $request
     * @return Respons
-    * @Route("/projects/{project_id}/tasks/delete/{id}", name="project_tasks_delete")
+    * @Route("/projects/{project_id}/tasks/boards/{board_id}/delete/{id}", name="project_board_tasks_delete")
     *
     */
     public function deleteAction(Request $request)
@@ -213,6 +231,7 @@ class TasksController
         }
 
         $project_id = $request->get('project_id', null);
+        $board_id = $request->get('board_id', null);
         $id = $request->get('id', null);
         $task = $this->model->findById($id);
 
@@ -241,7 +260,7 @@ class TasksController
         }
 
           return $this->templating->renderResponse(
-              'AppBundle:Projects/Tasks:delete.html.twig',
+              'AppBundle:Projects/Boards/Tasks:delete.html.twig',
               array('form' => $taskForm->createView())
           );
       }

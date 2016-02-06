@@ -39,16 +39,6 @@ class TaskType extends AbstractType
                 )
             );
             $builder->add(
-                'boards',
-                'entity',
-                array(
-                    'property' => 'name',
-                    'required' => false,
-                    'class'    => 'AppBundle:Board',
-                    'label'    => 'Tablica'
-                )
-            );
-            $builder->add(
                 'users',
                 'entity',
                 array(
