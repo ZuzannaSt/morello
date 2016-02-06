@@ -60,7 +60,8 @@ class BoardsController
     public function indexAction(Request $request)
     {
         $project_id = $request->get('project_id', null);
-        $boards = $this->model->findAllOrderedByName();
+        $project = $this->project_model->findOneById($project_id);
+        $boards = $project->getBoards();
 
         return $this->templating->renderResponse(
             'AppBundle:Projects/Boards:index.html.twig',
