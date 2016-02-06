@@ -12,8 +12,11 @@
         <div class="col-md-3">
             <a href="{{ path('projects_index') }}"><i class="glyphicon glyphicon-list"></i> {{ 'project.actions.index' | trans({}, 'entities') }}</a><br/>
             <a href="{{ path('project_boards_index', {'project_id': project.id}) }}"><i class="glyphicon glyphicon-th-large"></i> {{ 'board.actions.index' | trans({}, 'entities') }}</a><br/>
-            <a href="{{ path('projects_edit', {'id': project.id}) }}"><i class="glyphicon glyphicon-edit"></i> {{ 'project.actions.edit' | trans({}, 'entities') }}</a><br/>
-            <a href="{{ path('admin_projects_delete', {'id': project.id}) }}"><i class="glyphicon glyphicon-remove"></i> {{ 'project.actions.delete' | trans({}, 'entities') }}</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('projects_edit', {'id': project.id}) }}"><i class="glyphicon glyphicon-edit"></i> {{ 'project.actions.edit' | trans({}, 'entities') }}</a><br/>
+            {% elseif (is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')) %}
+                <a href="{{ path('admin_projects_delete', {'id': project.id}) }}"><i class="glyphicon glyphicon-remove"></i> {{ 'project.actions.delete' | trans({}, 'entities') }}</a>
+            {% endif %}
         </div>
         <div class="col-md-9 well well-lg">
             <dl class="dl-horizontal">

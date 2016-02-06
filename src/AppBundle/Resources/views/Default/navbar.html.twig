@@ -16,7 +16,7 @@
                 {% endblock menu %}
                 <ul class="nav navbar-nav navbar-right">
                     {% if app.user %}
-                      <li><a href="#">{{ 'app.menu.logged_as' | trans({'%email%':app.user.email}, 'application') }}</a></li>
+                      <li><a href="#">{{ 'app.menu.logged_as' | trans({'%email%':app.user.username}, 'application') }}</a></li>
                       <li><a href="{{ path('user_profile' ) }}">{{ 'user.menu.user' | trans({}, 'user')}}</a></li>
                       <li><a href="{{ path('logout') }}">{{ 'logout' | trans({}, 'user') }} <i class="glyphicon glyphicon-off"></i></a></li>
                     {% endif %}
