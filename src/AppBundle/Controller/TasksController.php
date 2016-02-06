@@ -134,14 +134,14 @@ class TasksController
                 'flash_messages.task.add.success'
             );
 
-            // $redirectUri = $this->router->generate(
-            //     'project_board_tasks_index',
-            //     array(
-            //         'project_id' => $project_id,
-            //         'board_id' => $board_id
-            //     )
-            // );
-            // return new RedirectResponse($redirectUri);
+            $redirectUri = $this->router->generate(
+                'project_board_tasks_index',
+                array(
+                    'project_id' => $project_id,
+                    'board_id' => $board_id
+                )
+            );
+            return new RedirectResponse($redirectUri);
         } else {
             $this->session->getFlashBag()->set(
                 'notice',
