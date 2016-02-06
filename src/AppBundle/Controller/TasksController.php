@@ -117,9 +117,9 @@ class TasksController
      */
     public function addAction(Request $request)
     {
-        // if ($this->securityContext->isGranted('ROLE_USER')) {
-        //   throw new AccessDeniedException();
-        // }
+        if ($this->securityContext->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+        }
 
         $project_id = $request->get('project_id', null);
         $board_id = $request->get('board_id', null);
