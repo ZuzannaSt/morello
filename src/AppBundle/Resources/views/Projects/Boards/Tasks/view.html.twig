@@ -29,11 +29,6 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('project_board_tasks_index', { 'project_id': project_id, 'board_id': board_id }) }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
         <a href="{{ path('project_board_tasks_edit', { 'id': task.id, 'project_id': project_id, 'board_id': board_id }) }}">
             Edit
         </a>

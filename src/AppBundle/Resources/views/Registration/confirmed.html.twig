@@ -1,11 +1,13 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle:Default:user_form.html.twig' %}
 
-{% block body %}
+{% block title %}{{ 'app.registration.title' | trans({}, 'application') }}{% endblock %}
+
+{% block content %}
     <h1>
-        You've successfully registered!
-        <small>Now go ahead and
+        {{ 'app.registration.confirmed' | trans({}, 'application') }}
+        <small>{{ 'app.registration.now_only' | trans({}, 'application') }}
               <a href="{{ path('user_login') }}">
-                    log in
+                  {{ 'app.registration.login' | trans({}, 'application') }}
               </a>.
         </small>
     </h2>
