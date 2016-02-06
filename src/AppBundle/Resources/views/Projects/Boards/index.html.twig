@@ -6,23 +6,34 @@
     <div class="row">
         <div class="col-md-12 page-header">
             <h1>{{ 'board.actions.index' | trans({}, 'entities') }}</h1>
+            <a href="{{ path('project_boards_add', {'project_id': project_id}) }}" class="btn btn-large btn-primary">
+                <i class="glyphicon glyphicon-plus"></i>&nbsp;{{ 'board.actions.add' | trans({}, 'entities') }}
+            </a>
         </div>
     </div>
     <div class="row">
         {% if boards | length > 0 %}
             {% for board in boards %}
                 <div class="col-md-4">
-                    <div class="col-md-10 col-md-offset-1 well text-center">
-                        <h3>{{ board.name }}</h3>
-                        {% if (board.tasks) | length > 0 %}
-                            {% for task in (board.tasks) %}
-                                <p>
-                                    <a href="{{ path('project_board_tasks_view', { 'id': task.id, 'project_id': project_id, 'board_id': board.id }) }}">
-                                        {{ task.name }}
-                                    </a>
-                              </p>
-                            {% endfor %}
-                        {% endif %}
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1 well">
+                            <h3>{{ board.name }}
+                                <small class="pull-right">
+                                    <a href="{{ path('project_board_tasks_add', {'board_id': board.id, 'project_id': project_id}) }}"><i class="glyphicon glyphicon-plus"></i></a>
+                                    <a href="{{ path('project_boards_edit', {'id': board.id, 'project_id': project_id}) }}"><i class="glyphicon glyphicon-edit"></i></a>
+                                    <a href="{{ path('project_boards_delete', {'id': board.id, 'project_id': project_id}) }}"><i class="glyphicon glyphicon-remove"></i></a>
+                                </small>
+                            </h3>
+                            {% if (board.tasks) | length > 0 %}
+                                {% for task in (board.tasks) %}
+                                    <p>
+                                        <a href="{{ path('project_board_tasks_view', { 'id': task.id, 'project_id': project_id, 'board_id': board.id }) }}">
+                                            {{ task.name }}
+                                        </a>
+                                  </p>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             {% endfor %}
