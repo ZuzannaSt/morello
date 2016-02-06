@@ -73,7 +73,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     protected $statuses;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Project", inversedBy="projects")
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="tasks")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
     protected $project;
@@ -85,10 +85,10 @@ use Symfony\Component\Validator\Constraints as Assert;
     protected $users;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Board", inversedBy="boards")
+     * @ORM\ManyToOne(targetEntity="Board", inversedBy="tasks")
      * @ORM\JoinColumn(name="board_id", referencedColumnName="id")
      */
-    protected $boards;
+    protected $board;
 
     /**
     * Constructor

@@ -14,6 +14,11 @@
                 <div class="col-md-4">
                     <div class="col-md-10 col-md-offset-1 well text-center">
                         <h3>{{ board.name }}</h3>
+                        {% if (board.tasks) | length > 0 %}
+                            {% for task in (board.tasks) %}
+                                <p>{{ task.name }}</p>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}

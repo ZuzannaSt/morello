@@ -59,7 +59,7 @@ use Symfony\Component\Validator\Constraints as Assert;
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="boards")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
-    private $project;
+    protected $project;
 
     /**
      * @ORM\OneToMany(targetEntity="Task", mappedBy="board", cascade={"remove"})
