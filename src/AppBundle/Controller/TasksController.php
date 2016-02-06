@@ -55,27 +55,6 @@ class TasksController
     }
 
     /**
-     * @param Request $request
-     * @return Response
-     * @Route("/projects/{project_id}/boards/{board_id}/tasks", name="project_board_tasks_index")
-     */
-    public function indexAction(Request $request)
-    {
-        $tasks = $this->model->findAllOrderedByName();
-        $project_id = $request->get('project_id', null);
-        $board_id = $request->get('board_id', null);
-
-        return $this->templating->renderResponse(
-            'AppBundle:Projects/Boards/Tasks:index.html.twig',
-            array(
-              'tasks' => $tasks,
-              'project_id' => $project_id,
-              'board_id' => $board_id
-            )
-        );
-    }
-
-    /**
      *
      * @param Request $request
      * @param Id
@@ -117,9 +96,9 @@ class TasksController
      */
     public function addAction(Request $request)
     {
-        // if ($this->securityContext->isGranted('ROLE_USER')) {
-        //   throw new AccessDeniedException();
-        // }
+        if ($this->securityContext->isGranted('ROLE_USER')) {
+          throw new AccessDeniedException();
+        }
 
         $project_id = $request->get('project_id', null);
         $board_id = $request->get('board_id', null);
