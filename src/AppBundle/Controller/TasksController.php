@@ -96,10 +96,6 @@ class TasksController
      */
     public function addAction(Request $request)
     {
-        if ($this->securityContext->isGranted('ROLE_USER')) {
-          throw new AccessDeniedException();
-        }
-
         $project_id = $request->get('project_id', null);
         $board_id = $request->get('board_id', null);
 
@@ -143,10 +139,6 @@ class TasksController
     */
     public function editAction(Request $request)
     {
-        if ($this->securityContext->isGranted('ROLE_USER')) {
-          throw new AccessDeniedException();
-        }
-
         $project_id = $request->get('project_id', null);
         $board_id = $request->get('board_id', null);
         $id = $request->get('id', null);
@@ -205,10 +197,6 @@ class TasksController
     */
     public function deleteAction(Request $request)
     {
-        if ($this->securityContext->isGranted('ROLE_USER')) {
-          throw new AccessDeniedException();
-        }
-
         $project_id = $request->get('project_id', null);
         $board_id = $request->get('board_id', null);
         $id = $request->get('id', null);
