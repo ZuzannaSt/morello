@@ -1,42 +1,34 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle:Admin:navbar.html.twig' %}
 
-{% block body %}
-    <h1>Task</h1>
+{% block title %}{{ 'admin.users.show.title' | trans({}, 'admin') }}{% endblock %}
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ task.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ task.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ task.description }}</td>
-            </tr>
-            <tr>
-                <th>Users assigned to task</th>
-                {% for user in task.users %}
-                    <td>{{ user.username }}</td>
-                {% endfor %}
-                </th>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('project_board_tasks_edit', { 'id': task.id, 'project_id': project_id, 'board_id': board_id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('project_board_tasks_delete', { 'id': task.id, 'project_id': project_id, 'board_id': board_id }) }}">
-            Delete
-        </a>
-    </li>
-</ul>
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 page-header">
+            <h1>{{ 'task.attributes.header' | trans({}, 'entities') }} <small>{{ task.name }}</small></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <a href="{{ path('project_boards_index', { 'project_id': project_id}) }}"><i class="glyphicon glyphicon-list"></i> {{ 'board.actions.index' | trans({}, 'entities') }}</a><br/>
+            <a href="{{ path('project_board_tasks_edit', { 'id': task.id, 'project_id': project_id, 'board_id': board_id }) }}"><i class="glyphicon glyphicon-edit"></i> {{ 'task.actions.edit' | trans({}, 'entities') }}</a><br/>
+            <a href="{{ path('project_board_tasks_delete', { 'id': task.id, 'project_id': project_id, 'board_id': board_id }) }}"><i class="glyphicon glyphicon-remove"></i> {{ 'task.actions.delete' | trans({}, 'entities') }}</a>
+        </div>
+        <div class="col-md-9 well well-lg">
+            <dl class="dl-horizontal">
+                <dt>{{ 'task.attributes.id' | trans({}, 'entities') }}</dt>
+                <dd>{{ task.id }}</dd>
+                <dt>{{ 'task.attributes.name' | trans({}, 'entities') }}</dt>
+                <dd>{{ task.name }}</dd>
+                <dt>{{ 'task.attributes.description' | trans({}, 'entities') }}</dt>
+                <dd>{{ task.description }}</dd>
+                <dt>{{ 'task.attributes.statuses' | trans({}, 'entities') }}</dt>
+                {% if task.statuses | length > 0 %}
+                    {% for status in task.statuses %}
+                        <dd>{{ status.name }}</dd>
+                    {% endfor %}
+                {% endif %}
+            </dl>
+        </div>
+    </div>
 {% endblock %}

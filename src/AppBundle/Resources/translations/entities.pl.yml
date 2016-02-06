@@ -31,9 +31,11 @@ project:
     add: Dodaj nowy projekt
 task:
   attributes:
+    header: Zadanie
     id: ID
     name: Nazwa zadania
     description: Opis zadania
+    statuses: Statusy
     users: Użytkownicy
     project: Projekt
   actions:
