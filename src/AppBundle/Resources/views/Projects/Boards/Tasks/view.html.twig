@@ -10,9 +10,9 @@
     </div>
     <div class="row">
         <div class="col-md-3">
-            <a href="{{ path('project_boards_index', { 'project_id': project_id}) }}"><i class="glyphicon glyphicon-list"></i> {{ 'user.actions.index' | trans({}, 'entities') }}</a><br/>
-            <a href="{{ path('project_board_tasks_edit', { 'id': task.id, 'project_id': project_id, 'board_id': board_id }) }}"><i class="glyphicon glyphicon-edit"></i> {{ 'user.actions.edit' | trans({}, 'entities') }}</a><br/>
-            <a href="{{ path('project_board_tasks_delete', { 'id': task.id, 'project_id': project_id, 'board_id': board_id }) }}"><i class="glyphicon glyphicon-remove"></i> {{ 'user.actions.delete' | trans({}, 'entities') }}</a>
+            <a href="{{ path('project_boards_index', { 'project_id': project_id}) }}"><i class="glyphicon glyphicon-list"></i> {{ 'board.actions.index' | trans({}, 'entities') }}</a><br/>
+            <a href="{{ path('project_board_tasks_edit', { 'id': task.id, 'project_id': project_id, 'board_id': board_id }) }}"><i class="glyphicon glyphicon-edit"></i> {{ 'task.actions.edit' | trans({}, 'entities') }}</a><br/>
+            <a href="{{ path('project_board_tasks_delete', { 'id': task.id, 'project_id': project_id, 'board_id': board_id }) }}"><i class="glyphicon glyphicon-remove"></i> {{ 'task.actions.delete' | trans({}, 'entities') }}</a>
         </div>
         <div class="col-md-9 well well-lg">
             <dl class="dl-horizontal">
