@@ -6,6 +6,11 @@ use Doctrine\ORM\EntityRepository;
 
 class ProjectRepository extends EntityRepository
 {
+    /**
+     * Find all objects ordered by name
+     *
+     * @return result
+     */
     public function findAllOrderedByName()
     {
         return $this->getEntityManager()
@@ -17,6 +22,11 @@ class ProjectRepository extends EntityRepository
             ->getResult();
     }
 
+    /**
+     * Count all objects
+     *
+     * @return scalar result
+     */
     public function countAll()
     {
         return $this->getEntityManager()
@@ -28,12 +38,24 @@ class ProjectRepository extends EntityRepository
           ->getSingleScalarResult();
     }
 
+    /**
+     * Add entity
+     *
+     * @param project
+     * @return entity
+     */
     public function add($project)
     {
         $project->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         $this->save($project);
     }
 
+    /**
+     * Save entity
+     *
+     * @param project
+     * @return entity
+     */
     public function save($project)
     {
         $em = $this->getEntityManager();
@@ -41,6 +63,12 @@ class ProjectRepository extends EntityRepository
         $em->flush();
     }
 
+    /**
+     * Delete entity
+     *
+     * @param project
+     * @return entity
+     */
     public function delete($project)
     {
         $em = $this->getEntityManager();

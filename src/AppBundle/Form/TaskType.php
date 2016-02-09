@@ -10,6 +10,11 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class TaskType extends AbstractType
 {
+    /**
+     * Build entity form
+     *
+     * @param builder, options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
@@ -70,6 +75,11 @@ class TaskType extends AbstractType
         );
     }
 
+    /**
+     * Set default options
+     *
+     * @param resolver
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(
@@ -80,6 +90,11 @@ class TaskType extends AbstractType
         );
     }
 
+    /**
+     * Get name
+     *
+     * @return task
+     */
     public function getName()
     {
         return 'task';

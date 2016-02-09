@@ -6,6 +6,11 @@ use Doctrine\ORM\EntityRepository;
 
 class TaskRepository extends EntityRepository
 {
+    /**
+     * Find all objects ordered by name
+     *
+     * @return result
+     */
     public function findAllOrderedByName()
     {
         return $this->getEntityManager()
@@ -17,6 +22,12 @@ class TaskRepository extends EntityRepository
             ->getResult();
     }
 
+    /**
+     * Add entity
+     *
+     * @param task, board_id
+     * @return entity
+     */
     public function add($task, $board_id)
     {
         $board = $this->getEntityManager()
@@ -28,6 +39,12 @@ class TaskRepository extends EntityRepository
         $this->save($task);
     }
 
+    /**
+     * Save entity
+     *
+     * @param task
+     * @return entity
+     */
     public function save($task)
     {
         $em = $this->getEntityManager();
@@ -35,6 +52,12 @@ class TaskRepository extends EntityRepository
         $em->flush();
     }
 
+    /**
+     * Delete entity
+     *
+     * @param task
+     * @return entity
+     */
     public function delete($task)
     {
         $em = $this->getEntityManager();

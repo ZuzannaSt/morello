@@ -10,6 +10,11 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class BoardType extends AbstractType
 {
+    /**
+     * Build entity form
+     *
+     * @param builder, options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
@@ -39,6 +44,11 @@ class BoardType extends AbstractType
         );
     }
 
+    /**
+     * Set default options
+     *
+     * @param resolver
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(
@@ -49,6 +59,11 @@ class BoardType extends AbstractType
         );
     }
 
+    /**
+     * Get name
+     *
+     * @return board
+     */
     public function getName()
     {
         return 'board';

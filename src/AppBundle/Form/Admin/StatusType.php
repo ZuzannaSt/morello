@@ -10,6 +10,11 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class StatusType extends AbstractType
 {
+    /**
+     * Build entity form
+     *
+     * @param builder, options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
@@ -36,6 +41,11 @@ class StatusType extends AbstractType
             );
     }
 
+    /**
+     * Set default options
+     *
+     * @param resolver
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(
@@ -46,6 +56,11 @@ class StatusType extends AbstractType
         );
     }
 
+    /**
+     * Get name
+     *
+     * @return user
+     */
     public function getName()
     {
         return 'status';

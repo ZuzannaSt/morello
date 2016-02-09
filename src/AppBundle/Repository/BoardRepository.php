@@ -6,6 +6,11 @@ use Doctrine\ORM\EntityRepository;
 
 class BoardRepository extends EntityRepository
 {
+    /**
+     * Find all objects ordered by name
+     *
+     * @return result
+     */
     public function findAllOrderedByName()
     {
         return $this->getEntityManager()
@@ -17,6 +22,12 @@ class BoardRepository extends EntityRepository
             ->getResult();
     }
 
+    /**
+     * Add entity
+     *
+     * @param board, project_id
+     * @return entity
+     */
     public function add($board, $project_id)
     {
         $project = $this->getEntityManager()
@@ -28,6 +39,12 @@ class BoardRepository extends EntityRepository
         $this->save($board);
     }
 
+    /**
+     * Save entity
+     *
+     * @param board
+     * @return entity
+     */
     public function save($board)
     {
         $em = $this->getEntityManager();
@@ -35,6 +52,11 @@ class BoardRepository extends EntityRepository
         $em->flush();
     }
 
+    /**
+     * Delete entity
+     *
+     * @param board
+     */
     public function delete($board)
     {
         $em = $this->getEntityManager();

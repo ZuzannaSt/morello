@@ -6,6 +6,11 @@ use Doctrine\ORM\EntityRepository;
 
 class StatusRepository extends EntityRepository
 {
+    /**
+     * Find all objects ordered by name
+     *
+     * @return result
+     */
     public function findAllOrderedByName()
     {
         return $this->getEntityManager()
@@ -17,6 +22,12 @@ class StatusRepository extends EntityRepository
             ->getResult();
     }
 
+    /**
+     * Save entity
+     *
+     * @param status
+     * @return entity
+     */
     public function save($status)
     {
         $em = $this->getEntityManager();
@@ -24,6 +35,12 @@ class StatusRepository extends EntityRepository
         $em->flush();
     }
 
+    /**
+     * Delete entity
+     *
+     * @param delete
+     * @return entity
+     */
     public function delete($status)
     {
         $em = $this->getEntityManager();

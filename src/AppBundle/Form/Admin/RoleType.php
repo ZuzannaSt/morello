@@ -10,6 +10,11 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class RoleType extends AbstractType
 {
+    /**
+     * Build entity form
+     *
+     * @param builder, options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
@@ -45,6 +50,11 @@ class RoleType extends AbstractType
             );
     }
 
+    /**
+     * Set default options
+     *
+     * @param resolver
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(
@@ -55,6 +65,11 @@ class RoleType extends AbstractType
         );
     }
 
+    /**
+     * Get name
+     *
+     * @return user
+     */
     public function getName()
     {
         return 'role';

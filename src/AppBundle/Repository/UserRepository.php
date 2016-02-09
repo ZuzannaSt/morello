@@ -10,6 +10,11 @@ use Doctrine\ORM\EntityRepository;
 
 class UserRepository extends EntityRepository implements UserProviderInterface
 {
+    /**
+     * Find all objects ordered by name
+     *
+     * @return result
+     */
     public function findAllOrderedByUsername()
     {
         return $this->getEntityManager()
@@ -21,6 +26,11 @@ class UserRepository extends EntityRepository implements UserProviderInterface
             ->getResult();
     }
 
+    /**
+     * Count all objects
+     *
+     * @return scalar result
+     */
     public function countAll()
     {
         return $this->getEntityManager()
@@ -32,26 +42,12 @@ class UserRepository extends EntityRepository implements UserProviderInterface
           ->getSingleScalarResult();
     }
 
-    public function loadUserByUsername($username)
-    {
-        $user = $this->createQueryBuilder('u')
-            ->where('u.username = :username OR u.email = :email')
-            ->setParameter('username', $username)
-            ->setParameter('email', $username)
-            ->getQuery()
-            ->getOneOrNullResult();
-
-        if (null === $user) {
-            $message = sprintf(
-                'Unable to find an active admin AppBundle:User object identified by "%s".',
-                $username
-            );
-            throw new UsernameNotFoundException($message);
-        }
-
-        return $user;
-    }
-
+    /**
+     * Refresh user
+     *
+     * @param user
+     * @return user_id
+     */
     public function refreshUser(UserInterface $user)
     {
         $class = get_class($user);
@@ -67,12 +63,24 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         return $this->find($user->getId());
     }
 
+    /**
+     * Supports class
+     *
+     * @param class
+     * @return entity name
+     */
     public function supportsClass($class)
     {
         return $this->getEntityName() === $class
             || is_subclass_of($class, $this->getEntityName());
     }
 
+    /**
+     * Save entity
+     *
+     * @param user
+     * @return entity
+     */
     public function save($user)
     {
         $em = $this->getEntityManager();
@@ -80,6 +88,12 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         $em->flush();
     }
 
+    /**
+     * Add default role to user
+     *
+     * @param user
+     * @return entity
+     */
     public function addDefaultRole($user)
     {
         $role = $this->getEntityManager()
@@ -90,6 +104,12 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         $this->save($user);
     }
 
+    /**
+     * Delete entity
+     *
+     * @param user
+     * @return entity
+     */
     public function delete($user)
     {
         $em = $this->getEntityManager();

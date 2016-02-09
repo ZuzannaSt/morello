@@ -10,6 +10,11 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class UserType extends AbstractType
 {
+    /**
+     * Build entity form
+     *
+     * @param builder, options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
@@ -97,6 +102,11 @@ class UserType extends AbstractType
         );
     }
 
+    /**
+     * Set default options
+     *
+     * @param resolver
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(
@@ -107,6 +117,11 @@ class UserType extends AbstractType
         );
     }
 
+    /**
+     * Get name
+     *
+     * @return user
+     */
     public function getName()
     {
         return 'admin_user_form';

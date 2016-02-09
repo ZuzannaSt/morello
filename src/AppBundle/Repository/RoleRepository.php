@@ -6,6 +6,11 @@ use Doctrine\ORM\EntityRepository;
 
 class RoleRepository extends EntityRepository
 {
+  /**
+   * Find all objects ordered by name
+   *
+   * @return result
+   */
     public function findAllOrderedByName()
     {
         return $this->getEntityManager()
@@ -17,6 +22,12 @@ class RoleRepository extends EntityRepository
             ->getResult();
     }
 
+    /**
+     * Save entity
+     *
+     * @param role
+     * @return entity
+     */
     public function save($role)
     {
         $em = $this->getEntityManager();
@@ -24,6 +35,12 @@ class RoleRepository extends EntityRepository
         $em->flush();
     }
 
+    /**
+     * Delete entity
+     *
+     * @param role
+     * @return entity
+     */
     public function delete($role)
     {
         $em = $this->getEntityManager();
