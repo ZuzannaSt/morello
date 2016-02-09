@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="projects")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
  */
- class Project
+class Project
 {
     /**
      * @ORM\Column(

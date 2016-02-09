@@ -82,7 +82,7 @@ class BoardsController
     public function addAction(Request $request)
     {
         if (!$this->securityContext->isGranted('ROLE_MANAGER') || !$this->securityContext->isGranted('ROLE_ADMIN')) {
-          throw new AccessDeniedException();
+            throw new AccessDeniedException();
         }
 
         $project_id = $request->get('project_id', null);
@@ -107,8 +107,8 @@ class BoardsController
         }
 
         return $this->templating->renderResponse(
-         'AppBundle:Projects/Boards:add.html.twig',
-         array('form' => $boardForm->createView())
+            'AppBundle:Projects/Boards:add.html.twig',
+            array('form' => $boardForm->createView())
         );
     }
 
@@ -122,7 +122,7 @@ class BoardsController
     public function editAction(Request $request)
     {
         if (!$this->securityContext->isGranted('ROLE_MANAGER') || !$this->securityContext->isGranted('ROLE_ADMIN')) {
-          throw new AccessDeniedException();
+            throw new AccessDeniedException();
         }
 
         $project_id = $request->get('project_id', null);
@@ -141,7 +141,7 @@ class BoardsController
             array(
                 'validation_groups' => 'board-edit'
                 )
-            );
+        );
 
         $boardForm->handleRequest($request);
 
@@ -177,7 +177,7 @@ class BoardsController
     public function deleteAction(Request $request)
     {
         if (!$this->securityContext->isGranted('ROLE_MANAGER') || !$this->securityContext->isGranted('ROLE_ADMIN')) {
-          throw new AccessDeniedException();
+            throw new AccessDeniedException();
         }
 
         $project_id = $request->get('project_id', null);
@@ -194,7 +194,7 @@ class BoardsController
             array(
                 'validation_groups' => 'board-delete'
                 )
-            );
+        );
 
         $boardForm->handleRequest($request);
 
@@ -205,12 +205,17 @@ class BoardsController
                 'flash_messages.board.delete.success'
             );
 
-            return new RedirectResponse($this->router->generate('project_boards_index', array('project_id' => $project_id)));
+            return new RedirectResponse($this->router->generate(
+                'project_boards_index',
+                array(
+                    'project_id' => $project_id
+                )
+            ));
         }
 
           return $this->templating->renderResponse(
               'AppBundle:Projects/Boards:delete.html.twig',
               array('form' => $boardForm->createView())
           );
-      }
+    }
 }

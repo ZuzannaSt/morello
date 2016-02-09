@@ -19,7 +19,7 @@ class ProjectRepository extends EntityRepository
 
     public function countAll()
     {
-      return $this->getEntityManager()
+        return $this->getEntityManager()
           ->createQuery('
               SELECT
               COUNT(p.id)
@@ -30,8 +30,8 @@ class ProjectRepository extends EntityRepository
 
     public function add($project)
     {
-      $project->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-      $this->save($project);
+        $project->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $this->save($project);
     }
 
     public function save($project)

@@ -89,8 +89,8 @@ class StatusesController
         }
 
         return $this->templating->renderResponse(
-         'AppBundle:Admin/Status:add.html.twig',
-         array('form' => $statusForm->createView())
+            'AppBundle:Admin/Status:add.html.twig',
+            array('form' => $statusForm->createView())
         );
     }
 }

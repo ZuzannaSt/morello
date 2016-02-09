@@ -23,7 +23,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 
     public function countAll()
     {
-      return $this->getEntityManager()
+        return $this->getEntityManager()
           ->createQuery('
               SELECT
               COUNT(u.id)
@@ -82,12 +82,12 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 
     public function addDefaultRole($user)
     {
-      $role = $this->getEntityManager()
+        $role = $this->getEntityManager()
           ->getRepository('AppBundle:Role')
           ->findOneBy(array('role' => 'ROLE_USER'));
 
-      $user->addRole($role);
-      $this->save($user);
+        $user->addRole($role);
+        $this->save($user);
     }
 
     public function delete($user)

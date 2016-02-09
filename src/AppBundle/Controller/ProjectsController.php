@@ -83,15 +83,15 @@ class ProjectsController
             );
         }
 
-      $users = $project->getUsers();
+        $users = $project->getUsers();
 
-      return $this->templating->renderResponse(
-          'AppBundle:Projects:view.html.twig',
-          array(
-              'project' => $project,
-              'users' => $users
-              )
-      );
+        return $this->templating->renderResponse(
+            'AppBundle:Projects:view.html.twig',
+            array(
+                'project' => $project,
+                'users' => $users
+                )
+        );
     }
 
     /**
@@ -104,7 +104,7 @@ class ProjectsController
     public function editAction(Request $request)
     {
         if (!$this->securityContext->isGranted('ROLE_MANAGER') || !$this->securityContext->isGranted('ROLE_ADMIN')) {
-          throw new AccessDeniedException();
+            throw new AccessDeniedException();
         }
 
         $id = $request->get('id', null);
@@ -122,7 +122,7 @@ class ProjectsController
             array(
                 'validation_groups' => 'project-edit'
                 )
-            );
+        );
 
         $projectForm->handleRequest($request);
 

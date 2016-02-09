@@ -94,8 +94,8 @@ class ProjectsController
         }
 
         return $this->templating->renderResponse(
-         'AppBundle:Admin/Projects:add.html.twig',
-         array('form' => $projectForm->createView())
+            'AppBundle:Admin/Projects:add.html.twig',
+            array('form' => $projectForm->createView())
         );
     }
 
@@ -121,7 +121,7 @@ class ProjectsController
             array(
                 'validation_groups' => 'project-delete'
                 )
-            );
+        );
 
         $projectForm->handleRequest($request);
 
@@ -139,5 +139,5 @@ class ProjectsController
               'AppBundle:Admin/Projects:delete.html.twig',
               array('form' => $projectForm->createView())
           );
-      }
+    }
 }

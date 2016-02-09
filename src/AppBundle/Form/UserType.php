@@ -17,8 +17,7 @@ class UserType extends AbstractType
                 'type' => 'password',
                 'first_options'  => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
-                )
-            )
+                ))
             ->add(
                 'firstName',
                 'text',
@@ -32,7 +31,7 @@ class UserType extends AbstractType
                 array(
                     'required' => false
                 )
-          )
+            )
           ->add(
               'save',
               'submit',

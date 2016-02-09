@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="tasks")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TaskRepository")
  */
- class Task
+class Task
 {
     /**
      * @ORM\Column(

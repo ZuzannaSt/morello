@@ -170,7 +170,7 @@ class AdminController
             array(
                 'validation_groups' => 'user-edit'
                 )
-            );
+        );
 
         $adminUserForm->handleRequest($request);
 
@@ -215,7 +215,7 @@ class AdminController
             array(
                 'validation_groups' => 'user-delete'
                 )
-            );
+        );
 
         $adminUserForm->handleRequest($request);
 

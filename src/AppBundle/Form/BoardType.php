@@ -29,7 +29,7 @@ class BoardType extends AbstractType
                     'max_length'  => 128
                 )
             );
-      }
+        }
         $builder->add(
             'save',
             'submit',

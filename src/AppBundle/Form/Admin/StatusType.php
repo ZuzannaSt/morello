@@ -26,14 +26,14 @@ class StatusType extends AbstractType
                     'max_length'  => 128
                 )
             );
-        }
-        $builder->add(
-            'save',
-            'submit',
-            array(
+            }
+            $builder->add(
+                'save',
+                'submit',
+                array(
                 'label' => 'Zapisz'
-            )
-        );
+                )
+            );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

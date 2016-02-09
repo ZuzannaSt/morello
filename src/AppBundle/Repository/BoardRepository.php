@@ -19,13 +19,13 @@ class BoardRepository extends EntityRepository
 
     public function add($board, $project_id)
     {
-      $project = $this->getEntityManager()
+        $project = $this->getEntityManager()
           ->getRepository('AppBundle:Project')
           ->findOneById($project_id);
 
-      $board->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-      $board->setProject($project);
-      $this->save($board);
+        $board->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+        $board->setProject($project);
+        $this->save($board);
     }
 
     public function save($board)

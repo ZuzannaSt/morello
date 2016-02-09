@@ -77,12 +77,12 @@ class RolesController
             );
         }
 
-      $users = $role->getUsers();
+        $users = $role->getUsers();
 
-      return $this->templating->renderResponse(
-          'AppBundle:Admin/Roles:view.html.twig',
-          array('role' => $role, 'users' => $users)
-      );
+        return $this->templating->renderResponse(
+            'AppBundle:Admin/Roles:view.html.twig',
+            array('role' => $role, 'users' => $users)
+        );
     }
 
     /**
@@ -113,8 +113,8 @@ class RolesController
         }
 
         return $this->templating->renderResponse(
-         'AppBundle:Admin/Roles:add.html.twig',
-         array('form' => $roleForm->createView())
+            'AppBundle:Admin/Roles:add.html.twig',
+            array('form' => $roleForm->createView())
         );
     }
 }

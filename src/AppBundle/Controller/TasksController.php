@@ -74,17 +74,17 @@ class TasksController
             );
         }
 
-      $users = $task->getUsers();
+        $users = $task->getUsers();
 
-      return $this->templating->renderResponse(
-          'AppBundle:Projects/Boards/Tasks:view.html.twig',
-          array(
-              'task' => $task,
-              'users' => $users,
-              'project_id' => $project_id,
-              'board_id' => $board_id
-          )
-      );
+        return $this->templating->renderResponse(
+            'AppBundle:Projects/Boards/Tasks:view.html.twig',
+            array(
+                'task' => $task,
+                'users' => $users,
+                'project_id' => $project_id,
+                'board_id' => $board_id
+            )
+        );
     }
 
     /**
@@ -125,8 +125,8 @@ class TasksController
         }
 
         return $this->templating->renderResponse(
-         'AppBundle:Projects/Boards/Tasks:add.html.twig',
-         array('form' => $taskForm->createView())
+            'AppBundle:Projects/Boards/Tasks:add.html.twig',
+            array('form' => $taskForm->createView())
         );
     }
 
@@ -156,7 +156,7 @@ class TasksController
             array(
                 'validation_groups' => 'task-edit'
                 )
-            );
+        );
 
         $taskForm->handleRequest($request);
 
@@ -212,7 +212,7 @@ class TasksController
             array(
                 'validation_groups' => 'task-delete'
                 )
-            );
+        );
 
         $taskForm->handleRequest($request);
 
@@ -223,12 +223,17 @@ class TasksController
                 'flash_messages.task.delete.success'
             );
 
-            return new RedirectResponse($this->router->generate('project_boards_index', array('project_id' => $project_id)));
+            return new RedirectResponse($this->router->generate(
+                'project_boards_index',
+                array(
+                    'project_id' => $project_id
+                )
+            ));
         }
 
           return $this->templating->renderResponse(
               'AppBundle:Projects/Boards/Tasks:delete.html.twig',
               array('form' => $taskForm->createView())
           );
-      }
+    }
 }

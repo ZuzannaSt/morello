@@ -60,7 +60,7 @@ class TaskType extends AbstractType
                     'label'    => 'Status wykonania'
                 )
             );
-      }
+        }
         $builder->add(
             'save',
             'submit',

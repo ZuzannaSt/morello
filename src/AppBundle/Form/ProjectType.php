@@ -49,7 +49,7 @@ class ProjectType extends AbstractType
                     'required' => false
                 )
             );
-      }
+        }
         $builder->add(
             'save',
             'submit',
