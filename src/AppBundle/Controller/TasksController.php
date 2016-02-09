@@ -26,15 +26,50 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
  */
 class TasksController
 {
+    /**
+     * @var Translator
+     */
     private $translator;
+    /**
+     * @var EngineInterface
+     */
     private $templating;
+    /**
+     * @var Session
+     */
     private $session;
+    /**
+     * @var RouterInterface
+     */
     private $router;
+    /**
+     * @var ObjectRepository
+     */
     private $model;
+    /**
+     * @var ObjectRepository
+     */
     private $project_model;
+    /**
+     * @var FormFactory
+     */
     private $formFactory;
+    /**
+     * @var
+     */
     private $securityContext;
 
+    /**
+     * TasksController constructor.
+     * @param Translator $translator
+     * @param EngineInterface $templating
+     * @param Session $session
+     * @param RouterInterface $router
+     * @param ObjectRepository $model
+     * @param ObjectRepository $project_model
+     * @param FormFactory $formFactory
+     * @param $securityContext
+     */
     public function __construct(
         Translator $translator,
         EngineInterface $templating,

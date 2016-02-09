@@ -8,6 +8,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class RoleType
+ * @package AppBundle\Form\Admin
+ */
 class RoleType extends AbstractType
 {
     /**

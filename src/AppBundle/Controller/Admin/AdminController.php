@@ -17,25 +17,66 @@ use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
- *
  * Class AdminController
  * @package AppBundle\Controller\Admin
  * @Route(service="admin.admin_controller")
- *
  */
 class AdminController
 {
+    /**
+     * @var Translator
+     */
     private $translator;
+    /**
+     * @var EngineInterface
+     */
     private $templating;
+    /**
+     * @var RouterInterface
+     */
     private $router;
+    /**
+     * @var Session
+     */
     private $session;
+    /**
+     * @var EntityManager
+     */
     private $em;
+    /**
+     * @var ObjectRepository
+     */
     private $user_model;
+    /**
+     * @var ObjectRepository
+     */
     private $project_model;
+    /**
+     * @var FormFactory
+     */
     private $formFactory;
+    /**
+     * @var null
+     */
     private $current_user;
+    /**
+     * @var
+     */
     private $encoder;
 
+    /**
+     * AdminController constructor.
+     * @param Translator $translator
+     * @param EngineInterface $templating
+     * @param RouterInterface $router
+     * @param Session $session
+     * @param EntityManager $entityManager
+     * @param ObjectRepository $user_model
+     * @param ObjectRepository $project_model
+     * @param FormFactory $formFactory
+     * @param $encoder
+     * @param $securityContext
+     */
     public function __construct(
         Translator $translator,
         EngineInterface $templating,
@@ -67,10 +108,8 @@ class AdminController
     }
 
     /**
-     *
      * @return Response
      * @Route("/dashboard", name="admin_dashboard")
-     *
      */
     public function indexAction()
     {
@@ -87,10 +126,8 @@ class AdminController
     }
 
     /**
-     *
      * @return Response
      * @Route("/users", name="admin_users_index")
-     *
      */
     public function usersIndexAction()
     {
@@ -103,11 +140,9 @@ class AdminController
     }
 
     /**
-     *
      * @param Request $request
-     * @return Response
+     * @return RedirectResponse|Response
      * @Route("/users/add", name="admin_user_add")
-     *
      */
     public function userAddAction(Request $request)
     {
@@ -139,11 +174,9 @@ class AdminController
     }
 
     /**
-     *
      * @param $user_id
      * @return Response
      * @Route("/users/{user_id}/view", name="admin_user_view")
-     *
      */
     public function userViewAction($user_id)
     {
@@ -157,12 +190,9 @@ class AdminController
 
 
     /**
-     *
      * @param Request $request
-     * @param $user_id
-     * @return Response
+     * @return RedirectResponse|Response
      * @Route("/users/{user_id}/edit", name="admin_user_edit")
-     *
      */
     public function userEditAction(Request $request)
     {
@@ -206,13 +236,10 @@ class AdminController
     }
 
     /**
-     *
-     * @param $user_id
-     * @return Response
+     * @param Request $request
+     * @return RedirectResponse|Response
      * @Route("/users/{user_id}/delete", name="admin_user_delete")
-     *
      */
-
     public function userDeleteAction(Request $request)
     {
         $user_id = $request->get('user_id', null);

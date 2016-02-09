@@ -4,6 +4,10 @@ namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
+/**
+ * Class ProjectRepository
+ * @package AppBundle\Repository
+ */
 class ProjectRepository extends EntityRepository
 {
     /**

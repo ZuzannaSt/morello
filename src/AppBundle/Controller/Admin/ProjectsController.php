@@ -17,21 +17,46 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- *
  * Class ProjectsController
  * @package AppBundle\Controller\Admin
  * @Route(service="admin.projects_controller")
- *
  */
 class ProjectsController
 {
+    /**
+     * @var Translator
+     */
     private $translator;
+    /**
+     * @var EngineInterface
+     */
     private $templating;
+    /**
+     * @var Session
+     */
     private $session;
+    /**
+     * @var RouterInterface
+     */
     private $router;
+    /**
+     * @var ObjectRepository
+     */
     private $model;
+    /**
+     * @var FormFactory
+     */
     private $formFactory;
 
+    /**
+     * ProjectsController constructor.
+     * @param Translator $translator
+     * @param EngineInterface $templating
+     * @param Session $session
+     * @param RouterInterface $router
+     * @param ObjectRepository $model
+     * @param FormFactory $formFactory
+     */
     public function __construct(
         Translator $translator,
         EngineInterface $templating,
@@ -49,10 +74,8 @@ class ProjectsController
     }
 
     /**
-     *
      * @return Response
      * @Route("/projects", name="admin_projects_index")
-     *
      */
     public function indexAction()
     {
@@ -65,10 +88,8 @@ class ProjectsController
     }
 
     /**
-     *
      * @param Request $request
-     * @return Response
-     *
+     * @return RedirectResponse|Response
      * @Route("/projects/add", name="admin_projects_add")
      */
     public function addAction(Request $request)
@@ -100,12 +121,10 @@ class ProjectsController
     }
 
     /**
-    *
-    * @param Request $request
-    * @return Response
-    * @Route("/projects/{id}/delete", name="admin_projects_delete")
-    *
-    */
+     * @param Request $request
+     * @return RedirectResponse|Response
+     * @Route("/projects/{id}/delete", name="admin_projects_delete")
+     */
     public function deleteAction(Request $request)
     {
         $id = $request->get('id', null);

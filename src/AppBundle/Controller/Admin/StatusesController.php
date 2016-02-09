@@ -17,21 +17,46 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- *
- * Class StatusController
+ * Class StatusesController
  * @package AppBundle\Controller\Admin
  * @Route(service="admin.statuses_controller")
- *
  */
 class StatusesController
 {
+    /**
+     * @var Translator
+     */
     private $translator;
+    /**
+     * @var EngineInterface
+     */
     private $templating;
+    /**
+     * @var Session
+     */
     private $session;
+    /**
+     * @var RouterInterface
+     */
     private $router;
+    /**
+     * @var ObjectRepository
+     */
     private $model;
+    /**
+     * @var FormFactory
+     */
     private $formFactory;
 
+    /**
+     * StatusesController constructor.
+     * @param Translator $translator
+     * @param EngineInterface $templating
+     * @param Session $session
+     * @param RouterInterface $router
+     * @param ObjectRepository $model
+     * @param FormFactory $formFactory
+     */
     public function __construct(
         Translator $translator,
         EngineInterface $templating,

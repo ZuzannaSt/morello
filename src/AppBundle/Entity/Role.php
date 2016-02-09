@@ -47,6 +47,11 @@ class Role implements RoleInterface
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /**
+     * Get role
+     *
+     * @return mixed
+     */
     public function getRole()
     {
         return $this->role;

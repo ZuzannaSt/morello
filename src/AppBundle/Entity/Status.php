@@ -42,6 +42,11 @@ class Status
         $this->tasks = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /**
+     * Get status
+     *
+     * @return mixed
+     */
     public function getStatus()
     {
         return $this->status;

@@ -8,6 +8,10 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Doctrine\ORM\EntityRepository;
 
+/**
+ * Class UserRepository
+ * @package AppBundle\Repository
+ */
 class UserRepository extends EntityRepository implements UserProviderInterface
 {
     /**

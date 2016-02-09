@@ -8,6 +8,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class StatusType
+ * @package AppBundle\Form\Admin
+ */
 class StatusType extends AbstractType
 {
     /**

@@ -9,6 +9,10 @@ use AppBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
+/**
+ * Class RegistrationController
+ * @package AppBundle\Controller
+ */
 class RegistrationController extends Controller
 {
     /**

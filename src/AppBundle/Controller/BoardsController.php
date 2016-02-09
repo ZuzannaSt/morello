@@ -18,23 +18,56 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
- *
  * Class BoardsController
  * @package AppBundle\Controller
  * @Route(service="app.projects_boards_controller")
- *
  */
 class BoardsController
 {
+    /**
+     * @var Translator
+     */
     private $translator;
+    /**
+     * @var EngineInterface
+     */
     private $templating;
+    /**
+     * @var Session
+     */
     private $session;
+    /**
+     * @var RouterInterface
+     */
     private $router;
+    /**
+     * @var ObjectRepository
+     */
     private $model;
+    /**
+     * @var ObjectRepository
+     */
     private $project_model;
+    /**
+     * @var FormFactory
+     */
     private $formFactory;
+    /**
+     * @var
+     */
     private $securityContext;
 
+    /**
+     * BoardsController constructor.
+     * @param Translator $translator
+     * @param EngineInterface $templating
+     * @param Session $session
+     * @param RouterInterface $router
+     * @param ObjectRepository $model
+     * @param ObjectRepository $project_model
+     * @param FormFactory $formFactory
+     * @param $securityContext
+     */
     public function __construct(
         Translator $translator,
         EngineInterface $templating,

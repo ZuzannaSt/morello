@@ -15,10 +15,25 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class DashboardController
 {
+    /**
+     * @var Translator
+     */
     private $translator;
+    /**
+     * @var EngineInterface
+     */
     private $templating;
+    /**
+     * @var null
+     */
     private $current_user;
 
+    /**
+     * DashboardController constructor.
+     * @param Translator $translator
+     * @param EngineInterface $templating
+     * @param $securityContext
+     */
     public function __construct(
         Translator $translator,
         EngineInterface $templating,
