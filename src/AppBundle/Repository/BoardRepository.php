@@ -38,7 +38,8 @@ class BoardRepository extends EntityRepository
     /**
      * Add entity
      *
-     * @param board, project_id
+     * @param board
+     * @param project_id
      * @return entity
      */
     public function add($board, $project_id)

@@ -15,13 +15,19 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * Class Board
+ * @package AppBundle\Entity
  * @ORM\Table(name="boards")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BoardRepository")
  */
 class Board
 {
     /**
+     * Id
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     type="integer",
      *     nullable=false,
@@ -32,9 +38,14 @@ class Board
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
+     * Name
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="name",
      *     type="string",
@@ -44,38 +55,63 @@ class Board
      * @Assert\NotBlank(message="validations.name.not_blank")
      * @Assert\Length(min=3, minMessage="validations.name.min")
      */
-    private $name;
+    protected $name;
 
     /**
+     * Created at
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="created_at",
      *     type="datetime",
      *     nullable=true
      * )
      */
-    private $created_at;
+    protected $created_at;
 
     /**
+     * Updated at
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="updated_at",
      *     type="datetime",
      *     nullable=true
      * )
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
+     * Projects
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="boards")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
     protected $project;
 
     /**
+     * Tasks
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\OneToMany(targetEntity="Task", mappedBy="board", cascade={"remove"})
      */
     protected $tasks;
 
     /**
+    * Projects
+    *
+    * @access protected
+    * @var
+    *
     * @ORM\ManyToMany(targetEntity="User", inversedBy="boards")
     * @ORM\JoinTable(name="boards_users")
     */

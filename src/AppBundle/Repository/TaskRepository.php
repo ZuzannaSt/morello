@@ -38,7 +38,8 @@ class TaskRepository extends EntityRepository
     /**
      * Add entity
      *
-     * @param task, board_id
+     * @param task
+     * @param board_id
      * @return entity
      */
     public function add($task, $board_id)

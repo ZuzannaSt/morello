@@ -33,26 +33,43 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class StatusesController
 {
     /**
+     * Translator
+     * @access private
      * @var Translator
      */
     private $translator;
+
     /**
+     * Templating
+     * @access private
      * @var EngineInterface
      */
     private $templating;
+
     /**
-     * @var Session
-     */
-    private $session;
-    /**
+     * Router
+     * @access private
      * @var RouterInterface
      */
     private $router;
+
     /**
+     * Session
+     * @access private
+     * @var Session
+     */
+    private $session;
+
+    /**
+     * Model
+     * @access private
      * @var ObjectRepository
      */
     private $model;
+
     /**
+     * Form factory
+     * @access private
      * @var FormFactory
      */
     private $formFactory;
@@ -83,6 +100,7 @@ class StatusesController
     }
 
     /**
+     * Index Action
      *
      * @return Response
      * @Route("/statuses", name="admin_statuses_index")
@@ -99,6 +117,7 @@ class StatusesController
     }
 
     /**
+     * Add Action
      *
      * @param Request $request
      * @return Response

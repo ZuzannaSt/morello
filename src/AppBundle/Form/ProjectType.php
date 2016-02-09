@@ -26,7 +26,8 @@ class ProjectType extends AbstractType
     /**
      * Build entity form
      *
-     * @param builder, options
+     * @param FormBuilderInterface builder
+     * @param array options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -80,7 +81,7 @@ class ProjectType extends AbstractType
     /**
      * Set default options
      *
-     * @param resolver
+     * @param OptionsResolverInterface resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {

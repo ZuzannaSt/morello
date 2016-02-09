@@ -17,13 +17,19 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity
+ * Class Task
+ * @package AppBundle\Entity
  * @ORM\Table(name="tasks")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TaskRepository")
  */
 class Task
 {
     /**
+     * Id
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     type="integer",
      *     nullable=false,
@@ -34,9 +40,14 @@ class Task
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
+     * Name
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="name",
      *     type="string",
@@ -46,9 +57,14 @@ class Task
      * @Assert\NotBlank(message="validations.name.not_blank")
      * @Assert\Length(min=3, minMessage="validations.name.min")
      */
-    private $name;
+    protected $name;
 
     /**
+     * Description
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="description",
      *     type="string",
@@ -56,27 +72,41 @@ class Task
      *     nullable=true
      * )
      */
-    private $description;
+    protected $description;
 
     /**
+     * Created at
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="created_at",
      *     type="datetime",
      *     nullable=true
      * )
      */
-    private $created_at;
+    protected $created_at;
 
     /**
+     * Updated at
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="updated_at",
      *     type="datetime",
      *     nullable=true
      * )
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
+     * Statuses
+     *
+     * @access protected
+     * @var \Doctrine\Common\Collections\ArrayCollection();
      *
      * @ORM\ManyToMany(targetEntity="Status", inversedBy="tasks", cascade={"persist"})
      * @ORM\JoinTable(name="tasks_statuses")
@@ -84,12 +114,22 @@ class Task
     protected $statuses;
 
     /**
-    * @ORM\ManyToMany(targetEntity="User", inversedBy="tasks")
-    * @ORM\JoinTable(name="tasks_users")
-    */
+     * Users
+     *
+     * @access protected
+     * @var \Doctrine\Common\Collections\ArrayCollection();
+     *
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="tasks")
+     * @ORM\JoinTable(name="tasks_users")
+     */
     protected $users;
 
     /**
+     * Board
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\ManyToOne(targetEntity="Board", inversedBy="tasks")
      * @ORM\JoinColumn(name="board_id", referencedColumnName="id")
      */

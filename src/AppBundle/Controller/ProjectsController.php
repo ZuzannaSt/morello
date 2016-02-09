@@ -36,30 +36,50 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class ProjectsController
 {
     /**
+     * Translator
+     * @access private
      * @var Translator
      */
     private $translator;
+
     /**
+     * Templating
+     * @access private
      * @var EngineInterface
      */
     private $templating;
+
     /**
-     * @var Session
-     */
-    private $session;
-    /**
+     * Router
+     * @access private
      * @var RouterInterface
      */
     private $router;
+
     /**
+     * Session
+     * @access private
+     * @var Session
+     */
+    private $session;
+
+    /**
+     * Model
+     * @access private
      * @var ObjectRepository
      */
     private $model;
+
     /**
+     * Form factory
+     * @access private
      * @var FormFactory
      */
     private $formFactory;
+
     /**
+     * SecurityContext
+     * @access private
      * @var
      */
     private $securityContext;
@@ -93,6 +113,7 @@ class ProjectsController
     }
 
     /**
+     * Index Action
      *
      * @return Response
      * @Route("/projects", name="projects_index")
@@ -109,6 +130,7 @@ class ProjectsController
     }
 
     /**
+     * View Action
      *
      * @param Id $id
      * @return Response
@@ -136,12 +158,13 @@ class ProjectsController
     }
 
     /**
-    *
-    * @param Request $request
-    * @return Response
-    * @Route("/projects/{id}/edit", name="projects_edit")
-    *
-    */
+     * Edit Action
+     *
+     * @param Request $request
+     * @return Response
+     * @Route("/projects/{id}/edit", name="projects_edit")
+     *
+     */
     public function editAction(Request $request)
     {
         if (!$this->securityContext->isGranted('ROLE_MANAGER') || !$this->securityContext->isGranted('ROLE_ADMIN')) {

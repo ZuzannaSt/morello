@@ -58,7 +58,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
     /**
      * Refresh user
      *
-     * @param user
+     * @param UserInterface user
      * @return user_id
      */
     public function refreshUser(UserInterface $user)

@@ -18,7 +18,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity
+ * Class User
+ * @package AppBundle\Entity
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @UniqueEntity(fields="email", message="Email already taken")
@@ -27,6 +28,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface, \Serializable
 {
     /**
+     * Id
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     type="integer",
      *     nullable=false,
@@ -37,9 +43,14 @@ class User implements UserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
+     * Password
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="password",
      *     type="string",
@@ -47,15 +58,25 @@ class User implements UserInterface, \Serializable
      *     nullable=false,
      * )
      */
-    private $password;
+    protected $password;
 
     /**
+     * Plain password
+     *
+     * @access protected
+     * @var
+     *
      * @Assert\NotBlank(message="validations.password.not_blank", groups={"registration"})
      * @Assert\Length(min=7, minMessage="validations.password.min", max = 4096, maxMessage="validations.password.max")
      */
-    private $plainPassword;
+    protected $plainPassword;
 
     /**
+     * Username
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="username",
      *     type="string",
@@ -66,9 +87,14 @@ class User implements UserInterface, \Serializable
      * @Assert\NotBlank(message="validations.username.not_blank")
      * @Assert\Length(min=3, minMessage="validations.username.min")
      */
-    private $username;
+    protected $username;
 
     /**
+     * Email
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="email",
      *     type="string",
@@ -79,17 +105,27 @@ class User implements UserInterface, \Serializable
      * @Assert\NotBlank(message="validations.email.not_blank", groups={"registration"})
      * @Assert\Email(groups={"registration"})
      */
-    private $email;
+    protected $email;
 
     /**
+     * Is active
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="is_active",
      *     type="boolean"
      *     )
      */
-    private $isActive;
+    protected $isActive;
 
     /**
+     * First name
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="firstname",
      *     type="string",
@@ -98,9 +134,14 @@ class User implements UserInterface, \Serializable
      * )
      * @Assert\Length(min=2, minMessage="validations.firstname.min")
      */
-    private $firstName;
+    protected $firstName;
 
     /**
+     * Last name
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="lastname",
      *     type="string",
@@ -109,7 +150,7 @@ class User implements UserInterface, \Serializable
      * )
      * @Assert\Length(min=2, minMessage="validations.lastname.min")
      */
-    private $lastName;
+    protected $lastName;
 
     /**
      * User's projects
@@ -400,6 +441,7 @@ class User implements UserInterface, \Serializable
     /**
      * Unserialize user
      *
+     * @param serialized
      * @return string
      */
     public function unserialize($serialized)

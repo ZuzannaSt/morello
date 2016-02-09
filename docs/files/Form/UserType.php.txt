@@ -1,0 +1,85 @@
+<?php
+
+/**
+ * UserType Form
+ *
+ * PHP version 5
+ *
+ * @author Zuzanna Stolińska <zuzanna.st@gmail.com>
+ * @link wierzba.wzks.uj.edu.pl/~11_stolinska/symfony_projekt
+ */
+
+namespace AppBundle\Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+/**
+ * Class UserType
+ * @package AppBundle\Form
+ */
+class UserType extends AbstractType
+{
+    /**
+     * Build entity form
+     *
+     * @param FormBuilderInterface builder
+     * @param array options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('email', 'email', array('required' => true))
+            ->add('username', 'text', array('required' => true))
+            ->add('plainPassword', 'repeated', array(
+                'type' => 'password',
+                'first_options'  => array('label' => 'Password'),
+                'second_options' => array('label' => 'Repeat Password'),
+                ))
+            ->add(
+                'firstName',
+                'text',
+                array(
+                  'required' => false
+                )
+            )
+            ->add(
+                'lastName',
+                'text',
+                array(
+                    'required' => false
+                )
+            )
+          ->add(
+              'save',
+              'submit',
+              array(
+                  'label' => 'Zarejestruj się'
+              )
+          );
+    }
+
+    /**
+     * Set default options
+     *
+     * @param OptionsResolverInterface resolver
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'AppBundle\Entity\User'
+        ));
+    }
+
+    /**
+     * Get name
+     *
+     * @return user
+     */
+    public function getName()
+    {
+        return 'user';
+    }
+}
+

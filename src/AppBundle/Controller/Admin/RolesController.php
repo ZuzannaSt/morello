@@ -33,26 +33,43 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class RolesController
 {
     /**
+     * Translator
+     * @access private
      * @var Translator
      */
     private $translator;
+
     /**
+     * Templating
+     * @access private
      * @var EngineInterface
      */
     private $templating;
+
     /**
-     * @var Session
-     */
-    private $session;
-    /**
+     * Router
+     * @access private
      * @var RouterInterface
      */
     private $router;
+
     /**
+     * Session
+     * @access private
+     * @var Session
+     */
+    private $session;
+
+    /**
+     * Model
+     * @access private
      * @var ObjectRepository
      */
     private $model;
+
     /**
+     * Form factory
+     * @access private
      * @var FormFactory
      */
     private $formFactory;
@@ -83,6 +100,7 @@ class RolesController
     }
 
     /**
+     * Index Action
      *
      * @return Response
      * @Route("/roles", name="admin_roles_index")
@@ -99,6 +117,7 @@ class RolesController
     }
 
     /**
+     * View Action
      *
      * @param Id $id
      * @return Response
@@ -123,6 +142,7 @@ class RolesController
     }
 
     /**
+     * Add Action
      *
      * @param Request $request
      * @return Response

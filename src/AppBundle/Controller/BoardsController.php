@@ -34,34 +34,57 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 class BoardsController
 {
     /**
+     * Translator
+     * @access private
      * @var Translator
      */
     private $translator;
+
     /**
+     * Templating
+     * @access private
      * @var EngineInterface
      */
     private $templating;
+
     /**
-     * @var Session
-     */
-    private $session;
-    /**
+     * Router
+     * @access private
      * @var RouterInterface
      */
     private $router;
+
     /**
+     * Session
+     * @access private
+     * @var Session
+     */
+    private $session;
+
+    /**
+     * Model
+     * @access private
      * @var ObjectRepository
      */
     private $model;
+
     /**
+     * Project model
+     * @access private
      * @var ObjectRepository
      */
     private $project_model;
+
     /**
+     * Form factory
+     * @access private
      * @var FormFactory
      */
     private $formFactory;
+
     /**
+     * securityContext
+     * @access private
      * @var
      */
     private $securityContext;
@@ -98,6 +121,7 @@ class BoardsController
     }
 
     /**
+     * Index Action
      *
      * @param Request $request
      * @return Response
@@ -120,6 +144,7 @@ class BoardsController
     }
 
     /**
+     * Add Action
      *
      * @param Request $request
      * @return Response
@@ -160,12 +185,13 @@ class BoardsController
     }
 
     /**
-    *
-    * @param Request $request
-    * @return Response
-    * @Route("/projects/{project_id}/boards/{id}/edit", name="project_boards_edit")
-    *
-    */
+     * Edit Action
+     *
+     * @param Request $request
+     * @return Response
+     * @Route("/projects/{project_id}/boards/{id}/edit", name="project_boards_edit")
+     *
+     */
     public function editAction(Request $request)
     {
         if (!$this->securityContext->isGranted('ROLE_MANAGER') || !$this->securityContext->isGranted('ROLE_ADMIN')) {
@@ -215,6 +241,7 @@ class BoardsController
     }
 
     /**
+     * Delete Action
      *
      * @param Request $request
      * @return Respons

@@ -18,13 +18,19 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity
+ * Class Project
+ * @package AppBundle\Entity
  * @ORM\Table(name="projects")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
  */
 class Project
 {
-    /**
+     /**
+     * Id
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     type="integer",
      *     nullable=false,
@@ -35,9 +41,14 @@ class Project
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
-    /**
+     /**
+     * Name
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="name",
      *     type="string",
@@ -47,9 +58,14 @@ class Project
      * @Assert\NotBlank(message="validations.name.not_blank")
      * @Assert\Length(min=3, minMessage="validations.name.min")
      */
-    private $name;
+    protected $name;
 
-    /**
+     /**
+     * Description
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="description",
      *     type="string",
@@ -57,33 +73,53 @@ class Project
      *     nullable=true
      * )
      */
-    private $description;
+    protected $description;
 
     /**
+     * Created at
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="created_at",
      *     type="datetime",
      *     nullable=true
      * )
      */
-    private $created_at;
+    protected $created_at;
 
     /**
+     * Updated at
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(
      *     name="updated_at",
      *     type="datetime",
      *     nullable=true
      * )
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
+    * Updated at
+    *
+    * @access protected
+    * @var \Doctrine\Common\Collections\ArrayCollection
+    *
     * @ORM\ManyToMany(targetEntity="User", inversedBy="projects")
     * @ORM\JoinTable(name="projects_users")
     */
     protected $users;
 
     /**
+     * Updated at
+     *
+     * @access protected
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Board", mappedBy="project", cascade={"remove"})
      */
     protected $boards;

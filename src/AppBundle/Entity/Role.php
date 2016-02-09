@@ -17,36 +17,57 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 
 /**
+ * Class Role
+ * @package AppBundle\Entity
  * @ORM\Table(name="roles")
- * @ORM\Entity()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\RoleRepository")
  */
 class Role implements RoleInterface
 {
     /**
+     * Id
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
+     * Name
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(name="name", type="string", length=30, nullable=false)
      * @Assert\NotBlank(message="validations.name.not_blank")
      * @Assert\Length(min=3, minMessage="validations.name.min")
      */
-    private $name;
+    protected $name;
 
     /**
+     * Role
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(name="role", type="string", length=20, unique=true)
      * @Assert\NotBlank(message="validations.name.not_blank")
      */
-    private $role;
+    protected $role;
 
     /**
+     * Users
+     *
+     * @access protected
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="User", mappedBy="roles")
      */
-    private $users;
+    protected $users;
 
     /**
      * Roles constructor

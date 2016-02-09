@@ -33,26 +33,45 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class ProjectsController
 {
     /**
+     * Translator
+     * @access private
      * @var Translator
      */
     private $translator;
+
     /**
+     * Templating
+     * @access private
      * @var EngineInterface
      */
     private $templating;
+
     /**
+     * Session
+     * @access private
      * @var Session
      */
     private $session;
+
     /**
+     * Router
+     * @access private
+     * Router
+     * @access private
      * @var RouterInterface
      */
     private $router;
+
     /**
+     * Model
+     * @access private
      * @var ObjectRepository
      */
     private $model;
+
     /**
+     * Form factory
+     * @access private
      * @var FormFactory
      */
     private $formFactory;
@@ -83,6 +102,7 @@ class ProjectsController
     }
 
     /**
+     * Index Action
      * @return Response
      * @Route("/projects", name="admin_projects_index")
      */
@@ -97,6 +117,7 @@ class ProjectsController
     }
 
     /**
+     * Add Action
      * @param Request $request
      * @return RedirectResponse|Response
      * @Route("/projects/add", name="admin_projects_add")
@@ -130,6 +151,7 @@ class ProjectsController
     }
 
     /**
+     * Delete Action
      * @param Request $request
      * @return RedirectResponse|Response
      * @Route("/projects/{id}/delete", name="admin_projects_delete")

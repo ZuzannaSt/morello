@@ -26,6 +26,7 @@ class SecurityController extends Controller
     /**
      * Class RegistrationsController
      * @package AppBundle\Controller
+     * @param Request request
      * @Route("/login", name="user_login")
      */
     public function loginAction(Request $request)
@@ -56,6 +57,7 @@ class SecurityController extends Controller
     }
 
     /**
+     * Login Check Action
      *
      * @Route("/login_check", name="login_check")
      *
@@ -64,10 +66,10 @@ class SecurityController extends Controller
     {
         // this controller will not be executed,
         // as the route is handled by the Security system
-        var_dump($this->generateUrl('admin_dashboard'));
     }
 
     /**
+     * Login Redirect Action
      *
      * @Route("/login_redirect", name="login_redirect")
      *

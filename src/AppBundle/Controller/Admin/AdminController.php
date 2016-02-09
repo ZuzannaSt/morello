@@ -33,42 +33,71 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class AdminController
 {
     /**
+     * Translator
+     * @access private
      * @var Translator
      */
     private $translator;
+
     /**
+     * Templating
+     * @access private
      * @var EngineInterface
      */
     private $templating;
+
     /**
+     * Router
+     * @access private
      * @var RouterInterface
      */
     private $router;
+
     /**
+     * Session
+     * @access private
      * @var Session
      */
     private $session;
+
     /**
+     * Entity Manager
+     * @access private
      * @var EntityManager
      */
     private $em;
+
     /**
+     * User model
+     * @access private
      * @var ObjectRepository
      */
     private $user_model;
+
     /**
+     * Project model
+     * @access private
      * @var ObjectRepository
      */
     private $project_model;
+
     /**
+     * Form factory
+     * @access private
      * @var FormFactory
      */
     private $formFactory;
+
     /**
+     * Current user
+     * @access private
      * @var null
      */
     private $current_user;
+
     /**
+     * Encoder
+     * @access private
      * @var
      */
     private $encoder;
@@ -117,6 +146,7 @@ class AdminController
     }
 
     /**
+     * Index Action
      * @return Response
      * @Route("/dashboard", name="admin_dashboard")
      */
@@ -135,6 +165,7 @@ class AdminController
     }
 
     /**
+     * Users Index Action
      * @return Response
      * @Route("/users", name="admin_users_index")
      */
@@ -149,6 +180,7 @@ class AdminController
     }
 
     /**
+     * User Add Action
      * @param Request $request
      * @return RedirectResponse|Response
      * @Route("/users/add", name="admin_user_add")
@@ -183,6 +215,7 @@ class AdminController
     }
 
     /**
+     * User View Action
      * @param $user_id
      * @return Response
      * @Route("/users/{user_id}/view", name="admin_user_view")
@@ -199,6 +232,7 @@ class AdminController
 
 
     /**
+     * User Edit Action
      * @param Request $request
      * @return RedirectResponse|Response
      * @Route("/users/{user_id}/edit", name="admin_user_edit")
@@ -245,6 +279,7 @@ class AdminController
     }
 
     /**
+     * User Delete Action
      * @param Request $request
      * @return RedirectResponse|Response
      * @Route("/users/{user_id}/delete", name="admin_user_delete")

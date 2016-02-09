@@ -17,31 +17,47 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Status\StatusInterface;
 
 /**
+ * Class Status
+ * @package AppBundle\Entity
  * @ORM\Table(name="statuses")
- * @ORM\Entity()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\StatusRepository")
  */
 
 class Status
 {
     /**
+     * Id
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
+     * Name
+     *
+     * @access protected
+     * @var
+     *
      * @ORM\Column(name="name", type="string", length=30, nullable=false)
      * @Assert\NotBlank(message="validations.name.not_blank")
      * @Assert\Length(min=3, minMessage="validations.name.min")
      */
-    private $name;
+    protected $name;
 
     /**
+     * Tasks
+     *
+     * @access protected
+     * @var \Doctrine\Common\Collections\ArrayCollection();
+     *
      * @ORM\ManyToMany(targetEntity="Task", mappedBy="statuses")
      */
-    private $tasks;
+    protected $tasks;
 
     /**
      * Status constructor

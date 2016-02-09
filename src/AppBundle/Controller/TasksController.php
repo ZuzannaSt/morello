@@ -36,34 +36,57 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 class TasksController
 {
     /**
+     * Translator
+     * @access private
      * @var Translator
      */
     private $translator;
+
     /**
+     * Templating
+     * @access private
      * @var EngineInterface
      */
     private $templating;
+
     /**
-     * @var Session
-     */
-    private $session;
-    /**
+     * Router
+     * @access private
      * @var RouterInterface
      */
     private $router;
+
     /**
+     * Session
+     * @access private
+     * @var Session
+     */
+    private $session;
+
+    /**
+     * Model
+     * @access private
      * @var ObjectRepository
      */
     private $model;
+
     /**
+     * Project Model
+     * @access private
      * @var ObjectRepository
      */
     private $project_model;
+
     /**
+     * Form factory
+     * @access private
      * @var FormFactory
      */
     private $formFactory;
+
     /**
+     * SecurityContext
+     * @access private
      * @var
      */
     private $securityContext;
@@ -100,6 +123,7 @@ class TasksController
     }
 
     /**
+     * View Action
      *
      * @param Request $request
      * @param Id
@@ -133,6 +157,7 @@ class TasksController
     }
 
     /**
+     * Add Action
      *
      * @param Request $request
      * @return Response
@@ -176,12 +201,13 @@ class TasksController
     }
 
     /**
-    *
-    * @param Request $request
-    * @return Response
-    * @Route("/projects/{project_id}/boards/{board_id}/tasks/{id}/edit", name="project_board_tasks_edit")
-    *
-    */
+     * Edit Action
+     *
+     * @param Request $request
+     * @return Response
+     * @Route("/projects/{project_id}/boards/{board_id}/tasks/{id}/edit", name="project_board_tasks_edit")
+     *
+     */
     public function editAction(Request $request)
     {
         $project_id = $request->get('project_id', null);
@@ -234,12 +260,13 @@ class TasksController
     }
 
     /**
-    *
-    * @param Request $request
-    * @return Respons
-    * @Route("/projects/{project_id}/tasks/boards/{board_id}/delete/{id}", name="project_board_tasks_delete")
-    *
-    */
+     * Delete Action
+     *
+     * @param Request $request
+     * @return Respons
+     * @Route("/projects/{project_id}/tasks/boards/{board_id}/delete/{id}", name="project_board_tasks_delete")
+     *
+     */
     public function deleteAction(Request $request)
     {
         $project_id = $request->get('project_id', null);

@@ -27,6 +27,7 @@ class RegistrationController extends Controller
     /**
      * Class RegistrationsController
      * @package AppBundle\Controller
+     * @param Request request
      * @Route("/register", name="user_registration")
      */
     public function registerAction(Request $request)
@@ -63,6 +64,7 @@ class RegistrationController extends Controller
     }
 
     /**
+     * Confirmed Action
      *
      * @Route("/confirmed", name="registration_confirmed")
      *

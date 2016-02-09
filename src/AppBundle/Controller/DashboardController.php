@@ -26,14 +26,22 @@ use Symfony\Component\HttpFoundation\Response;
 class DashboardController
 {
     /**
+     * Translator
+     * @access private
      * @var Translator
      */
     private $translator;
+
     /**
+     * Templating
+     * @access private
      * @var EngineInterface
      */
     private $templating;
+
     /**
+     * Current user
+     * @access private
      * @var null
      */
     private $current_user;
@@ -61,6 +69,7 @@ class DashboardController
     }
     /**
      *
+     * Display Action
      * @Route("/dashboard", name="user_dashboard")
      * @return Response
      *
@@ -77,6 +86,7 @@ class DashboardController
     }
 
     /**
+     * User View Action
      * @param $user_id
      * @return Response
      * @Route("/user_profile", name="user_profile")
