@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * UserType Form
+ *
+ * PHP version 5
+ *
+ * @author Zuzanna Stolińska <zuzanna.st@gmail.com>
+ * @link wierzba.wzks.uj.edu.pl/~11_stolinska/symfony_projekt
+ */
+
 namespace AppBundle\Form\Admin;
 
 use Doctrine\Common\Persistence\ObjectRepository;

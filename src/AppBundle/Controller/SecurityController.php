@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * SecurityController
+ *
+ * PHP version 5
+ *
+ * @author Zuzanna Stolińska <zuzanna.st@gmail.com>
+ * @link wierzba.wzks.uj.edu.pl/~11_stolinska/symfony_projekt
+ */
+
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
