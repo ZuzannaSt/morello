@@ -80,7 +80,7 @@ class Project
     protected $boards;
 
     /**
-    * Constructor
+    * Projects constructor
     */
     public function __construct()
     {

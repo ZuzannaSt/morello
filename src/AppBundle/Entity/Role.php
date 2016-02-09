@@ -12,7 +12,6 @@ use Symfony\Component\Security\Core\Role\RoleInterface;
  * @ORM\Entity()
  * @ORM\Entity(repositoryClass="AppBundle\Repository\RoleRepository")
  */
-
 class Role implements RoleInterface
 {
     /**
@@ -41,7 +40,7 @@ class Role implements RoleInterface
     private $users;
 
     /**
-     * Role constructor.
+     * Roles constructor
      */
     public function __construct()
     {

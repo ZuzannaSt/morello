@@ -121,7 +121,7 @@ class User implements UserInterface, \Serializable
     protected $roles;
 
     /**
-    * Constructor
+    * Users constructor
     */
     public function __construct()
     {
@@ -333,16 +333,30 @@ class User implements UserInterface, \Serializable
         $this->projects->removeElement($projects);
     }
 
+    /**
+     * Get password salt
+     *
+     */
     public function getSalt()
     {
         return null;
     }
 
+    /**
+     * Get password
+     *
+     * @return string
+     */
     public function getPassword()
     {
         return $this->password;
     }
 
+    /**
+     * Get roles
+     *
+     * @return array
+     */
     public function getRoles()
     {
         if (empty($this->roles)) {
@@ -352,10 +366,19 @@ class User implements UserInterface, \Serializable
         }
     }
 
+    /**
+     * Erase users credentials
+     *
+     */
     public function eraseCredentials()
     {
     }
 
+    /**
+     * Serialize user
+     *
+     * @return array
+     */
     public function serialize()
     {
         return serialize(array(
@@ -365,6 +388,11 @@ class User implements UserInterface, \Serializable
         ));
     }
 
+    /**
+     * Unserialize user
+     *
+     * @return string
+     */
     public function unserialize($serialized)
     {
         list (
@@ -374,16 +402,33 @@ class User implements UserInterface, \Serializable
         ) = unserialize($serialized);
     }
 
+    /**
+     * Get plain password
+     *
+     * @return string
+     */
     public function getPlainPassword()
     {
         return $this->plainPassword;
     }
 
+    /**
+     * Set plain password
+     *
+     * @param password
+     * @return string
+     */
     public function setPlainPassword($password)
     {
         $this->plainPassword = $password;
     }
 
+    /**
+     * Set password
+     *
+     * @param password
+     * @return string
+     */
     public function setPassword($password)
     {
         $this->password = $password;

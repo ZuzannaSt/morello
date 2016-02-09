@@ -12,6 +12,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class RegistrationController extends Controller
 {
     /**
+     * Class RegistrationsController
+     * @package AppBundle\Controller
      * @Route("/register", name="user_registration")
      */
     public function registerAction(Request $request)
@@ -48,7 +50,9 @@ class RegistrationController extends Controller
     }
 
     /**
+     *
      * @Route("/confirmed", name="registration_confirmed")
+     *
      */
     public function confirmedAction()
     {

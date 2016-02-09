@@ -20,6 +20,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 /**
  *
  * Class ProjectsController
+ * @package AppBundle\Controller
  * @Route(service="app.projects_controller")
  *
  */

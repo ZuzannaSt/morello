@@ -67,7 +67,10 @@ class AdminController
     }
 
     /**
+     *
+     * @return Response
      * @Route("/dashboard", name="admin_dashboard")
+     *
      */
     public function indexAction()
     {
@@ -84,8 +87,10 @@ class AdminController
     }
 
     /**
+     *
      * @return Response
      * @Route("/users", name="admin_users_index")
+     *
      */
     public function usersIndexAction()
     {
@@ -98,9 +103,11 @@ class AdminController
     }
 
     /**
+     *
      * @param Request $request
      * @return Response
      * @Route("/users/add", name="admin_user_add")
+     *
      */
     public function userAddAction(Request $request)
     {
@@ -132,9 +139,11 @@ class AdminController
     }
 
     /**
+     *
      * @param $user_id
      * @return Response
      * @Route("/users/{user_id}/view", name="admin_user_view")
+     *
      */
     public function userViewAction($user_id)
     {
@@ -148,10 +157,12 @@ class AdminController
 
 
     /**
+     *
      * @param Request $request
      * @param $user_id
      * @return Response
      * @Route("/users/{user_id}/edit", name="admin_user_edit")
+     *
      */
     public function userEditAction(Request $request)
     {
@@ -195,9 +206,11 @@ class AdminController
     }
 
     /**
+     *
      * @param $user_id
      * @return Response
      * @Route("/users/{user_id}/delete", name="admin_user_delete")
+     *
      */
 
     public function userDeleteAction(Request $request)

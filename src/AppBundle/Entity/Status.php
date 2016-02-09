@@ -35,7 +35,7 @@ class Status
     private $tasks;
 
     /**
-     * Status constructor.
+     * Status constructor
      */
     public function __construct()
     {

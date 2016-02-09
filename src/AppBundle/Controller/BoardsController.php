@@ -20,6 +20,7 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 /**
  *
  * Class BoardsController
+ * @package AppBundle\Controller
  * @Route(service="app.projects_boards_controller")
  *
  */
@@ -55,7 +56,11 @@ class BoardsController
     }
 
     /**
+     *
+     * @param Request $request
+     * @return Response
      * @Route("/projects/{project_id}/boards", name="project_boards_index")
+     *
      */
     public function indexAction(Request $request)
     {
@@ -168,12 +173,12 @@ class BoardsController
     }
 
     /**
-    *
-    * @param Request $request
-    * @return Respons
-    * @Route("/projects/{project_id}/boards/delete/{id}", name="project_boards_delete")
-    *
-    */
+     *
+     * @param Request $request
+     * @return Respons
+     * @Route("/projects/{project_id}/boards/delete/{id}", name="project_boards_delete")
+     *
+     */
     public function deleteAction(Request $request)
     {
         if (!$this->securityContext->isGranted('ROLE_MANAGER') || !$this->securityContext->isGranted('ROLE_ADMIN')) {

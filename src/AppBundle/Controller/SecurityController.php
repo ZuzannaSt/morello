@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class SecurityController extends Controller
 {
     /**
+     * Class RegistrationsController
+     * @package AppBundle\Controller
      * @Route("/login", name="user_login")
      */
     public function loginAction(Request $request)
@@ -41,7 +43,9 @@ class SecurityController extends Controller
     }
 
     /**
+     *
      * @Route("/login_check", name="login_check")
+     *
      */
     public function loginCheckAction()
     {
@@ -51,7 +55,9 @@ class SecurityController extends Controller
     }
 
     /**
+     *
      * @Route("/login_redirect", name="login_redirect")
+     *
      */
     public function loginRedirectAction()
     {

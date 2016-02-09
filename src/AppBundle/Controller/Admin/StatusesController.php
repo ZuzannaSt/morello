@@ -17,8 +17,11 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
+ *
  * Class StatusController
+ * @package AppBundle\Controller\Admin
  * @Route(service="admin.statuses_controller")
+ *
  */
 class StatusesController
 {

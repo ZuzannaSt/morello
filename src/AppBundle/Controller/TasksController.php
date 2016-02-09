@@ -20,6 +20,7 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 /**
  *
  * Class TasksController
+ * @package AppBundle\Controller
  * @Route(service="app.projects_tasks_controller")
  *
  */

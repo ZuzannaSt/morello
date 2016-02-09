@@ -87,7 +87,7 @@ class Task
     protected $board;
 
     /**
-    * Constructor
+    * Task constructor
     */
     public function __construct()
     {

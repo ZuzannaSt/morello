@@ -73,7 +73,7 @@ class Board
     protected $users;
 
     /**
-    * Constructor
+    * Boards constructor
     */
     public function __construct()
     {

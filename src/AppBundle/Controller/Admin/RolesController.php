@@ -17,8 +17,11 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
+ *
  * Class RolesController
+ * @package AppBundle\Controller\Admin
  * @Route(service="admin.roles_controller")
+ *
  */
 class RolesController
 {

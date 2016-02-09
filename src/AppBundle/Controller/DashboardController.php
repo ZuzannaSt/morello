@@ -7,11 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
+ *
  * Class DashboardController
  * @package AppBundle\Controller
  * @Route(service="app.dashboard_controller")
+ *
  */
-
 class DashboardController
 {
     private $translator;
@@ -34,7 +35,10 @@ class DashboardController
         }
     }
     /**
+     *
      * @Route("/dashboard", name="user_dashboard")
+     * @return Response
+     *
      */
     public function displayAction()
     {
