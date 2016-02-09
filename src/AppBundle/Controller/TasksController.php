@@ -110,7 +110,7 @@ class TasksController
             );
 
             $redirectUri = $this->router->generate(
-                'project_board_tasks_index',
+                'project_boards_index',
                 array(
                     'project_id' => $project_id,
                     'board_id' => $board_id
@@ -168,7 +168,7 @@ class TasksController
             );
 
             $redirectUri = $this->router->generate(
-                'project_board_tasks_index',
+                'project_boards_index',
                 array(
                     'project_id' => $project_id,
                     'board_id' => $board_id
@@ -223,7 +223,7 @@ class TasksController
                 'flash_messages.task.delete.success'
             );
 
-            return new RedirectResponse($this->router->generate('project_tasks_index', array('project_id' => $project_id)));
+            return new RedirectResponse($this->router->generate('project_boards_index', array('project_id' => $project_id)));
         }
 
           return $this->templating->renderResponse(
